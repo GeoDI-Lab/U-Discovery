@@ -1,0 +1,15 @@
+source_csv_complexity,nMSE_min,min_candidate
+10,1.07892651977403,Distance-weighted diffusion
+13,1.05855013249126,Radiation model
+14,1.03320406006639,Edge-betweenness weighted mixed diffusion
+15,1.0439285509145,KNN diffusion
+16,1.05515061927293,Betweenness-modulated diffusion
+18,1.01051134220668,Cluster-constrained diffusion
+20,1.08192243465575,Classic gravity model (POW)
+21,1.06222161783971,Single-constrained gravity model (POW)
+22,1.05737034092018,Span-adaptive diffusion
+23,1.00889120491958,Accessibility-driven drift
+25,1.04779076277456,Single-constrained gravity model (EXP)
+26,1.09318671751784,Two-scale piecewise diffusion
+27,1.04037319005316,Saturation-limited diffusion
+29,1.08564111720338,State-adaptive diffusion

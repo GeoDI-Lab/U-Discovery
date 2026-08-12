@@ -1,0 +1,12 @@
+paper_row,candidate_id,display_name,formula,complexity,graphrag_output_id,legacy_solver
+1,single_constrained_gravity_power,Single-constrained gravity model (POW),inflow_i = p_i^beta sum_j[d_ji^-gamma p_j / sum_k(d_jk^-gamma p_k^beta)]; outflow_i=p_i,21,SE2,interaction_powerlaw_gravity_v1
+2,single_constrained_gravity_exponential,Single-constrained gravity model (EXP),inflow_i = p_i^beta sum_j[exp(-gamma d_ji) p_j / sum_k(exp(-gamma d_jk) p_k^beta)]; outflow_i=p_i,25,,interaction_exponential_gravity_v1
+3,classic_gravity_power,Classic gravity model (POW),sum_j[p_j^alpha p_i^beta d_ji^-gamma - p_i^alpha p_j^beta d_ij^-gamma],20,,interaction_powerlaw_gravity_classic
+4,classic_gravity_exponential,Classic gravity model (EXP),sum_j[p_j^alpha p_i^beta exp(-gamma d_ji) - p_i^alpha p_j^beta exp(-gamma d_ij)],22,,interaction_exponential_gravity_classic
+5,radiation,Radiation model,"sum_j(T_ji-T_ij), T_ij=p_i p_j/[(p_i+s_ij)(p_i+p_j+s_ij)]",13,,interaction_radiation_model
+6,distance_weighted_diffusion,Distance-weighted diffusion,lambda sum_j d_ij^-eta (p_j-p_i),11,SE3,interaction_se3;interaction_SE3
+7,rank_based_diffusion,Rank-based diffusion,lambda_z sum_j 0.5[r_i(j)^-q+r_j(i)^-q](p_j-p_i),16,SE5,interaction_se5;interaction_SE5
+8,knn_diffusion,KNN diffusion,lambda_k sum_{j in N_K(i)} normalized(d_ij^-eta)(p_j-p_i),15,SE6,interaction_se6;interaction_SE6
+9,saturation_limited_diffusion,Saturation-limited diffusion,"lambda_s sum_j normalized(d_ij^-eta)[g(p_j)-g(p_i)], g(p)=p/(1+p/kappa)",27,SE7,interaction_se7;interaction_SE7
+10,accessibility_drift,Accessibility-driven drift,"rho p_i sum_j normalized(d_ij^-eta)(A_j-A_i), A_i=sum_k d_ik^-eta",23,SE8,interaction_se8;interaction_SE8
+11,local_global_diffusion,Local-global mixed diffusion,(1-Gamma)lambda sum_j d_ij^-eta(p_j-p_i)+Gamma chi(mean(p)-p_i),25,SE9,interaction_se9;interaction_SE9

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "citation_namespace": "GraphRAG text_units.human_readable_id",
+  "mapping_method": "Join cited text-unit IDs to text_units.document_ids, then resolve the OpenAlex work ID. No source text is redistributed.",
+  "metadata_checked_against_openalex": "2026-08-11",
+  "works": [
+    {
+      "openalex_id": "W1544540079",
+      "openalex_url": "https://openalex.org/W1544540079",
+      "title": "Geographic Constraints on Social Network Groups",
+      "doi": "10.1371/journal.pone.0016939",
+      "publication_year": 2011,
+      "archived_document_human_readable_id": 0,
+      "archived_document_title": "Geographic Constraints on Social Network Groups",
+      "cited_text_unit_ids": [3]
+    },
+    {
+      "openalex_id": "W1992120983",
+      "openalex_url": "https://openalex.org/W1992120983",
+      "title": "Epidemic Contact Tracing via Communication Traces",
+      "doi": "10.1371/journal.pone.0095133",
+      "publication_year": 2014,
+      "archived_document_human_readable_id": 16,
+      "archived_document_title": "Epidemic Contact Tracing via Communication Traces",
+      "cited_text_unit_ids": [160, 162]
+    },
+    {
+      "openalex_id": "W2025546535",
+      "openalex_url": "https://openalex.org/W2025546535",
+      "title": "Predicting commuter flows in spatial networks using a radiation model based on temporal ranges",
+      "doi": "10.1038/ncomms6347",
+      "publication_year": 2014,
+      "archived_document_human_readable_id": 27,
+      "archived_document_title": "ARTICIF",
+      "cited_text_unit_ids": [279]
+    },
+    {
+      "openalex_id": "W2770092988",
+      "openalex_url": "https://openalex.org/W2770092988",
+      "title": "Universal model of individual and population mobility on diverse spatial scales",
+      "doi": "10.1038/s41467-017-01892-8",
+      "publication_year": 2017,
+      "archived_document_human_readable_id": 80,
+      "archived_document_title": "ARTICIF",
+      "cited_text_unit_ids": [809]
+    }
+  ]
+}

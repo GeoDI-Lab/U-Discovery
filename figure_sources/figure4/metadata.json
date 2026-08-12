@@ -1,0 +1,24 @@
+{
+  "artifact": "Figure 4 synthetic realization",
+  "scope": "Figure source only; this is not the frozen Table 2 training dataset",
+  "bundle": "synthetic_figure4.npz",
+  "bundle_sha256": "74e40f8660ff98d27c794b3bf0b81563899915ee487fcd8c22d930b81348ca93",
+  "states": {
+    "shape": [501, 20],
+    "orientation": ["time", "node"],
+    "source_npy_sha256": "6db17fcb88ac71d9e6d8263305b6aba242e50b33fc85e571a36e5c08ceb792a1"
+  },
+  "distance_raw_source_npy_sha256": "ae9d2b63e909ffcf49d449f507489e873fc2edcc1a2a6e3aa20eb2d093dd814b",
+  "distance_normalized_source_npy_sha256": "9a90ed0abb0f85385d377d93198660357e8653ef927b5418a30c9e4271dbf11f",
+  "relationship_to_table2": {
+    "same_initial_state": true,
+    "same_raw_distance_matrix": true,
+    "same_trajectory": false,
+    "table2_source_of_truth": "../../data/synthetic/dataset.npz"
+  },
+  "mechanism_check": {
+    "description": "The algebraic closure residual is consistent with the archived Gaussian-noise scale.",
+    "closure_residual_standard_deviation": 1.681155448941977,
+    "declared_noise_sigma": 1.678669956672565
+  }
+}

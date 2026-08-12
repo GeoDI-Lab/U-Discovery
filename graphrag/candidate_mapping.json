@@ -1,0 +1,1027 @@
+{
+  "schema_version": 1,
+  "scope": "GraphRAG output candidate to manuscript and archived UrbanDE-Net mapping",
+  "notes": [
+    "paper_mapping is null when a generated candidate was not selected for Tables 1 or 3.",
+    "Parameters are copied verbatim from the candidate JSON; fixed network quantities may therefore appear beside fitted parameters.",
+    "Complexity is the value printed in the equation-proposal table. reported_fitting_complexities records Table 2/Table 4 values where they differ.",
+    "A baseline_equivalent relation identifies the corresponding manually developed paper family; it does not assert identical parameterization, and only relation=selected denotes a GraphRAG proposal carried into the table.",
+    "Archived solver methods refer to UrbanDE_Net_1119_county_proposed_int_denoised/pde_solver.py.",
+    "release_candidate_id is joined uniquely to ../artifacts/candidates.json by manuscript table and row; release_solver_function is the registry-backed public evaluator."
+  ],
+  "candidates": [
+    {
+      "output_id": "SE1",
+      "output_label": "Classic gravity net flux (baseline A)",
+      "source_file": "outputs/no_invention_candidates_20260114.json",
+      "source_group": "se_candidates",
+      "json_pointer": "/se_candidates/0",
+      "parameters": [
+        {
+          "name": "kappa",
+          "meaning": "Overall interaction rate scale",
+          "constraints": "> 0"
+        },
+        {
+          "name": "alpha",
+          "meaning": "Origin state exponent",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "beta",
+          "meaning": "Destination state exponent",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "gamma",
+          "meaning": "Distance-decay exponent",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 1,
+        "row": 3,
+        "name": "Classic Gravity model (POW)",
+        "complexity": 20,
+        "relation": "baseline_equivalent",
+        "reported_fitting_complexities": {
+          "table_2": 22,
+          "table_4": 22
+        },
+        "release_candidate_id": "classic_gravity_power",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_se1"
+    },
+    {
+      "output_id": "SE2",
+      "output_label": "Single-constrained gravity (baseline B)",
+      "source_file": "outputs/no_invention_candidates_20260114.json",
+      "source_group": "se_candidates",
+      "json_pointer": "/se_candidates/1",
+      "parameters": [
+        {
+          "name": "eta",
+          "meaning": "Power-law decay of attractiveness with distance",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 1,
+        "row": 1,
+        "name": "Single-constrained Gravity model (POW)",
+        "complexity": 21,
+        "relation": "baseline_equivalent",
+        "reported_fitting_complexities": {
+          "table_2": 17,
+          "table_4": 17
+        },
+        "release_candidate_id": "single_constrained_gravity_power",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_se2"
+    },
+    {
+      "output_id": "SE3",
+      "output_label": "Distance-weighted diffusion (symmetric Laplacian)",
+      "source_file": "outputs/no_invention_candidates_20260114.json",
+      "source_group": "se_candidates",
+      "json_pointer": "/se_candidates/2",
+      "parameters": [
+        {
+          "name": "lambda",
+          "meaning": "Diffusive coupling strength",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "eta",
+          "meaning": "Distance-decay exponent for coupling",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 1,
+        "row": 6,
+        "name": "Distance-weighted diffusion",
+        "complexity": 11,
+        "relation": "selected",
+        "reported_fitting_complexities": {
+          "table_2": 10,
+          "table_4": 11
+        },
+        "release_candidate_id": "distance_weighted_diffusion",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_se3"
+    },
+    {
+      "output_id": "SE4",
+      "output_label": "Fractional nonlocal Laplacian",
+      "source_file": "outputs/no_invention_candidates_20260114.json",
+      "source_group": "se_candidates",
+      "json_pointer": "/se_candidates/3",
+      "parameters": [
+        {
+          "name": "D_f",
+          "meaning": "Nonlocal diffusion scale",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "sigma",
+          "meaning": "Power exponent controlling interaction range",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": null,
+      "selection_status": "not_selected_for_paper",
+      "archived_solver_method": "PDE_learner.interaction_se4"
+    },
+    {
+      "output_id": "SE5",
+      "output_label": "Rank-based Zipf coupling",
+      "source_file": "outputs/no_invention_candidates_20260114.json",
+      "source_group": "se_candidates",
+      "json_pointer": "/se_candidates/4",
+      "parameters": [
+        {
+          "name": "lambda_z",
+          "meaning": "Rank-coupling strength",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "q",
+          "meaning": "Zipf-like rank exponent (higher q concentrates on few nearest)",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 1,
+        "row": 7,
+        "name": "Rank-based diffusion",
+        "complexity": 16,
+        "relation": "selected",
+        "reported_fitting_complexities": {
+          "table_2": 16,
+          "table_4": 16
+        },
+        "release_candidate_id": "rank_based_diffusion",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_se5"
+    },
+    {
+      "output_id": "SE6",
+      "output_label": "Memory-concentrated kNN diffusion",
+      "source_file": "outputs/no_invention_candidates_20260114.json",
+      "source_group": "se_candidates",
+      "json_pointer": "/se_candidates/5",
+      "parameters": [
+        {
+          "name": "lambda_k",
+          "meaning": "Local coupling strength",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "eta",
+          "meaning": "Distance-decay exponent within the neighbor set",
+          "constraints": "> 0"
+        },
+        {
+          "name": "K",
+          "meaning": "Number of nearest neighbors (memory concentration)",
+          "constraints": "integer in [1, n-1]"
+        }
+      ],
+      "paper_mapping": {
+        "table": 1,
+        "row": 8,
+        "name": "KNN diffusion",
+        "complexity": 15,
+        "relation": "selected",
+        "reported_fitting_complexities": {
+          "table_2": 15,
+          "table_4": 15
+        },
+        "release_candidate_id": "knn_diffusion",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_se6"
+    },
+    {
+      "output_id": "SE7",
+      "output_label": "Saturation-limited influence (capacity-inspired)",
+      "source_file": "outputs/no_invention_candidates_20260114.json",
+      "source_group": "se_candidates",
+      "json_pointer": "/se_candidates/6",
+      "parameters": [
+        {
+          "name": "lambda_s",
+          "meaning": "Coupling strength",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "eta",
+          "meaning": "Distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "kappa",
+          "meaning": "Saturation scale (effective capacity) for influence at each node",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 1,
+        "row": 9,
+        "name": "Saturation-limited diffusion",
+        "complexity": 27,
+        "relation": "selected",
+        "reported_fitting_complexities": {
+          "table_2": 27,
+          "table_4": 27
+        },
+        "release_candidate_id": "saturation_limited_diffusion",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_se7"
+    },
+    {
+      "output_id": "SE8",
+      "output_label": "Accessibility-driven drift",
+      "source_file": "outputs/no_invention_candidates_20260114.json",
+      "source_group": "se_candidates",
+      "json_pointer": "/se_candidates/7",
+      "parameters": [
+        {
+          "name": "rho",
+          "meaning": "Drift strength toward higher-accessibility regions",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "eta",
+          "meaning": "Distance-decay exponent used in K(d)",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 1,
+        "row": 10,
+        "name": "Accessibility-driven drift",
+        "complexity": 23,
+        "relation": "selected",
+        "reported_fitting_complexities": {
+          "table_2": 23,
+          "table_4": 23
+        },
+        "release_candidate_id": "accessibility_drift",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_se8"
+    },
+    {
+      "output_id": "SE9",
+      "output_label": "Overlap-mixed local+global diffusion",
+      "source_file": "outputs/no_invention_candidates_20260114.json",
+      "source_group": "se_candidates",
+      "json_pointer": "/se_candidates/8",
+      "parameters": [
+        {
+          "name": "Gamma",
+          "meaning": "Mixing weight between local (distance-based) and global (overlap-like) coupling",
+          "constraints": "in [0,1]"
+        },
+        {
+          "name": "lambda",
+          "meaning": "Local diffusion strength",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "chi",
+          "meaning": "Global mean-reversion strength",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "eta",
+          "meaning": "Local distance-decay exponent",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 1,
+        "row": 11,
+        "name": "Local–global mixed diffusion",
+        "complexity": 25,
+        "relation": "selected",
+        "reported_fitting_complexities": {
+          "table_2": 25,
+          "table_4": 25
+        },
+        "release_candidate_id": "local_global_diffusion",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_se9"
+    },
+    {
+      "output_id": "P1",
+      "output_label": "Gravity net-flux (baseline A)",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_prior_only",
+      "json_pointer": "/se_candidates_prior_only/0",
+      "parameters": [
+        {
+          "name": "α",
+          "meaning": "origin (source) mass sensitivity to p_i",
+          "constraints": "> 0"
+        },
+        {
+          "name": "β",
+          "meaning": "destination mass sensitivity to p_j",
+          "constraints": "> 0"
+        },
+        {
+          "name": "γ",
+          "meaning": "distance-decay (fractal/interaction) exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": null,
+      "selection_status": "excluded_repeated_baseline",
+      "archived_solver_method": "PDE_learner.interaction_se1",
+      "solver_mapping_note": "Equivalent baseline implementation; no dedicated P1/P2 method."
+    },
+    {
+      "output_id": "P2",
+      "output_label": "Single-constrained gravity (baseline B)",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_prior_only",
+      "json_pointer": "/se_candidates_prior_only/1",
+      "parameters": [
+        {
+          "name": "η",
+          "meaning": "distance-decay exponent in the kernel",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": null,
+      "selection_status": "excluded_repeated_baseline",
+      "archived_solver_method": "PDE_learner.interaction_se2",
+      "solver_mapping_note": "Equivalent baseline implementation; no dedicated P1/P2 method."
+    },
+    {
+      "output_id": "P3",
+      "output_label": "Rank-choice net flux (Zipf-weighted)",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_prior_only",
+      "json_pointer": "/se_candidates_prior_only/2",
+      "parameters": [
+        {
+          "name": "λ",
+          "meaning": "memory/concentration parameter in rank-frequency weighting",
+          "constraints": "in [0,1]"
+        },
+        {
+          "name": "S",
+          "meaning": "number of locations (nodes)",
+          "constraints": "fixed = N (network size)"
+        }
+      ],
+      "paper_mapping": {
+        "table": 3,
+        "row": 1,
+        "name": "Rank-choice gravity",
+        "complexity": 29,
+        "relation": "selected",
+        "release_candidate_id": "rank_choice_gravity",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_p3"
+    },
+    {
+      "output_id": "P4",
+      "output_label": "Symmetric Zipf-rank Laplacian",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_prior_only",
+      "json_pointer": "/se_candidates_prior_only/3",
+      "parameters": [
+        {
+          "name": "σ",
+          "meaning": "rank-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": null,
+      "selection_status": "not_selected_for_paper",
+      "archived_solver_method": "PDE_learner.interaction_p4"
+    },
+    {
+      "output_id": "P5",
+      "output_label": "Betweenness-modulated power-law Laplacian",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_prior_only",
+      "json_pointer": "/se_candidates_prior_only/4",
+      "parameters": [
+        {
+          "name": "η",
+          "meaning": "distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 3,
+        "row": 2,
+        "name": "Betweenness-modulated diffusion",
+        "complexity": 16,
+        "relation": "selected",
+        "release_candidate_id": "betweenness_diffusion",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_p5"
+    },
+    {
+      "output_id": "P6",
+      "output_label": "Edge-betweenness weighted Laplacian",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_prior_only",
+      "json_pointer": "/se_candidates_prior_only/5",
+      "parameters": [
+        {
+          "name": "δ",
+          "meaning": "strength of corridor (edge-betweenness) weighting",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "η",
+          "meaning": "distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 3,
+        "row": 3,
+        "name": "Edge-betweenness weighted diffusion",
+        "complexity": 14,
+        "relation": "selected",
+        "release_candidate_id": "edge_betweenness_diffusion",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_p6"
+    },
+    {
+      "output_id": "P7",
+      "output_label": "Cluster-constrained coupling",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_prior_only",
+      "json_pointer": "/se_candidates_prior_only/6",
+      "parameters": [
+        {
+          "name": "η",
+          "meaning": "distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "ρ_in",
+          "meaning": "within-cluster weight multiplier",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "ρ_out",
+          "meaning": "between-cluster weight multiplier",
+          "constraints": "in [0, ρ_in]"
+        },
+        {
+          "name": "K_clusters",
+          "meaning": "number of spatial clusters",
+          "constraints": "integer >= 1"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 3,
+        "row": 4,
+        "name": "Cluster-constrained diffusion",
+        "complexity": 18,
+        "relation": "selected",
+        "release_candidate_id": "cluster_diffusion",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_p7"
+    },
+    {
+      "output_id": "P8",
+      "output_label": "Span-adaptive kernel Laplacian",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_prior_only",
+      "json_pointer": "/se_candidates_prior_only/7",
+      "parameters": [
+        {
+          "name": "k",
+          "meaning": "number of nearest neighbors for local span",
+          "constraints": "integer >= 1"
+        },
+        {
+          "name": "η",
+          "meaning": "decay exponent applied to normalized distance",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 3,
+        "row": 5,
+        "name": "Span-adaptive diffusion",
+        "complexity": 22,
+        "relation": "selected",
+        "release_candidate_id": "span_diffusion",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_p8"
+    },
+    {
+      "output_id": "P9",
+      "output_label": "Nonlocal power-law interaction (fractional-style)",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_prior_only",
+      "json_pointer": "/se_candidates_prior_only/8",
+      "parameters": [
+        {
+          "name": "η",
+          "meaning": "nonlocal interaction exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": null,
+      "selection_status": "not_selected_for_paper",
+      "archived_solver_method": "PDE_learner.interaction_p9"
+    },
+    {
+      "output_id": "P10",
+      "output_label": "kNN-limited power-law Laplacian",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_prior_only",
+      "json_pointer": "/se_candidates_prior_only/9",
+      "parameters": [
+        {
+          "name": "k",
+          "meaning": "number of nearest neighbors",
+          "constraints": "integer >= 1"
+        },
+        {
+          "name": "η",
+          "meaning": "distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 3,
+        "row": 6,
+        "name": "KNN-limited diffusion",
+        "complexity": 16,
+        "relation": "selected",
+        "release_candidate_id": "knn_limited_diffusion",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_p10"
+    },
+    {
+      "output_id": "C1",
+      "output_label": "Explore–return mixture net flux (memory-modulated)",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_context_plus_creativity",
+      "json_pointer": "/se_candidates_context_plus_creativity/0",
+      "parameters": [
+        {
+          "name": "λ",
+          "meaning": "memory strength (higher reduces exploration)",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "C",
+          "meaning": "constant in exploration probability",
+          "constraints": "real"
+        },
+        {
+          "name": "S",
+          "meaning": "number of locations (nodes)",
+          "constraints": "fixed = N"
+        },
+        {
+          "name": "k",
+          "meaning": "size of return neighborhood",
+          "constraints": "integer >= 1"
+        },
+        {
+          "name": "η_e",
+          "meaning": "exploration kernel distance-decay exponent",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 3,
+        "row": 7,
+        "name": "Explore–return diffusion",
+        "complexity": 47,
+        "relation": "selected",
+        "release_candidate_id": "explore_return_diffusion",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_c1"
+    },
+    {
+      "output_id": "C2",
+      "output_label": "Dual-layer overlap mixture Laplacian",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_context_plus_creativity",
+      "json_pointer": "/se_candidates_context_plus_creativity/1",
+      "parameters": [
+        {
+          "name": "Γ",
+          "meaning": "inter-layer overlap weighting",
+          "constraints": "in [0,1]"
+        },
+        {
+          "name": "η_ℓ",
+          "meaning": "local kernel distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "η_c",
+          "meaning": "communication kernel decay exponent",
+          "constraints": ">= 0 (often near 0)"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 3,
+        "row": 8,
+        "name": "Dual-layer overlap diffusion",
+        "complexity": 20,
+        "relation": "selected",
+        "release_candidate_id": "dual_layer_diffusion",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_c2"
+    },
+    {
+      "output_id": "C3",
+      "output_label": "Two-scale piecewise power-law Laplacian (regime shift)",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_context_plus_creativity",
+      "json_pointer": "/se_candidates_context_plus_creativity/2",
+      "parameters": [
+        {
+          "name": "η_1",
+          "meaning": "short-range decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "η_2",
+          "meaning": "long-range decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "r0",
+          "meaning": "break distance between regimes",
+          "constraints": "> 0"
+        },
+        {
+          "name": "a",
+          "meaning": "short-range kernel scale",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 3,
+        "row": 9,
+        "name": "Two-scale piecewise diffusion",
+        "complexity": 26,
+        "relation": "selected",
+        "release_candidate_id": "two_scale_diffusion",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_c3"
+    },
+    {
+      "output_id": "C4",
+      "output_label": "Span- and cluster-aware Laplacian",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_context_plus_creativity",
+      "json_pointer": "/se_candidates_context_plus_creativity/3",
+      "parameters": [
+        {
+          "name": "k",
+          "meaning": "neighbors used to compute s_i",
+          "constraints": "integer >= 1"
+        },
+        {
+          "name": "η",
+          "meaning": "decay exponent on normalized distance",
+          "constraints": "> 0"
+        },
+        {
+          "name": "ρ_in",
+          "meaning": "within-cluster weight multiplier",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "ρ_out",
+          "meaning": "between-cluster weight multiplier",
+          "constraints": "in [0, ρ_in]"
+        },
+        {
+          "name": "K_clusters",
+          "meaning": "number of clusters",
+          "constraints": "integer >= 1"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall scale",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 3,
+        "row": 10,
+        "name": "Span- and cluster-aware diffusion",
+        "complexity": 30,
+        "relation": "selected",
+        "release_candidate_id": "span_cluster_diffusion",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_c4"
+    },
+    {
+      "output_id": "C5",
+      "output_label": "Corridor-enhanced diffusion (edge betweenness boost)",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_context_plus_creativity",
+      "json_pointer": "/se_candidates_context_plus_creativity/4",
+      "parameters": [
+        {
+          "name": "μ",
+          "meaning": "magnitude of corridor enhancement",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "η",
+          "meaning": "distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall scale",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 3,
+        "row": 11,
+        "name": "Corridor-enhanced diffusion",
+        "complexity": 18,
+        "relation": "selected",
+        "release_candidate_id": "corridor_diffusion",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_c5"
+    },
+    {
+      "output_id": "C6",
+      "output_label": "Column-stochastic inflow kernel",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_context_plus_creativity",
+      "json_pointer": "/se_candidates_context_plus_creativity/5",
+      "parameters": [
+        {
+          "name": "η",
+          "meaning": "distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "relaxation rate toward kernel-smoothed inflow",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": null,
+      "selection_status": "not_selected_for_paper",
+      "archived_solver_method": "PDE_learner.interaction_c6"
+    },
+    {
+      "output_id": "C7",
+      "output_label": "Rank-truncated + tail choice (net flux)",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_context_plus_creativity",
+      "json_pointer": "/se_candidates_context_plus_creativity/6",
+      "parameters": [
+        {
+          "name": "λ",
+          "meaning": "memory/concentration in Zipf weight",
+          "constraints": "in [0,1]"
+        },
+        {
+          "name": "S",
+          "meaning": "number of locations (nodes)",
+          "constraints": "fixed = N"
+        },
+        {
+          "name": "R",
+          "meaning": "rank cutoff for the head",
+          "constraints": "integer >= 1"
+        },
+        {
+          "name": "η",
+          "meaning": "tail distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "c",
+          "meaning": "scale for tail weights",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 3,
+        "row": 12,
+        "name": "Rank-truncated + tail choice diffusion",
+        "complexity": 49,
+        "relation": "selected",
+        "release_candidate_id": "rank_tail_diffusion",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_c7"
+    },
+    {
+      "output_id": "C8",
+      "output_label": "State-adaptive intensity (tracing-inspired)",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_context_plus_creativity",
+      "json_pointer": "/se_candidates_context_plus_creativity/7",
+      "parameters": [
+        {
+          "name": "β_r",
+          "meaning": "baseline (state-independent) mixing intensity",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "β_t",
+          "meaning": "state-adaptive amplification of mixing",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "η",
+          "meaning": "distance-decay exponent in weights",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 3,
+        "row": 13,
+        "name": "State-adaptive diffusion",
+        "complexity": 29,
+        "relation": "selected",
+        "release_candidate_id": "state_adaptive_diffusion",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_c8"
+    },
+    {
+      "output_id": "C9",
+      "output_label": "Betweenness-augmented gravity net flux",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_context_plus_creativity",
+      "json_pointer": "/se_candidates_context_plus_creativity/8",
+      "parameters": [
+        {
+          "name": "α",
+          "meaning": "origin mass sensitivity",
+          "constraints": "> 0"
+        },
+        {
+          "name": "β",
+          "meaning": "destination mass sensitivity",
+          "constraints": "> 0"
+        },
+        {
+          "name": "γ",
+          "meaning": "distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "δ",
+          "meaning": "edge betweenness weighting exponent",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall flow scale",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 3,
+        "row": 14,
+        "name": "Betweenness-augmented gravity",
+        "complexity": 26,
+        "relation": "selected",
+        "release_candidate_id": "betweenness_gravity",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_c9"
+    },
+    {
+      "output_id": "C10",
+      "output_label": "kNN ring two-band Laplacian",
+      "source_file": "outputs/two_mode_candidates_20260119.json",
+      "source_group": "se_candidates_context_plus_creativity",
+      "json_pointer": "/se_candidates_context_plus_creativity/9",
+      "parameters": [
+        {
+          "name": "k",
+          "meaning": "k for mutual-kNN ring",
+          "constraints": "integer >= 1"
+        },
+        {
+          "name": "a",
+          "meaning": "weight multiplier for mutual-kNN edges",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "b",
+          "meaning": "weight multiplier for non-kNN edges",
+          "constraints": "in [0, a]"
+        },
+        {
+          "name": "η",
+          "meaning": "distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "paper_mapping": {
+        "table": 3,
+        "row": 15,
+        "name": "KNN two-band diffusion",
+        "complexity": 18,
+        "relation": "selected",
+        "release_candidate_id": "knn_two_band_diffusion",
+        "release_solver_function": "udiscovery.equations.evaluate"
+      },
+      "archived_solver_method": "PDE_learner.interaction_c10"
+    }
+  ],
+  "release_registry": {
+    "path": "../artifacts/candidates.json",
+    "join_key": "paper_mapping.table + paper_mapping.row -> candidates[].paper_rows.table_<n>",
+    "solver_function": "udiscovery.equations.evaluate"
+  }
+}

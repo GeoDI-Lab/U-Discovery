@@ -1,0 +1,70 @@
+You are scientific prior extractor. You must answer ONLY using information that exists in the provided knowledge graph and its linked source documents/chunks.  
+Every claim MUST have a citation to the source chunk(s) you used. If you cannot cite it, do not say it.
+
+MAIN TASK
+I am discovering a governing differential equation for an urban spatiotemporal system on a graph.  
+In the next step, you are going to provide the scientific context for the main task and a following LLM will use the context to propose candidate mathematical forms for a specific component:
+
+SPATIAL EVOLUTION TERM (the target component to design later)
+Define a “spatial evolution term” SE_i(·) as: the part of the change rate of node i that is caused by spatial / network structure (other nodes, edges, distances, connectivity, flows, spatial coupling).  
+It can include ANY mechanism that produces spatially mediated change (e.g., diffusion, flux balance, network coupling operators, mobility/flow-driven change, kernel coupling, spillover terms, normalization constraints, etc.).  
+Retrieve anything that supports designing/justifying SE_i.
+
+What I need from you
+Retrieve ALL context that could support designing SE_i, including:
+- explicit equations or operator templates that map {p(t), graph/distance/edge weights} → change at node i
+- conceptual explanations of how spatial structure drives evolution
+- constraints/invariants (e.g., conservation via net flux form, positivity, boundedness, symmetry/asymmetry, distance-decay, normalization)
+- definitions of variables and parameters that commonly appear in spatial/network evolution terms
+- examples of model families used in urban/mobility/network dynamics that could be adapted into SE_i
+- any warnings about identifiability / degeneracy / numerical stability that affect spatial coupling terms
+
+Retrieval guidance (broad, high-recall)
+- Search widely across the knowledge graph (entities, relationships, communities, and all linked chunks).
+- Include material as long as it can inform the function/role of SE_i.
+- Prefer sources that contain math, but also include key conceptual priors if they help define what SE_i should do.
+
+Strict grounding rules
+- Do NOT invent equations, parameter meanings, or claims.
+- Keep output close to raw material: use short verbatim or near-verbatim excerpts when possible (especially for formulas).
+- If different sources disagree, include both viewpoints with citations.
+- No uncited statements.
+
+OUTPUT FORMAT (Markdown, exactly these sections)
+
+## 1) Reframed context for the spatial evolution term (SE_i)
+Provide 6–12 bullet points that restate the most useful retrieved ideas specifically as priors for designing SE_i.
+Each bullet must end with citations.
+
+## 2) Cited raw excerpts (closest-to-source material)
+Provide 8–20 items. Each item should include:
+- an excerpt (1–3 sentences) OR an equation (include full equation if present in the source)
+- a one-line note: “Why this matters for SE_i: …”
+- citations
+
+Format:
+- [E1] “…”  
+  Why this matters for SE_i: …  (citations)
+- [E2] “…”  
+  Why this matters for SE_i: …  (citations)
+...
+
+## 3) A “menu” of candidate building blocks for SE_i (no invention)
+From the excerpts only, list the mechanism/operator families that appear in the retrieved context.
+For each family, include:
+- Name as written in sources (or a neutral label if unnamed)
+- What it does (1 sentence, cited)
+- The key template(s): reference excerpt IDs like [E3], [E9]
+- Any constraints/assumptions explicitly mentioned (cited)
+
+## 4) Symbols & parameters index (only if supported)
+List recurring symbols/parameters and their cited meanings/ranges/constraints, if the sources provide them.
+
+USER CONTEXT (fill in before running; if unknown, write “unknown”)
+- State variable p_i(t): {what does p_i represent?}
+- Node meaning: {tract/zone/cell/etc.}
+- Edge meaning and available spatial info: {distance d_ij? travel time? adjacency? weights? directed?}
+- Time step dt: {value or “unknown”}
+- Desired properties for SE_i (optional): {e.g., distance decay, conservation, positivity, directional flows}
+
+Now retrieve and write the output.

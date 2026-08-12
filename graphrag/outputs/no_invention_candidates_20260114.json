@@ -1,0 +1,262 @@
+{
+  "se_candidates": [
+    {
+      "id": "SE1",
+      "label": "Classic gravity net flux (baseline A)",
+      "is_baseline": true,
+      "se_latex": "SE_i = \\sum_{j\\ne i} (T_{ji} - T_{ij}),\\quad T_{ij} = \\kappa\\, \\frac{p_{i,t}^{\\alpha} p_{j,t}^{\\beta}}{d_{ij}^{\\gamma}}",
+      "se_plain": "SE_i = sum over j≠i of (T_ji − T_ij), with T_ij = κ * p_i^α * p_j^β / d_ij^γ",
+      "definitions": {
+        "T_ij": "Pairwise flow from i to j driven by node states and inverse power of distance. d_ij > 0 for i≠j."
+      },
+      "parameters": [
+        {"name": "kappa", "meaning": "Overall interaction rate scale", "constraints": "> 0"},
+        {"name": "alpha", "meaning": "Origin state exponent", "constraints": ">= 0"},
+        {"name": "beta", "meaning": "Destination state exponent", "constraints": ">= 0"},
+        {"name": "gamma", "meaning": "Distance-decay exponent", "constraints": "> 0"}
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "symmetric distance function",
+        "mass-conserving (net-flux form)",
+        "requires p_{i,t} >= 0"
+      ],
+      "supported_by_evidence": ["E4", "E2"],
+      "difference_from_gravity_baselines": "baseline",
+      "assumptions_added_by_you": [
+        "Treat the system as fully connected over distances with d_ii undefined and excluded.",
+        "If any d_ij = 0 for i≠j, replace by a small ε to avoid division by zero."
+      ]
+    },
+    {
+      "id": "SE2",
+      "label": "Single-constrained gravity (baseline B)",
+      "is_baseline": true,
+      "se_latex": "SE_i = \\sum_{j\\ne i} (T_{ji} - T_{ij}),\\quad T_{ij} = p_{i,t} \\frac{p_{j,t} f(d_{ij})}{\\sum_{k\\ne i} p_{k,t} f(d_{ik})},\\quad f(d) = d^{-\\eta}",
+      "se_plain": "SE_i = sum over j≠i of (T_ji − T_ij), with T_ij = p_i * [ p_j f(d_ij) / sum_k p_k f(d_ik) ] and f(d) = d^(−η)",
+      "definitions": {
+        "f(d_ij)": "Power-law distance kernel f(d) = d^(−η), η>0"
+      },
+      "parameters": [
+        {"name": "eta", "meaning": "Power-law decay of attractiveness with distance", "constraints": "> 0"}
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "row-normalized destination choice",
+        "mass-conserving (net-flux form)",
+        "requires p_{i,t} >= 0"
+      ],
+      "supported_by_evidence": ["E4", "E2"],
+      "difference_from_gravity_baselines": "baseline",
+      "assumptions_added_by_you": [
+        "All destinations are available to each origin; exclude k=i from the normalization.",
+        "If any d_ij = 0 for i≠j, set f(d_ij) = f(ε) with small ε."
+      ]
+    },
+    {
+      "id": "SE3",
+      "label": "Distance-weighted diffusion (symmetric Laplacian)",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\lambda \\sum_{j\\ne i} W_{ij} (p_{j,t} - p_{i,t}),\\quad W_{ij} = K(d_{ij}),\\quad K(d) = d^{-\\eta}",
+      "se_plain": "SE_i = λ * sum over j≠i of W_ij * (p_j − p_i) with symmetric weights W_ij = d_ij^(−η)",
+      "definitions": {
+        "K(d_ij)": "Power-law kernel K(d) = d^(−η)",
+        "w_ij": "Not used (unnormalized symmetric weights W_ij = K(d_ij))"
+      },
+      "parameters": [
+        {"name": "lambda", "meaning": "Diffusive coupling strength", "constraints": ">= 0"},
+        {"name": "eta", "meaning": "Distance-decay exponent for coupling", "constraints": "> 0"}
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "symmetric",
+        "mass-conserving (net-flux form)",
+        "does not require row-normalization"
+      ],
+      "supported_by_evidence": ["E2", "E4"],
+      "difference_from_gravity_baselines": "Linear diffusion driven by symmetric distance weights; no multiplicative mass terms or destination-choice normalization.",
+      "assumptions_added_by_you": [
+        "Use complete graph with W_ii = 0.",
+        "Handle zero distances by replacing d_ij with ε > 0 in K(d)."
+      ]
+    },
+    {
+      "id": "SE4",
+      "label": "Fractional nonlocal Laplacian",
+      "is_baseline": false,
+      "se_latex": "SE_i = D_f \\sum_{j\\ne i} \\frac{p_{j,t} - p_{i,t}}{d_{ij}^{\\sigma}}",
+      "se_plain": "SE_i = D_f * sum over j≠i of (p_j − p_i) / d_ij^σ",
+      "definitions": {
+        "K(d_ij)": "Implicit heavy-tailed kernel 1/d_ij^σ (no separate normalization)"
+      },
+      "parameters": [
+        {"name": "D_f", "meaning": "Nonlocal diffusion scale", "constraints": ">= 0"},
+        {"name": "sigma", "meaning": "Power exponent controlling interaction range", "constraints": "> 0"}
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay (heavy-tailed)",
+        "symmetric",
+        "mass-conserving (net-flux form)",
+        "enhanced long-range coupling vs. local diffusion"
+      ],
+      "supported_by_evidence": ["E2", "E4"],
+      "difference_from_gravity_baselines": "A linear, nonlocal operator on state differences with heavy-tailed coupling; no OD flows proportional to p_i p_j.",
+      "assumptions_added_by_you": [
+        "Exclude i=j; for very small distances, cap 1/d_ij^σ at 1/ε^σ."
+      ]
+    },
+    {
+      "id": "SE5",
+      "label": "Rank-based Zipf coupling",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\lambda_z \\sum_{j\\ne i} \\widetilde{W}_{ij} (p_{j,t} - p_{i,t}),\\quad \\widetilde{W}_{ij} = \\tfrac{1}{2}\\Big(r_{ij}^{-q} + r_{ji}^{-q}\\Big)",
+      "se_plain": "SE_i = λ_z * sum over j≠i of W̃_ij * (p_j − p_i), with W̃_ij = 0.5*(r_ij^(−q) + r_ji^(−q)) where r_ij is the distance rank of j from i",
+      "definitions": {
+        "w_ij": "Symmetrized rank weight W̃_ij = (r_ij^(−q) + r_ji^(−q))/2",
+        "N(i)": "r_ij is 1 for nearest neighbor, 2 for second nearest, etc."
+      },
+      "parameters": [
+        {"name": "lambda_z", "meaning": "Rank-coupling strength", "constraints": ">= 0"},
+        {"name": "q", "meaning": "Zipf-like rank exponent (higher q concentrates on few nearest)", "constraints": "> 0"}
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "rank-based distance-decay",
+        "symmetric (via symmetrization)",
+        "mass-conserving (net-flux form)",
+        "does not require metric scale, only order of distances"
+      ],
+      "supported_by_evidence": ["E6"],
+      "difference_from_gravity_baselines": "Uses Zipf-like rank weights derived from distance ordering, not multiplicative masses or destination normalization.",
+      "assumptions_added_by_you": [
+        "Break distance ties randomly or by stable indexing to define ranks.",
+        "Exclude self (r_ii undefined)."
+      ]
+    },
+    {
+      "id": "SE6",
+      "label": "Memory-concentrated kNN diffusion",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\lambda_k \\sum_{j \\in N_K(i)} w_{ij} (p_{j,t} - p_{i,t}),\\quad w_{ij} = \\frac{K(d_{ij})}{\\sum_{k \\in N_K(i)} K(d_{ik})},\\quad K(d) = d^{-\\eta}",
+      "se_plain": "SE_i = λ_k * sum over j in the K-nearest neighbors of i of w_ij * (p_j − p_i), with w_ij row-normalized within N_K(i) using K(d)=d^(−η)",
+      "definitions": {
+        "K(d_ij)": "Power-law kernel K(d) = d^(−η)",
+        "w_ij": "Row-normalized weights over the K nearest neighbors",
+        "N(i)": "N_K(i): the set of K nearest neighbors of i (by distance)"
+      },
+      "parameters": [
+        {"name": "lambda_k", "meaning": "Local coupling strength", "constraints": ">= 0"},
+        {"name": "eta", "meaning": "Distance-decay exponent within the neighbor set", "constraints": "> 0"},
+        {"name": "K", "meaning": "Number of nearest neighbors (memory concentration)", "constraints": "integer in [1, n-1]"}
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "asymmetric (row-normalized and kNN can be non-mutual)",
+        "not mass-conserving in general",
+        "row-normalized weights",
+        "captures concentration on few locations at high memory"
+      ],
+      "supported_by_evidence": ["E5", "E6", "E3", "E2"],
+      "difference_from_gravity_baselines": "A kNN diffusion with neighbor-set truncation motivated by memory-driven concentration; no OD flow proportional to p_i p_j.",
+      "assumptions_added_by_you": [
+        "K can be tuned; E3 suggests a regime change around ~20, so K≈10–20 is a plausible range.",
+        "If distances tie at the cutoff, break ties randomly to fix N_K(i)."
+      ]
+    },
+    {
+      "id": "SE7",
+      "label": "Saturation-limited influence (capacity-inspired)",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\lambda_s \\sum_{j\\ne i} w_{ij} \\big( g(p_{j,t}) - g(p_{i,t}) \\big),\\quad w_{ij} = \\frac{K(d_{ij})}{\\sum_{k\\ne i} K(d_{ik})},\\quad K(d)=d^{-\\eta},\\quad g(p)=\\frac{p}{1+p/\\kappa}",
+      "se_plain": "SE_i = λ_s * sum over j≠i of w_ij * (g(p_j) − g(p_i)), with w_ij row-normalized from K(d)=d^(−η) and g(p)=p/(1+p/κ)",
+      "definitions": {
+        "K(d_ij)": "Power-law kernel K(d) = d^(−η)",
+        "w_ij": "Row-normalized weights over all j≠i",
+        "N(i)": "All nodes except i"
+      },
+      "parameters": [
+        {"name": "lambda_s", "meaning": "Coupling strength", "constraints": ">= 0"},
+        {"name": "eta", "meaning": "Distance-decay exponent", "constraints": "> 0"},
+        {"name": "kappa", "meaning": "Saturation scale (effective capacity) for influence at each node", "constraints": "> 0"}
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "asymmetric (row-normalized)",
+        "not strictly mass-conserving",
+        "bounded influence at high p via g(p)"
+      ],
+      "supported_by_evidence": ["E9", "E2"],
+      "difference_from_gravity_baselines": "Nonlinear, saturation-limited exchange on transformed states g(p); no multiplicative OD terms.",
+      "assumptions_added_by_you": [
+        "Use all-to-all neighbors; exclude i=j.",
+        "Saturation scale κ is node-invariant; could be made node-specific using only distance-derived quantities if desired."
+      ]
+    },
+    {
+      "id": "SE8",
+      "label": "Accessibility-driven drift",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\rho\\, p_{i,t} \\sum_{j\\ne i} w_{ij} \\big( A_j - A_i \\big),\\quad A_i = \\sum_{k\\ne i} K(d_{ik}),\\quad w_{ij} = \\frac{K(d_{ij})}{\\sum_{k\\ne i} K(d_{ik})},\\quad K(d)=d^{-\\eta}",
+      "se_plain": "SE_i = ρ * p_i * sum over j≠i of w_ij * (A_j − A_i), where A_i = sum_k K(d_ik) is a distance-kernel accessibility and w_ij are row-normalized from K(d)",
+      "definitions": {
+        "K(d_ij)": "Power-law kernel K(d) = d^(−η)",
+        "w_ij": "Row-normalized weights over all j≠i",
+        "A_i": "Kernel accessibility (distance-based centrality surrogate)"
+      },
+      "parameters": [
+        {"name": "rho", "meaning": "Drift strength toward higher-accessibility regions", "constraints": ">= 0"},
+        {"name": "eta", "meaning": "Distance-decay exponent used in K(d)", "constraints": "> 0"}
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "asymmetric (multiplicative in p_i)",
+        "not mass-conserving",
+        "centrality-biased movement"
+      ],
+      "supported_by_evidence": ["E10", "E2"],
+      "difference_from_gravity_baselines": "Flows are biased by a distance-derived accessibility potential A, not by destination mass or gravity OD; multiplicative only in p_i.",
+      "assumptions_added_by_you": [
+        "Accessibility A_i uses the same kernel K as coupling; other kernel choices are possible but must be distance-based.",
+        "All nodes considered neighbors in w_ij; i=j excluded."
+      ]
+    },
+    {
+      "id": "SE9",
+      "label": "Overlap-mixed local+global diffusion",
+      "is_baseline": false,
+      "se_latex": "SE_i = (1-\\Gamma)\\, \\lambda \\sum_{j\\ne i} W_{ij} (p_{j,t} - p_{i,t}) + \\Gamma\\, \\chi\\, (\\bar{p}_t - p_{i,t}),\\quad W_{ij}=K(d_{ij}),\\quad K(d)=d^{-\\eta},\\quad \\bar{p}_t=\\frac{1}{n}\\sum_{k} p_{k,t}",
+      "se_plain": "SE_i = (1−Γ) λ * sum over j≠i of W_ij (p_j − p_i) + Γ χ * (mean(p) − p_i), with W_ij = d_ij^(−η)",
+      "definitions": {
+        "K(d_ij)": "Power-law kernel K(d)=d^(−η)",
+        "w_ij": "Not used (unnormalized symmetric W_ij)",
+        "N(i)": "All nodes except i"
+      },
+      "parameters": [
+        {"name": "Gamma", "meaning": "Mixing weight between local (distance-based) and global (overlap-like) coupling", "constraints": "in [0,1]"},
+        {"name": "lambda", "meaning": "Local diffusion strength", "constraints": ">= 0"},
+        {"name": "chi", "meaning": "Global mean-reversion strength", "constraints": ">= 0"},
+        {"name": "eta", "meaning": "Local distance-decay exponent", "constraints": "> 0"}
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay (local term)",
+        "symmetric local term",
+        "mass-conserving overall",
+        "captures dual-layer overlap as convex mixing"
+      ],
+      "supported_by_evidence": ["E13", "E12", "E2"],
+      "difference_from_gravity_baselines": "A convex blend of symmetric distance-driven diffusion and uniform mixing motivated by layer overlap; no OD gravity proportional to p_i p_j.",
+      "assumptions_added_by_you": [
+        "Interpret Γ as effective overlap between a distance-mediated layer and a well-mixed layer.",
+        "W_ij symmetric with W_ii=0; use ε for zero distances."
+      ]
+    }
+  ]
+}

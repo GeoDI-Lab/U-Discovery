@@ -1,0 +1,863 @@
+{
+  "se_candidates_prior_only": [
+    {
+      "id": "P1",
+      "label": "Gravity net-flux (baseline A)",
+      "is_baseline": true,
+      "se_latex": "SE_i = \\sum_{j \\ne i} (T_{ji} - T_{ij}),\\quad T_{ij} = \\kappa\\, p_{i,t}^{\\alpha} p_{j,t}^{\\beta} \\, d_{ij}^{-\\gamma}",
+      "se_plain": "SE_i equals the sum over j of inflow minus outflow, with T_ij = κ * p_i^α * p_j^β / d_ij^γ.",
+      "definitions": {
+        "T_ij": "Pairwise flow from i to j",
+        "K(d_ij)": "Not used explicitly (power-law distance enters directly as d_ij^(-γ))"
+      },
+      "parameters": [
+        {
+          "name": "α",
+          "meaning": "origin (source) mass sensitivity to p_i",
+          "constraints": "> 0"
+        },
+        {
+          "name": "β",
+          "meaning": "destination mass sensitivity to p_j",
+          "constraints": "> 0"
+        },
+        {
+          "name": "γ",
+          "meaning": "distance-decay (fractal/interaction) exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "asymmetric",
+        "mass-conserving (only if net-flux form)",
+        "requires p_{i,t} >= 0"
+      ],
+      "supported_by_evidence": ["E4", "E2"],
+      "difference_from_gravity_baselines": "baseline",
+      "assumptions_added_by_you": [
+        "Complete graph with T_ii = 0",
+        "Add a small epsilon to d_ij if needed to avoid division by zero at zero distance"
+      ]
+    },
+    {
+      "id": "P2",
+      "label": "Single-constrained gravity (baseline B)",
+      "is_baseline": true,
+      "se_latex": "SE_i = \\sum_{j \\ne i} (T_{ji} - T_{ij}),\\quad T_{ij} = p_{i,t}\\, \\frac{p_{j,t} \\, K(d_{ij})}{\\sum_{k \\ne i} p_{k,t} \\, K(d_{ik})},\\quad K(d_{ij}) = d_{ij}^{-\\eta}",
+      "se_plain": "SE_i is net inflow minus outflow with row-normalized destination choice: T_ij = p_i * [p_j K(d_ij) / Σ_k p_k K(d_ik)], K(d)=d^-η.",
+      "definitions": {
+        "K(d_ij)": "Power-law distance kernel d_ij^(-η)",
+        "w_ij": "Row-normalized destination probability p_j K(d_ij)/Σ_k p_k K(d_ik)",
+        "T_ij": "Row-constrained flow from i to j"
+      },
+      "parameters": [
+        {
+          "name": "η",
+          "meaning": "distance-decay exponent in the kernel",
+          "constraints": "> 0"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "asymmetric",
+        "mass-conserving (only if net-flux form)",
+        "row-normalized weights",
+        "requires p_{i,t} >= 0"
+      ],
+      "supported_by_evidence": ["E4", "E2"],
+      "difference_from_gravity_baselines": "baseline",
+      "assumptions_added_by_you": [
+        "Complete graph with T_ii = 0",
+        "Add a small epsilon to denominators for numerical stability"
+      ]
+    },
+    {
+      "id": "P3",
+      "label": "Rank-choice net flux (Zipf-weighted)",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\sum_{j \\ne i} (T_{ji} - T_{ij}),\\; T_{ij} = p_{i,t} \\, \\frac{p_{j,t} \\, f_r(i,j)}{\\sum_{k \\ne i} p_{k,t} \\, f_r(i,k)},\\; f_r(i,j) = \\frac{\\lambda S}{r_i(j)} + 1 - \\lambda",
+      "se_plain": "SE_i is net flux with row-normalized choice using rank-based weights f_r(i,j) = (λ S)/r_i(j) + 1 − λ, where r_i(j) is j's rank by distance from i.",
+      "definitions": {
+        "r_i(j)": "Rank of j by increasing distance from i (1 = nearest)",
+        "f_r(i,j)": "Rank-frequency weight per E6 with memory parameter λ",
+        "T_ij": "Flow from i to j under rank-weighted destination choice"
+      },
+      "parameters": [
+        {
+          "name": "λ",
+          "meaning": "memory/concentration parameter in rank-frequency weighting",
+          "constraints": "in [0,1]"
+        },
+        {
+          "name": "S",
+          "meaning": "number of locations (nodes)",
+          "constraints": "fixed = N (network size)"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay (via rank)",
+        "asymmetric",
+        "mass-conserving (only if net-flux form)",
+        "row-normalized weights",
+        "requires p_{i,t} >= 0"
+      ],
+      "supported_by_evidence": ["E6"],
+      "difference_from_gravity_baselines": "Uses Zipf/rank-weighted choice rather than power-law distance in the numerator; structurally distinct from gravity.",
+      "assumptions_added_by_you": [
+        "Break ties in ranks arbitrarily but consistently",
+        "Exclude i=j from ranking; f_r(i,i)=0"
+      ]
+    },
+    {
+      "id": "P4",
+      "label": "Symmetric Zipf-rank Laplacian",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\kappa \\sum_{j \\ne i} W_{ij}\\,(p_{j,t} - p_{i,t}),\\; W_{ij} = \\rho_{ij}^{-\\sigma},\\; \\rho_{ij} = \\min\\{r_i(j), r_j(i)\\}",
+      "se_plain": "SE_i is a symmetric Laplacian with pair weight W_ij = [min of mutual ranks]^-σ, where ranks are by increasing distance.",
+      "definitions": {
+        "r_i(j)": "Rank of j by distance from i",
+        "W_ij": "Symmetric rank-based weight using ρ_ij = min{r_i(j), r_j(i)}"
+      },
+      "parameters": [
+        {
+          "name": "σ",
+          "meaning": "rank-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay (via rank)",
+        "symmetric"
+      ],
+      "supported_by_evidence": ["E6"],
+      "difference_from_gravity_baselines": "A symmetric consensus/Laplacian operator based on mutual rank, not a gravity flow or row-constrained choice.",
+      "assumptions_added_by_you": [
+        "Mutual rank defined via min of directional ranks to ensure symmetry",
+        "Exclude self-loops and handle rank ties consistently"
+      ]
+    },
+    {
+      "id": "P5",
+      "label": "Betweenness-modulated power-law Laplacian",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\kappa \\sum_{j \\ne i} W_{ij}\\,(p_{j,t} - p_{i,t}),\\; W_{ij} = (b_i b_j)^{1/2} \\, d_{ij}^{-\\eta}",
+      "se_plain": "SE_i is a symmetric Laplacian with weights scaled by the geometric mean of node betweenness centralities and power-law distance decay.",
+      "definitions": {
+        "b_i": "Node betweenness centrality computed on the distance-weighted complete graph (edge weights = d_ij)",
+        "K(d_ij)": "Power-law kernel d_ij^(-η)",
+        "W_ij": "Symmetric pair weight sqrt(b_i b_j) * d_ij^(-η)"
+      },
+      "parameters": [
+        {
+          "name": "η",
+          "meaning": "distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "symmetric"
+      ],
+      "supported_by_evidence": ["E10", "E2"],
+      "difference_from_gravity_baselines": "Consensus-like diffusion scaled by centrality, not origin–destination gravity flows.",
+      "assumptions_added_by_you": [
+        "Compute betweenness using shortest paths with edge cost = d_ij",
+        "Normalize b_i to [0,1] if needed to aid identifiability"
+      ]
+    },
+    {
+      "id": "P6",
+      "label": "Edge-betweenness weighted Laplacian",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\kappa \\sum_{j \\ne i} W_{ij}\\,(p_{j,t} - p_{i,t}),\\; W_{ij} = e_{ij}^{\\delta} \\, d_{ij}^{-\\eta}",
+      "se_plain": "SE_i is a symmetric Laplacian where pair weights are boosted by edge betweenness centrality to emphasize structural corridors, with power-law distance decay.",
+      "definitions": {
+        "e_ij": "Edge betweenness centrality for the (i,j) edge on the distance-weighted complete graph",
+        "K(d_ij)": "Power-law kernel d_ij^(-η)",
+        "W_ij": "Symmetric pair weight e_ij^δ * d_ij^(-η)"
+      },
+      "parameters": [
+        {
+          "name": "δ",
+          "meaning": "strength of corridor (edge-betweenness) weighting",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "η",
+          "meaning": "distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "symmetric"
+      ],
+      "supported_by_evidence": ["E10", "E2"],
+      "difference_from_gravity_baselines": "Diffusive exchange weighted by edge betweenness, not OD gravity flows.",
+      "assumptions_added_by_you": [
+        "Compute edge betweenness with edge cost = d_ij and treat the graph as undirected",
+        "Rescale e_ij to avoid extreme weight disparities (e.g., divide by mean or max)"
+      ]
+    },
+    {
+      "id": "P7",
+      "label": "Cluster-constrained coupling",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\kappa \\sum_{j \\ne i} W_{ij}\\,(p_{j,t} - p_{i,t}),\\; W_{ij} = [\\rho_{\\text{in}} \\mathbf{1}_{c(i)=c(j)} + \\rho_{\\text{out}} \\mathbf{1}_{c(i)\\ne c(j)}] \\, d_{ij}^{-\\eta}",
+      "se_plain": "SE_i is a Laplacian with stronger within-cluster and weaker between-cluster coupling, both decaying by distance.",
+      "definitions": {
+        "c(i)": "Cluster label of node i obtained from distance-based spatial clustering",
+        "K(d_ij)": "Power-law kernel d_ij^(-η)",
+        "W_ij": "Within/between-cluster weighted kernel"
+      },
+      "parameters": [
+        {
+          "name": "η",
+          "meaning": "distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "ρ_in",
+          "meaning": "within-cluster weight multiplier",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "ρ_out",
+          "meaning": "between-cluster weight multiplier",
+          "constraints": "in [0, ρ_in]"
+        },
+        {
+          "name": "K_clusters",
+          "meaning": "number of spatial clusters",
+          "constraints": "integer >= 1"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "symmetric"
+      ],
+      "supported_by_evidence": ["E3", "E1", "E2"],
+      "difference_from_gravity_baselines": "Consensus-like within/between-cluster exchange rather than OD gravity; uses community geography.",
+      "assumptions_added_by_you": [
+        "Derive clusters from D using a spatial clustering method (e.g., k-means on embedded coordinates or hierarchical clustering on distances)",
+        "Set K_clusters based on model selection or prior knowledge"
+      ]
+    },
+    {
+      "id": "P8",
+      "label": "Span-adaptive kernel Laplacian",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\kappa \\sum_{j \\ne i} \\left(\\frac{d_{ij}}{s_{ij}}\\right)^{-\\eta} (p_{j,t} - p_{i,t}),\\; s_{ij} = \\sqrt{s_i s_j},\\; s_i = \\frac{1}{k} \\sum_{j \\in N_k(i)} d_{ij}",
+      "se_plain": "SE_i is a Laplacian with distances normalized by local span s_i (mean distance to k nearest neighbors), making coupling scale-aware.",
+      "definitions": {
+        "N(i)": "k-nearest neighbors of i by distance",
+        "s_i": "Local geographic span of i (mean distance to N_k(i))",
+        "s_ij": "Geometric mean of local spans for i and j to ensure symmetry"
+      },
+      "parameters": [
+        {
+          "name": "k",
+          "meaning": "number of nearest neighbors for local span",
+          "constraints": "integer >= 1"
+        },
+        {
+          "name": "η",
+          "meaning": "decay exponent applied to normalized distance",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "symmetric",
+        "row-normalized weights"
+      ],
+      "supported_by_evidence": ["E1", "E2"],
+      "difference_from_gravity_baselines": "Scale-adaptive consensus using local geographic span rather than OD flows.",
+      "assumptions_added_by_you": [
+        "Use k-NN to define N_k(i)",
+        "Exclude self-distances and add epsilon if s_i is very small"
+      ]
+    },
+    {
+      "id": "P9",
+      "label": "Nonlocal power-law interaction (fractional-style)",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\kappa \\sum_{j \\ne i} d_{ij}^{-\\eta} (p_{j,t} - p_{i,t})",
+      "se_plain": "SE_i is a nonlocal Laplacian-like operator with power-law coupling over all distances.",
+      "definitions": {
+        "K(d_ij)": "Power-law kernel d_ij^(-η)"
+      },
+      "parameters": [
+        {
+          "name": "η",
+          "meaning": "nonlocal interaction exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "symmetric"
+      ],
+      "supported_by_evidence": ["E2"],
+      "difference_from_gravity_baselines": "A symmetric, mass-exchange operator with no OD flow formulation; purely kernel-driven consensus.",
+      "assumptions_added_by_you": [
+        "Set d_ii to infinity or exclude j=i to avoid self-coupling"
+      ]
+    },
+    {
+      "id": "P10",
+      "label": "kNN-limited power-law Laplacian",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\kappa \\sum_{j \\ne i} W_{ij}\\,(p_{j,t} - p_{i,t}),\\; W_{ij} = \\frac{\\mathbb{1}_{j \\in N_k(i)} + \\mathbb{1}_{i \\in N_k(j)}}{2} \\, d_{ij}^{-\\eta}",
+      "se_plain": "SE_i is a symmetric Laplacian restricted to k-nearest-neighbor pairs (mutualized) with power-law distance weights.",
+      "definitions": {
+        "N(i)": "k-nearest neighbors of i by distance",
+        "K(d_ij)": "Power-law kernel d_ij^(-η)",
+        "W_ij": "Symmetric mutual-kNN weight times kernel"
+      },
+      "parameters": [
+        {
+          "name": "k",
+          "meaning": "number of nearest neighbors",
+          "constraints": "integer >= 1"
+        },
+        {
+          "name": "η",
+          "meaning": "distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "symmetric"
+      ],
+      "supported_by_evidence": ["E3", "E2"],
+      "difference_from_gravity_baselines": "A sparse, neighborhood-limited consensus operator rather than global OD gravity flows.",
+      "assumptions_added_by_you": [
+        "Use mutualized kNN (average of directional indicators) to keep W_ij symmetric",
+        "Choose k informed by observed community scales"
+      ]
+    }
+  ],
+  "se_candidates_context_plus_creativity": [
+    {
+      "id": "C1",
+      "label": "Explore–return mixture net flux (memory-modulated)",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\sum_{j \\ne i} (T_{ji} - T_{ij}),\\; T_{ij} = p_{i,t}\\,\\Big[(1-P_{new})\\,w^{\\text{return}}_{ij} + P_{new}\\,w^{\\text{explore}}_{ij}\\Big],\\; P_{new} = \\frac{1}{1+\\lambda(\\ln S + C)}",
+      "se_plain": "SE_i is net flux where each origin splits between returning to local neighbors and exploring globally; the mixture weight P_new follows the memory-driven exploration formula.",
+      "definitions": {
+        "N(i)": "k-nearest neighbors for the return set",
+        "K(d_ij)": "Power-law kernel d_ij^(-η_e) for exploration",
+        "w^return_ij": "Row-normalized weights on N(i) (e.g., proportional to 1/d_ij) and 0 outside",
+        "w^explore_ij": "Row-normalized weights over all j using K(d_ij)"
+      },
+      "parameters": [
+        {
+          "name": "λ",
+          "meaning": "memory strength (higher reduces exploration)",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "C",
+          "meaning": "constant in exploration probability",
+          "constraints": "real"
+        },
+        {
+          "name": "S",
+          "meaning": "number of locations (nodes)",
+          "constraints": "fixed = N"
+        },
+        {
+          "name": "k",
+          "meaning": "size of return neighborhood",
+          "constraints": "integer >= 1"
+        },
+        {
+          "name": "η_e",
+          "meaning": "exploration kernel distance-decay exponent",
+          "constraints": "> 0"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "asymmetric",
+        "mass-conserving (only if net-flux form)",
+        "row-normalized weights",
+        "requires p_{i,t} >= 0"
+      ],
+      "supported_by_evidence": ["E5", "E6", "E2", "E3"],
+      "difference_from_gravity_baselines": "Combines memory-driven exploration probability with local/global kernels, not a pure gravity choice.",
+      "assumptions_added_by_you": [
+        "Use 1/d_ij for return weights and d_ij^-η_e for exploration weights",
+        "Set w^return_ij and w^explore_ij to zero for i=j"
+      ]
+    },
+    {
+      "id": "C2",
+      "label": "Dual-layer overlap mixture Laplacian",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\kappa \\sum_{j \\ne i} \\big[\\Gamma\\,K_{\\ell}(d_{ij}) + (1-\\Gamma)\\,K_c(d_{ij})\\big]\\,(p_{j,t} - p_{i,t})",
+      "se_plain": "SE_i is a symmetric Laplacian mixing a local geometric layer and a quasi-communication layer, weighted by overlap Γ.",
+      "definitions": {
+        "K_ℓ(d_ij)": "Local kernel with strong decay, e.g., d_ij^(-η_ℓ)",
+        "K_c(d_ij)": "Communication-like kernel with weak decay (η_c ≈ 0)",
+        "W_ij": "Mixture weight Γ K_ℓ + (1-Γ) K_c"
+      },
+      "parameters": [
+        {
+          "name": "Γ",
+          "meaning": "inter-layer overlap weighting",
+          "constraints": "in [0,1]"
+        },
+        {
+          "name": "η_ℓ",
+          "meaning": "local kernel distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "η_c",
+          "meaning": "communication kernel decay exponent",
+          "constraints": ">= 0 (often near 0)"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "symmetric"
+      ],
+      "supported_by_evidence": ["E11", "E13", "E2"],
+      "difference_from_gravity_baselines": "A two-layer mixture operator governed by overlap Γ, not OD gravity exchange.",
+      "assumptions_added_by_you": [
+        "Approximate the communication layer by a shallow-decay kernel since no explicit comm network is available",
+        "Normalize K_ℓ and K_c (e.g., to unit row sums) if needed for identifiability"
+      ]
+    },
+    {
+      "id": "C3",
+      "label": "Two-scale piecewise power-law Laplacian (regime shift)",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\kappa \\sum_{j \\ne i} K(d_{ij})\\,(p_{j,t} - p_{i,t}),\\; K(d) = \\begin{cases} a\\, d^{-\\eta_1}, & d < r_0 \\\\ b\\, d^{-\\eta_2}, & d \\ge r_0 \\end{cases},\\; b = a\\, r_0^{\\eta_2-\\eta_1}",
+      "se_plain": "SE_i is a symmetric Laplacian with a break in distance-decay at scale r0, capturing a regime change in coupling.",
+      "definitions": {
+        "K(d_ij)": "Piecewise power-law with continuity at r0",
+        "r0": "distance scale where coupling regime changes"
+      },
+      "parameters": [
+        {
+          "name": "η_1",
+          "meaning": "short-range decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "η_2",
+          "meaning": "long-range decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "r0",
+          "meaning": "break distance between regimes",
+          "constraints": "> 0"
+        },
+        {
+          "name": "a",
+          "meaning": "short-range kernel scale",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "symmetric"
+      ],
+      "supported_by_evidence": ["E3", "E2"],
+      "difference_from_gravity_baselines": "A nonlocal consensus operator with a two-regime kernel rather than OD-based transfer.",
+      "assumptions_added_by_you": [
+        "Choose r0 to match inferred scale where behavior changes",
+        "Continuity enforced via b = a r0^(η2−η1)"
+      ]
+    },
+    {
+      "id": "C4",
+      "label": "Span- and cluster-aware Laplacian",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\kappa \\sum_{j \\ne i} \\Big(\\tfrac{d_{ij}}{s_{ij}}\\Big)^{-\\eta} \\,[\\rho_{in}\\,\\mathbf{1}_{c(i)=c(j)} + \\rho_{out}\\,\\mathbf{1}_{c(i)\\ne c(j)}] (p_{j,t} - p_{i,t})",
+      "se_plain": "SE_i is a symmetric Laplacian using distance normalized by local spans and with within/between-cluster weighting.",
+      "definitions": {
+        "s_i": "Local span (mean distance to k nearest neighbors)",
+        "s_ij": "Geometric mean of s_i and s_j",
+        "c(i)": "Cluster label from distance-based spatial clustering"
+      },
+      "parameters": [
+        {
+          "name": "k",
+          "meaning": "neighbors used to compute s_i",
+          "constraints": "integer >= 1"
+        },
+        {
+          "name": "η",
+          "meaning": "decay exponent on normalized distance",
+          "constraints": "> 0"
+        },
+        {
+          "name": "ρ_in",
+          "meaning": "within-cluster weight multiplier",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "ρ_out",
+          "meaning": "between-cluster weight multiplier",
+          "constraints": "in [0, ρ_in]"
+        },
+        {
+          "name": "K_clusters",
+          "meaning": "number of clusters",
+          "constraints": "integer >= 1"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall scale",
+          "constraints": "> 0"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "symmetric"
+      ],
+      "supported_by_evidence": ["E1", "E3", "E2"],
+      "difference_from_gravity_baselines": "Combines span normalization and community geography in a symmetric exchange operator, not OD flows.",
+      "assumptions_added_by_you": [
+        "Define clusters from distance-only data",
+        "Use mutualized kNN to compute s_i robustly in sparse regions"
+      ]
+    },
+    {
+      "id": "C5",
+      "label": "Corridor-enhanced diffusion (edge betweenness boost)",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\kappa \\sum_{j \\ne i} \\big[1 + \\mu\\, \\tfrac{e_{ij}}{\\bar e}\\big] d_{ij}^{-\\eta} (p_{j,t} - p_{i,t})",
+      "se_plain": "SE_i is a symmetric Laplacian with an additive boost proportional to edge betweenness, emphasizing high-traffic corridors.",
+      "definitions": {
+        "e_ij": "Edge betweenness centrality for edge (i,j)",
+        "ȳe (\\bar e)": "Mean edge betweenness across all pairs",
+        "K(d_ij)": "Power-law kernel d_ij^(-η)"
+      },
+      "parameters": [
+        {
+          "name": "μ",
+          "meaning": "magnitude of corridor enhancement",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "η",
+          "meaning": "distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall scale",
+          "constraints": "> 0"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "symmetric"
+      ],
+      "supported_by_evidence": ["E10", "E2"],
+      "difference_from_gravity_baselines": "Uses centrality-derived corridor boosts within a consensus operator, not OD gravity.",
+      "assumptions_added_by_you": [
+        "Compute e_ij on the undirected distance-weighted complete graph",
+        "Clip or rescale e_ij/\\bar e to avoid extreme weights"
+      ]
+    },
+    {
+      "id": "C6",
+      "label": "Column-stochastic inflow kernel",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\kappa \\Big[\\sum_{j \\ne i} v_{ji} \\, p_{j,t} - p_{i,t}\\Big],\\; v_{ji} = \\frac{K(d_{ij})}{\\sum_{m \\ne j} K(d_{mj})},\\; K(d) = d^{-\\eta}",
+      "se_plain": "SE_i is inflow from all sources j to i via column-normalized distance kernel, minus the state at i.",
+      "definitions": {
+        "K(d_ij)": "Power-law kernel d_ij^(-η)",
+        "v_ji": "Column-normalized weight from source j to destination i"
+      },
+      "parameters": [
+        {
+          "name": "η",
+          "meaning": "distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "relaxation rate toward kernel-smoothed inflow",
+          "constraints": "> 0"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "row-normalized weights"
+      ],
+      "supported_by_evidence": ["E2"],
+      "difference_from_gravity_baselines": "A column-normalized inflow operator (consensus toward a kernel average), not an OD gravity net flux.",
+      "assumptions_added_by_you": [
+        "Exclude self loops in normalization sums",
+        "Add small epsilon to denominators for stability"
+      ]
+    },
+    {
+      "id": "C7",
+      "label": "Rank-truncated + tail choice (net flux)",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\sum_{j \\ne i} (T_{ji} - T_{ij}),\\; T_{ij} = p_{i,t}\\, \\frac{p_{j,t} \\, w_{ij}}{\\sum_{k \\ne i} p_{k,t} \\, w_{ik}},\\; w_{ij} = \\begin{cases} \\frac{\\lambda S}{r_i(j)} + 1 - \\lambda, & r_i(j) \\le R \\\\ c\\, d_{ij}^{-\\eta}, & r_i(j) > R \\end{cases}",
+      "se_plain": "SE_i is net flux with a rank-based Zipf weight for the top-R nearest destinations and a distance-based tail beyond R.",
+      "definitions": {
+        "r_i(j)": "Rank of j by distance from i",
+        "w_ij": "Hybrid weight: rank-based for top R ranks; power-law for the tail"
+      },
+      "parameters": [
+        {
+          "name": "λ",
+          "meaning": "memory/concentration in Zipf weight",
+          "constraints": "in [0,1]"
+        },
+        {
+          "name": "S",
+          "meaning": "number of locations (nodes)",
+          "constraints": "fixed = N"
+        },
+        {
+          "name": "R",
+          "meaning": "rank cutoff for the head",
+          "constraints": "integer >= 1"
+        },
+        {
+          "name": "η",
+          "meaning": "tail distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "c",
+          "meaning": "scale for tail weights",
+          "constraints": "> 0"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay (mixed rank and distance)",
+        "asymmetric",
+        "mass-conserving (only if net-flux form)",
+        "row-normalized weights",
+        "requires p_{i,t} >= 0"
+      ],
+      "supported_by_evidence": ["E6", "E3", "E2"],
+      "difference_from_gravity_baselines": "A hybrid rank–distance choice rather than single power-law gravity.",
+      "assumptions_added_by_you": [
+        "Break ties in ranks consistently",
+        "Set c to ensure smooth transition at the cutoff R (optional continuity constraint)"
+      ]
+    },
+    {
+      "id": "C8",
+      "label": "State-adaptive intensity (tracing-inspired)",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\big[\\beta_r + \\beta_t \\sum_{j \\ne i} w_{ij} p_{j,t}\\big] \\sum_{j \\ne i} w_{ij} (p_{j,t} - p_{i,t}),\\; w_{ij} = \\frac{K(d_{ij})}{\\sum_{k \\ne i} K(d_{ik})},\\; K(d)=d^{-\\eta}",
+      "se_plain": "SE_i is a diffusion-like exchange whose strength adapts to the local state (weighted sum of neighbors), inspired by tracing effort increasing with cases.",
+      "definitions": {
+        "K(d_ij)": "Power-law kernel d_ij^(-η)",
+        "w_ij": "Row-normalized distance weights"
+      },
+      "parameters": [
+        {
+          "name": "β_r",
+          "meaning": "baseline (state-independent) mixing intensity",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "β_t",
+          "meaning": "state-adaptive amplification of mixing",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "η",
+          "meaning": "distance-decay exponent in weights",
+          "constraints": "> 0"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "row-normalized weights"
+      ],
+      "supported_by_evidence": ["E14", "E15", "E2"],
+      "difference_from_gravity_baselines": "Coupling intensity adapts to the local state via neighbor-weighted sums; no OD gravity term.",
+      "assumptions_added_by_you": [
+        "Use row-normalized weights for both adaptation and exchange terms",
+        "Exclude i=j terms in the sums"
+      ]
+    },
+    {
+      "id": "C9",
+      "label": "Betweenness-augmented gravity net flux",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\sum_{j \\ne i} (T_{ji} - T_{ij}),\\; T_{ij} = \\kappa\\, p_{i,t}^{\\alpha} p_{j,t}^{\\beta} \\, e_{ij}^{\\delta} \\, d_{ij}^{-\\gamma}",
+      "se_plain": "SE_i is gravity-style net flux scaled by edge betweenness to emphasize structurally important corridors.",
+      "definitions": {
+        "e_ij": "Edge betweenness centrality for the (i,j) edge with cost d_ij",
+        "T_ij": "Centrality-augmented gravity flow"
+      },
+      "parameters": [
+        {
+          "name": "α",
+          "meaning": "origin mass sensitivity",
+          "constraints": "> 0"
+        },
+        {
+          "name": "β",
+          "meaning": "destination mass sensitivity",
+          "constraints": "> 0"
+        },
+        {
+          "name": "γ",
+          "meaning": "distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "δ",
+          "meaning": "edge betweenness weighting exponent",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall flow scale",
+          "constraints": "> 0"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "asymmetric",
+        "mass-conserving (only if net-flux form)",
+        "requires p_{i,t} >= 0"
+      ],
+      "supported_by_evidence": ["E4", "E10", "E2"],
+      "difference_from_gravity_baselines": "Extends gravity by incorporating edge betweenness to route flows along high-traffic corridors.",
+      "assumptions_added_by_you": [
+        "Compute e_ij from the distance-weighted complete graph",
+        "Set T_ii = 0 and add epsilon to d_ij if needed"
+      ]
+    },
+    {
+      "id": "C10",
+      "label": "kNN ring two-band Laplacian",
+      "is_baseline": false,
+      "se_latex": "SE_i = \\kappa \\sum_{j \\ne i} \\big[a\\,\\mathbb{1}_{\\{j \\in N_k(i) \\lor i \\in N_k(j)\\}} + b\\,\\mathbb{1}_{\\{\\text{otherwise}\\}}\\big] \\, d_{ij}^{-\\eta} (p_{j,t} - p_{i,t}),\\; 0 \\le b \\le a",
+      "se_plain": "SE_i is a symmetric Laplacian with stronger coupling on mutual kNN pairs and a weaker background coupling for all other pairs.",
+      "definitions": {
+        "N(i)": "k-nearest neighbors of i by distance",
+        "K(d_ij)": "Power-law kernel d_ij^(-η)"
+      },
+      "parameters": [
+        {
+          "name": "k",
+          "meaning": "k for mutual-kNN ring",
+          "constraints": "integer >= 1"
+        },
+        {
+          "name": "a",
+          "meaning": "weight multiplier for mutual-kNN edges",
+          "constraints": ">= 0"
+        },
+        {
+          "name": "b",
+          "meaning": "weight multiplier for non-kNN edges",
+          "constraints": "in [0, a]"
+        },
+        {
+          "name": "η",
+          "meaning": "distance-decay exponent",
+          "constraints": "> 0"
+        },
+        {
+          "name": "κ",
+          "meaning": "overall coupling scale",
+          "constraints": "> 0"
+        }
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "symmetric"
+      ],
+      "supported_by_evidence": ["E3", "E2"],
+      "difference_from_gravity_baselines": "A two-band neighborhood-weighted consensus operator rather than OD gravity flows.",
+      "assumptions_added_by_you": [
+        "Use mutualized kNN to ensure symmetry",
+        "Set b>0 to allow weak long-range leakage consistent with nonlocal coupling"
+      ]
+    }
+  ]
+}

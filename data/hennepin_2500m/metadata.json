@@ -1,0 +1,112 @@
+{
+  "dataset_id": "hennepin_2500m",
+  "description": "Privacy-preserving, grid-aggregated Hennepin County mobility dynamics used by the 2.5 km case study.",
+  "bundle": {
+    "file": "hennepin_2500m.npz",
+    "format": "NumPy compressed NPZ; load with allow_pickle=False",
+    "sha256": "e941845878473df16bc0db18023c3fbafcce5ff9bdce7b923ad2e06fddd59cca",
+    "arrays": {
+      "states": {
+        "shape": [480, 210],
+        "dtype": "float32",
+        "axis_order": ["time", "node"],
+        "sha256_uncompressed_c_order": "a2b0ef14f7765e2f603328fe5cd766ca3e967cf6d755f985d5a9c6383ee7de06"
+      },
+      "initial_state": {
+        "shape": [210],
+        "dtype": "float32",
+        "equals": "states[0]",
+        "sha256_uncompressed_c_order": "bab9c3328bfa8acbe65b940da16b353ef45a3a2b7ad1982b25859d8c6e1c3629"
+      },
+      "distance_matrix": {
+        "shape": [210, 210],
+        "dtype": "float32",
+        "sha256_uncompressed_c_order": "9c9b4e77bf56c7a922cc9e3492a4219aedfc3beb3b87651557162ef60b904f82"
+      },
+      "adjacency_mask": {
+        "shape": [210, 210],
+        "dtype": "float32",
+        "sha256_uncompressed_c_order": "722c76c0047897c3f317bda53b267a7fbd99a456c67003732ebe4674f8899993"
+      },
+      "node_ids": {
+        "shape": [210],
+        "dtype": "int64",
+        "definition": "zero-based positional IDs in the exact model/input ordering",
+        "sha256_uncompressed_c_order": "4698e7cf925510c88263784a9478f0d35d4f7cb64144ca887a8d66fdd260dbb7"
+      },
+      "train_end": {"shape": [], "dtype": "int64", "value": 288},
+      "val_end": {"shape": [], "dtype": "int64", "value": 384},
+      "test_end": {"shape": [], "dtype": "int64", "value": 480},
+      "interval_minutes": {"shape": [], "dtype": "int64", "value": 15},
+      "grid_resolution_m": {"shape": [], "dtype": "int64", "value": 2500}
+    }
+  },
+  "splits": {
+    "training_states": "states[0:288]",
+    "validation_states": "states[288:384]",
+    "test_states": "states[384:480]",
+    "test_one_step_targets": "states[385:480]",
+    "test_one_step_transition_count": 95
+  },
+  "quality": {
+    "all_arrays_finite": true,
+    "state_min": 0.0,
+    "state_max": 243.0,
+    "state_mean": 11.508809089660645,
+    "state_std": 18.170717239379883,
+    "state_nonzero_count": 74352,
+    "distance_min": 0.0,
+    "distance_max": 1.0,
+    "distance_diagonal_is_zero": true,
+    "distance_is_symmetric": false,
+    "distance_max_absolute_asymmetry": 0.4780116081237793,
+    "adjacency_is_symmetric": true,
+    "adjacency_directed_nonzero_count": 43890
+  },
+  "distance_preprocessing": {
+    "raw_distance_is_symmetric": true,
+    "released_matrix": "the exact column-wise min-max-normalized matrix used for fitting",
+    "caveat": "Independent column normalization destroys symmetry. The asymmetric matrix is preserved unchanged because symmetrizing it would not reproduce the reported fits."
+  },
+  "provenance": {
+    "canonical_archive_bundle": "UrbanDE_Net_1119_county_proposed_int_denoised/validation_data/time_series_data.npz",
+    "canonical_archive_bundle_sha256": "ba76452d24e1669c768a8760b743b617ea7b9f840b75552d7b5c0048f72ee66c",
+    "denoised_state_source_sha256": "e726d5a0b44bb7dec50833e05c4e1232d30f0ac5bbc749dcc3840751990a6123",
+    "raw_meter_distance_source_sha256": "723b201c8848630a0cca33febf40a9745a7e80a6a414393c1609fe510e86a28d",
+    "normalized_distance_source_sha256": "dcc7cc488ffced75b6affeef5bcd871c020d26f61eb115f9e1be7c43deb0f75c",
+    "conversion": "Renamed arrays, added positional node IDs and scalar metadata, and compressed without changing numeric values."
+  },
+  "privacy": {
+    "contains_individual_records": false,
+    "contains_device_identifiers": false,
+    "contains_raw_coordinates": false,
+    "contains_only_aggregated_counts": true
+  },
+  "geometry": {
+    "included": true,
+    "file": "grid_cells.geojson",
+    "format": "GeoJSON FeatureCollection",
+    "sha256": "77f079f6d128e105baa4274f46dde5de94348a5b3ff8aba3713485900db6d780",
+    "crs": {
+      "identifier": "EPSG:4326",
+      "name": "WGS 84",
+      "axis_order": ["longitude", "latitude"],
+      "conversion_source": "EPSG:26915 (NAD83 / UTM zone 15N)",
+      "format_note": "RFC 7946-compatible GeoJSON omits the deprecated crs member"
+    },
+    "feature_count": 210,
+    "geometry_type": "Polygon",
+    "cell_index_order": "0..209",
+    "node_order_matches_bundle": true,
+    "all_rings_closed": true,
+    "all_coordinates_finite": true,
+    "all_polygons_have_positive_area": true,
+    "all_cells_derived_from_2500m_by_2500m_projected_squares": true,
+    "bounds_wgs84": [
+      -93.73910175,
+      44.80741837,
+      -93.19845883,
+      45.21262096
+    ]
+  }
+}

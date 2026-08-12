@@ -1,0 +1,51 @@
+{
+  "dataset_id": "synthetic_table2_legacy",
+  "description": "Frozen 20-node realization used by the archived Table 2 fitting workflow",
+  "canonical_file": "dataset.npz",
+  "states": {
+    "shape": [501, 20],
+    "orientation": ["time", "node"],
+    "transitions": 500,
+    "dtype": "float32"
+  },
+  "distance": {
+    "shape": [20, 20],
+    "training_field": "distance",
+    "raw_field": "distance_raw",
+    "fully_connected_without_self_loops": true
+  },
+  "split": {
+    "train_end_exclusive": 300,
+    "validation_end_exclusive": 400,
+    "test_end_exclusive": 501
+  },
+  "generation": {
+    "seed": 42,
+    "accepted_attempt": 5,
+    "equation": "single-constrained power-law gravity plus sinusoidal forcing and Gaussian noise",
+    "ground_truth_parameter_order": [
+      "beta",
+      "gamma",
+      "noise_sigma",
+      "forcing_amplitude",
+      "forcing_frequency_cycles_per_step",
+      "forcing_phase_multiplier"
+    ],
+    "ground_truth_parameters": [
+      0.488345142323785,
+      1.2680008527060398,
+      1.678669956672565,
+      1.0428799862567975,
+      0.011187321582417076,
+      0.558590514613578
+    ]
+  },
+  "provenance": {
+    "source_states_sha256": "697ce373fe833e3d6934524381dd721e8c66a8bc6bbfdf9b195518068deaac47",
+    "source_raw_distance_sha256": "805ded40d8d7afd9fa978b0b7ac9bf16d302967a0a94bd92427418484f2b9193",
+    "source_normalized_distance_sha256": "dc4c0a78a8920da348f499506bfe759b407c7e755884373f1c72617a2bcde869",
+    "canonical_bundle_sha256": "4d08928f0660ae85a63528e9b8e77cb1c4b402064ae2c823ef45bd2f7000b446"
+  },
+  "reproducibility_note": "The frozen arrays are the source of truth for Table 2. The cleaned generator creates new realizations and is not expected to reproduce the archived Gaussian-noise stream bit for bit across PyTorch versions.",
+  "figure4_note": "The trajectory used by the unchanged Figure 4 panel is a different archived realization with the same initial state and distance matrix. It is isolated under figure_sources/figure4 and must not be substituted for this Table 2 training bundle."
+}

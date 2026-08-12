@@ -1,0 +1,15 @@
+source_csv_complexity,nMSE_delta_min,min_candidate
+10,0.766796563152643,Distance-weighted diffusion
+13,1.03860021463432,Radiation model
+14,0.741544479205869,Edge-betweenness weighted mixed diffusion
+15,0.863395733950704,KNN diffusion
+16,0.76887529388289,Rank-based diffusion
+18,0.743573402600304,KNN two-band diffusion
+20,0.756712342477437,Dual-layer overlap diffusion
+21,0.665073590142571,Single-constrained gravity model (POW)
+22,0.694709111824607,Classic gravity model (EXP)
+23,0.950384834223146,Accessibility-driven drift
+25,0.671759146470119,Single-constrained gravity model (EXP)
+26,0.647863743757807,Betweenness-augmented gravity
+27,0.775533475784928,Saturation-limited diffusion
+29,0.758846371115949,State-adaptive diffusion

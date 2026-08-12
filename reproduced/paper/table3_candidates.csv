@@ -1,0 +1,16 @@
+paper_row,candidate_id,display_name,formula,complexity,graphrag_output_id,legacy_solver
+1,rank_choice_gravity,Rank-choice gravity,"sum_j(T_ji-T_ij), T_ij=p_i p_j f[r_i(j)]/sum_k p_k f[r_i(k)]",29,P3,interaction_p3
+2,betweenness_diffusion,Betweenness-modulated diffusion,kappa sum_j sqrt(b_i b_j)d_ij^-eta(p_j-p_i),16,P5,interaction_p5
+3,edge_betweenness_diffusion,Edge-betweenness weighted mixed diffusion,kappa sum_j e_ij^delta d_ij^-eta(p_j-p_i),14,P6,interaction_p6
+4,cluster_diffusion,Cluster-constrained diffusion,kappa sum_j[rho_in I(c_i=c_j)+rho_out I(c_i!=c_j)]d_ij^-eta(p_j-p_i),18,P7,interaction_p7
+5,span_diffusion,Span-adaptive diffusion,kappa sum_j[d_ij/sqrt(s_i s_j)]^-eta(p_j-p_i),22,P8,interaction_p8
+6,knn_limited_diffusion,KNN-limited diffusion,kappa sum_j 0.5[I(j in N_k(i))+I(i in N_k(j))]d_ij^-eta(p_j-p_i),16,P10,interaction_p10
+7,explore_return_diffusion,Explore-return diffusion,"sum_j(T_ji-T_ij), T_ij=p_i[(1-P_new)w_return+P_new w_explore]",47,C1,interaction_c1
+8,dual_layer_diffusion,Dual-layer overlap diffusion,kappa sum_j[Gamma d_ij^-eta_l+(1-Gamma)d_ij^-eta_c](p_j-p_i),20,C2,interaction_c2
+9,two_scale_diffusion,Two-scale piecewise diffusion,"kappa sum_j K(d_ij)(p_j-p_i), K(d)=a d^-eta1 below r0 else a r0^(eta2-eta1)d^-eta2",26,C3,interaction_c3
+10,span_cluster_diffusion,Span- and cluster-aware diffusion,kappa sum_j[d_ij/sqrt(s_i s_j)]^-eta[rho_in I(c_i=c_j)+rho_out I(c_i!=c_j)](p_j-p_i),30,C4,interaction_c4
+11,corridor_diffusion,Corridor-enhanced diffusion,kappa sum_j[1+mu e_ij/mean(e)]d_ij^-eta(p_j-p_i),18,C5,interaction_c5
+12,rank_tail_diffusion,Rank-truncated + tail choice diffusion,"sum_j(T_ji-T_ij), T_ij=p_i p_j w_ij/sum_k p_k w_ik; rank head and power-law tail",49,C7,interaction_c7
+13,state_adaptive_diffusion,State-adaptive diffusion,[beta_r+beta_t sum_j w_ij p_j] sum_j w_ij(p_j-p_i),29,C8,interaction_c8
+14,betweenness_gravity,Betweenness-augmented gravity,"sum_j(T_ji-T_ij), T_ij=kappa p_i^alpha p_j^beta(e_ij+eps)^delta d_ij^-gamma",26,C9,interaction_c9
+15,knn_two_band_diffusion,KNN two-band diffusion,kappa sum_j[a I(kNN union)+b I(other)]d_ij^-eta(p_j-p_i),18,C10,interaction_c10

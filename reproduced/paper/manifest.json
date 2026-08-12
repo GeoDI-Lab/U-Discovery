@@ -1,0 +1,454 @@
+{
+  "schema_version": 2,
+  "scope": "Tables 1-4 plus machine-readable and optionally rendered public numerical/source panels for Figures 4-7",
+  "tables": {
+    "table1": {
+      "path": "table1_candidates.csv",
+      "bytes": 1850,
+      "sha256": "a6af6945e6a5d2a30ca3e7af10c9263cc4b2e47e9bb4a14fd462aee2a80d6ffd"
+    },
+    "table2": {
+      "path": "table2_metrics.csv",
+      "bytes": 919,
+      "sha256": "4006ab8f4109784f40fb62f51bb391244504cb56b5cad90fffb59ced8c9aac5a"
+    },
+    "table3": {
+      "path": "table3_candidates.csv",
+      "bytes": 2138,
+      "sha256": "d8fd6e9bf3fa0bea29ceaa0ee7bebd25874de7574ae7e71729b65fbbfdf9f94d"
+    },
+    "table4": {
+      "path": "table4_metrics.csv",
+      "bytes": 4181,
+      "sha256": "5cf5204c3e76d5a71571b587b4e69b3d0465c15d1db25ebd124e5d203d8c6814"
+    }
+  },
+  "figure_renderer": {
+    "status": "rendered",
+    "backend": "matplotlib/Agg",
+    "matplotlib_version": "3.9.4"
+  },
+  "figures": {
+    "figure4": {
+      "title": "Synthetic spatiotemporal system and dynamics",
+      "conclusion": "The verified Figure-4-only 20-node realization combines a documented spatial gravity increment, periodic forcing, and a realized additive residual.",
+      "archetype": "mixed network, component heatmaps, and time series",
+      "panels": {
+        "4(a)": "Manuscript equation panel; represented numerically by parameter fields, not typeset here.",
+        "4(b)": "20-node fully connected network reconstructed by metric MDS from released distances.",
+        "4(c)": "Documented spatial and temporal increments plus the realized additive residual.",
+        "4(d)": "Verified Figure 4 time series with 501 states (500 transitions)."
+      },
+      "source_inputs": [
+        "figure_sources/figure4/synthetic_figure4.npz",
+        "figure_sources/figure4/metadata.json"
+      ],
+      "source_artifacts": [
+        {
+          "path": "figure4_network_nodes.csv",
+          "bytes": 2024,
+          "sha256": "1f6ef2cfdf68c848185489e418051bf19caac945212c0c716dfc93936970dbcc"
+        },
+        {
+          "path": "figure4_network_edges.csv",
+          "bytes": 15799,
+          "sha256": "b002a9303c7e13181af85cd6de3eb63c3a678e4ddcf8ecc185c48b1270770970"
+        },
+        {
+          "path": "figure4_component_summary.csv",
+          "bytes": 81727,
+          "sha256": "bd5ca59c25370dbd38a3ade4dc96510a171b87979eb506446d10e2e657902208"
+        },
+        {
+          "path": "figure4_state_series.csv",
+          "bytes": 188424,
+          "sha256": "3a96439cc53a119395fbd0a98eaa69266bf9eadf7370bfdc5c1db7482ee1a429"
+        },
+        {
+          "path": "figure4_components.npz",
+          "bytes": 312296,
+          "sha256": "3d6b964d8697603228e80baab98f794e0d6de2cacbcb53e0d07110cce840c63c"
+        }
+      ],
+      "checks": {
+        "states_shape": [
+          501,
+          20
+        ],
+        "edge_count": 190,
+        "component_shape": [
+          500,
+          20
+        ],
+        "component_closure_max_abs_error": 1.7763568394002505e-15,
+        "closure_residual_standard_deviation": 1.681155448941977,
+        "documented_noise_sigma": 1.678669956672565
+      },
+      "warnings": [
+        "This verified realization is source data for Figure 4 only; data/synthetic/dataset.npz remains the distinct source of truth for Table 2 training results.",
+        "The realized additive residual is recovered by exact component closure and its standard deviation is checked against the documented noise scale.",
+        "MDS coordinates are deterministic display coordinates inferred from distances, not original sampled coordinates."
+      ],
+      "rendering": {
+        "status": "rendered",
+        "artifacts": [
+          {
+            "path": "figure4_public.png",
+            "bytes": 1750016,
+            "sha256": "58965d5eb0e0480fa53c22293b928eb206ab4dc243d1f51fd4daffd3a93066e7"
+          },
+          {
+            "path": "figure4_public.svg",
+            "bytes": 413161,
+            "sha256": "bd0a465dd345dfcfe884aad44f82ff5003a4922a094efbbf66ddcca27390f61a"
+          }
+        ]
+      }
+    },
+    "figure5": {
+      "title": "Synthetic candidate ranking and fitted parameters",
+      "conclusion": "The documented single-constrained power-gravity candidate is the lowest-change-error model in the canonical 12-row Table 2 source.",
+      "archetype": "quantitative heatmap, error frontiers, and optimization trajectories",
+      "panels": {
+        "5(a)": "Candidates ranked by nMSE_delta; columns encode nMSE_delta, nMSE rank, and complexity rank.",
+        "5(b)": "Lowest nMSE_delta and nMSE at each discrete complexity represented in Table 2.",
+        "5(c)": "Logged beta and gamma optimization trajectories across ten seeds against documented targets."
+      },
+      "source_inputs": [
+        "results/synthetic/table2_metrics.csv",
+        "results/synthetic/figure5_parameter_trajectories.csv"
+      ],
+      "source_artifacts": [
+        {
+          "path": "figure5_heatmap_source.csv",
+          "bytes": 1985,
+          "sha256": "5202e97aedba395b5dd03f32b5cc037e0382db79777ab70ff4df8d8ce13b0f7f"
+        },
+        {
+          "path": "figure5_frontiers_source.csv",
+          "bytes": 1124,
+          "sha256": "2043e3aed297f2c9031274a79583ddc52b3231196ed40e7201da20737486bed1"
+        },
+        {
+          "path": "figure5_parameter_trajectories_source.csv",
+          "bytes": 8841,
+          "sha256": "efadcc98c004d20588ad2fefa01718702b8124fb9a79621d3622bfcb3e299484"
+        }
+      ],
+      "checks": {
+        "canonical_table2_rows": 12,
+        "temporal_state_mse_denominator": 4.235,
+        "temporal_change_mse_denominator": 9.8226,
+        "top_ranked_candidate": "Single-constrained gravity model (POW)",
+        "top_ranked_nMSE_delta": 0.5329037118481869,
+        "displayed_spatial_candidate_count": 11,
+        "parameter_trajectory_points": 232,
+        "parameter_trajectory_seed_count": 10,
+        "parameter_start_point_count": 10,
+        "parameter_final_point_count": 10
+      },
+      "warnings": [
+        "The trajectories contain the exact optimization points parsed from the ten archived logs; epoch sampling is uneven across seeds.",
+        "Temporal dynamics is the normalization baseline and is not displayed as a spatial-equation candidate in Figure 5, matching the manuscript panel."
+      ],
+      "rendering": {
+        "status": "rendered",
+        "artifacts": [
+          {
+            "path": "figure5_public.png",
+            "bytes": 558483,
+            "sha256": "b113e24affca5932bf49255681358e4584b61b8aea6f8fcddcfae21cd33bf1d6"
+          },
+          {
+            "path": "figure5_public.svg",
+            "bytes": 199113,
+            "sha256": "2dd83bb36be9adef601b1d7cb2095a774877407127236309131c9ebe4b6d87f4"
+          }
+        ]
+      }
+    },
+    "figure6": {
+      "title": "Public 2.5 km Hennepin grid and aggregate dynamics",
+      "conclusion": "The privacy-preserving 210-cell aggregate exhibits heterogeneous 15-minute population dynamics over five study days.",
+      "archetype": "geographic grid map, cell time series, and aggregate snapshots",
+      "panels": {
+        "6(a)": "Not regenerated: raw individual trajectories are intentionally excluded.",
+        "6(b)": "Ordered 210-cell, 2.5 km grid in RFC 7946 longitude/latitude coordinates.",
+        "6(c)": "All 210 aggregate state series and day-one snapshots at 00:00, 06:00, 12:00, and 18:00."
+      },
+      "source_inputs": [
+        "data/hennepin_2500m/hennepin_2500m.npz",
+        "data/hennepin_2500m/grid_cells.geojson"
+      ],
+      "source_artifacts": [
+        {
+          "path": "figure6_grid_cells_source.csv",
+          "bytes": 21013,
+          "sha256": "2895489ec4e1015add358f1af21706bc722c44a8a91790ff6582eb57d8da13b7"
+        },
+        {
+          "path": "figure6_state_series_source.csv",
+          "bytes": 445939,
+          "sha256": "6f44a3a8f522465a4adfe29df9dbe40d72069a13cd085cfbc3205170aa37274c"
+        },
+        {
+          "path": "figure6_population_summary_source.csv",
+          "bytes": 26496,
+          "sha256": "65ee7d79183b36df4e97762f4256235e4f4d06137171c12b54ce34f9e25b678c"
+        },
+        {
+          "path": "figure6_day1_snapshots_source.csv",
+          "bytes": 14391,
+          "sha256": "1baa0aa35706821a00a3cf32918ce91226c864aeff1e0403fd5a490fd6ec9e42"
+        }
+      ],
+      "checks": {
+        "states_shape": [
+          480,
+          210
+        ],
+        "geometry_feature_count": 210,
+        "node_geometry_order_match": true,
+        "interval_minutes": 15,
+        "grid_resolution_m": 2500,
+        "geometry_sha256": "77f079f6d128e105baa4274f46dde5de94348a5b3ff8aba3713485900db6d780",
+        "geometry_crs": "EPSG:4326 (RFC 7946 longitude/latitude)"
+      },
+      "warnings": [
+        "Panel 6(a) is outside the public release because it requires excluded individual trajectories.",
+        "Maps use only the released aggregate grid geometry and do not add a basemap or infer raw trip locations."
+      ],
+      "rendering": {
+        "status": "rendered",
+        "artifacts": [
+          {
+            "path": "figure6_public_panels_b_c.png",
+            "bytes": 1600267,
+            "sha256": "322b49641985b6ed07bca170f164194ad6d20a8314140b6c146a37d3c616156b"
+          },
+          {
+            "path": "figure6_public_panels_b_c.svg",
+            "bytes": 1893695,
+            "sha256": "a86f53b592dd3a0ecd375d78ac1cb888fd2f00a7df58e057c171fde142f41519"
+          }
+        ]
+      }
+    },
+    "figure7": {
+      "title": "Hennepin candidate ranking and error frontiers",
+      "conclusion": "After the documented complexity filter, betweenness-augmented gravity has the lowest nMSE_delta among the 20 displayed candidates.",
+      "archetype": "quantitative heatmap and two error frontiers",
+      "panels": {
+        "7(a)": "Top 20 candidates after excluding the top 10% source-complexity tail.",
+        "7(b)": "Minimum nMSE_delta represented at each retained source complexity.",
+        "7(c)": "Minimum nMSE represented at each retained source complexity."
+      },
+      "source_inputs": [
+        "results/hennepin_2500m/figure7_selection.csv",
+        "results/hennepin_2500m/figure7_heatmap_top20.csv",
+        "results/hennepin_2500m/figure7_frontier_nmse_delta.csv",
+        "results/hennepin_2500m/figure7_frontier_nmse.csv"
+      ],
+      "source_artifacts": [
+        {
+          "path": "figure7_selection.csv",
+          "bytes": 5535,
+          "sha256": "3372537f06a9b0c363937c4fee21b6cf13e6da535ed9b39845f12733b50cc125"
+        },
+        {
+          "path": "figure7_heatmap_top20.csv",
+          "bytes": 2557,
+          "sha256": "847aedce49a4f1af16da6baaef2ff6270d7abe10351475e95b2ffc9903b0e83d"
+        },
+        {
+          "path": "figure7_frontier_nmse_delta.csv",
+          "bytes": 733,
+          "sha256": "cd1c4aa5846d61b6e090246a638c68e9142b5671df61bb47a36102977af4c952"
+        },
+        {
+          "path": "figure7_frontier_nmse.csv",
+          "bytes": 727,
+          "sha256": "a971d31abd27cb1ec1f83d1ee58589ebe5d843f4b4b378f560333ef99b0be209"
+        }
+      ],
+      "checks": {
+        "displayed_candidate_count": 20,
+        "top_ranked_candidate": "Betweenness-augmented gravity",
+        "top_ranked_nMSE_delta": 0.647863743757807,
+        "complexity_filter_q90": 29.5
+      },
+      "warnings": [
+        "Figure 7 uses source_csv_complexity, matching the archived plotting notebook; Table 4 also preserves corrected paper complexity values."
+      ],
+      "rendering": {
+        "status": "rendered",
+        "artifacts": [
+          {
+            "path": "figure7_public.png",
+            "bytes": 513723,
+            "sha256": "3c4938b4c175fb73ff87fd04582ec487d37811890afc0fd5824c7d6dab62cb96"
+          },
+          {
+            "path": "figure7_public.svg",
+            "bytes": 121850,
+            "sha256": "7f4c1660cb90a9f93ad3af14759fe0a478db219b33f3c5347c8c356d588ab273"
+          }
+        ]
+      }
+    }
+  },
+  "generated_artifacts": [
+    {
+      "path": "figure4_component_summary.csv",
+      "bytes": 81727,
+      "sha256": "bd5ca59c25370dbd38a3ade4dc96510a171b87979eb506446d10e2e657902208"
+    },
+    {
+      "path": "figure4_components.npz",
+      "bytes": 312296,
+      "sha256": "3d6b964d8697603228e80baab98f794e0d6de2cacbcb53e0d07110cce840c63c"
+    },
+    {
+      "path": "figure4_network_edges.csv",
+      "bytes": 15799,
+      "sha256": "b002a9303c7e13181af85cd6de3eb63c3a678e4ddcf8ecc185c48b1270770970"
+    },
+    {
+      "path": "figure4_network_nodes.csv",
+      "bytes": 2024,
+      "sha256": "1f6ef2cfdf68c848185489e418051bf19caac945212c0c716dfc93936970dbcc"
+    },
+    {
+      "path": "figure4_public.png",
+      "bytes": 1750016,
+      "sha256": "58965d5eb0e0480fa53c22293b928eb206ab4dc243d1f51fd4daffd3a93066e7"
+    },
+    {
+      "path": "figure4_public.svg",
+      "bytes": 413161,
+      "sha256": "bd0a465dd345dfcfe884aad44f82ff5003a4922a094efbbf66ddcca27390f61a"
+    },
+    {
+      "path": "figure4_state_series.csv",
+      "bytes": 188424,
+      "sha256": "3a96439cc53a119395fbd0a98eaa69266bf9eadf7370bfdc5c1db7482ee1a429"
+    },
+    {
+      "path": "figure5_frontiers_source.csv",
+      "bytes": 1124,
+      "sha256": "2043e3aed297f2c9031274a79583ddc52b3231196ed40e7201da20737486bed1"
+    },
+    {
+      "path": "figure5_heatmap_source.csv",
+      "bytes": 1985,
+      "sha256": "5202e97aedba395b5dd03f32b5cc037e0382db79777ab70ff4df8d8ce13b0f7f"
+    },
+    {
+      "path": "figure5_parameter_trajectories_source.csv",
+      "bytes": 8841,
+      "sha256": "efadcc98c004d20588ad2fefa01718702b8124fb9a79621d3622bfcb3e299484"
+    },
+    {
+      "path": "figure5_public.png",
+      "bytes": 558483,
+      "sha256": "b113e24affca5932bf49255681358e4584b61b8aea6f8fcddcfae21cd33bf1d6"
+    },
+    {
+      "path": "figure5_public.svg",
+      "bytes": 199113,
+      "sha256": "2dd83bb36be9adef601b1d7cb2095a774877407127236309131c9ebe4b6d87f4"
+    },
+    {
+      "path": "figure6_day1_snapshots_source.csv",
+      "bytes": 14391,
+      "sha256": "1baa0aa35706821a00a3cf32918ce91226c864aeff1e0403fd5a490fd6ec9e42"
+    },
+    {
+      "path": "figure6_grid_cells_source.csv",
+      "bytes": 21013,
+      "sha256": "2895489ec4e1015add358f1af21706bc722c44a8a91790ff6582eb57d8da13b7"
+    },
+    {
+      "path": "figure6_population_summary_source.csv",
+      "bytes": 26496,
+      "sha256": "65ee7d79183b36df4e97762f4256235e4f4d06137171c12b54ce34f9e25b678c"
+    },
+    {
+      "path": "figure6_public_panels_b_c.png",
+      "bytes": 1600267,
+      "sha256": "322b49641985b6ed07bca170f164194ad6d20a8314140b6c146a37d3c616156b"
+    },
+    {
+      "path": "figure6_public_panels_b_c.svg",
+      "bytes": 1893695,
+      "sha256": "a86f53b592dd3a0ecd375d78ac1cb888fd2f00a7df58e057c171fde142f41519"
+    },
+    {
+      "path": "figure6_state_series_source.csv",
+      "bytes": 445939,
+      "sha256": "6f44a3a8f522465a4adfe29df9dbe40d72069a13cd085cfbc3205170aa37274c"
+    },
+    {
+      "path": "figure7_frontier_nmse.csv",
+      "bytes": 727,
+      "sha256": "a971d31abd27cb1ec1f83d1ee58589ebe5d843f4b4b378f560333ef99b0be209"
+    },
+    {
+      "path": "figure7_frontier_nmse_delta.csv",
+      "bytes": 733,
+      "sha256": "cd1c4aa5846d61b6e090246a638c68e9142b5671df61bb47a36102977af4c952"
+    },
+    {
+      "path": "figure7_heatmap_top20.csv",
+      "bytes": 2557,
+      "sha256": "847aedce49a4f1af16da6baaef2ff6270d7abe10351475e95b2ffc9903b0e83d"
+    },
+    {
+      "path": "figure7_public.png",
+      "bytes": 513723,
+      "sha256": "3c4938b4c175fb73ff87fd04582ec487d37811890afc0fd5824c7d6dab62cb96"
+    },
+    {
+      "path": "figure7_public.svg",
+      "bytes": 121850,
+      "sha256": "7f4c1660cb90a9f93ad3af14759fe0a478db219b33f3c5347c8c356d588ab273"
+    },
+    {
+      "path": "figure7_selection.csv",
+      "bytes": 5535,
+      "sha256": "3372537f06a9b0c363937c4fee21b6cf13e6da535ed9b39845f12733b50cc125"
+    },
+    {
+      "path": "table1_candidates.csv",
+      "bytes": 1850,
+      "sha256": "a6af6945e6a5d2a30ca3e7af10c9263cc4b2e47e9bb4a14fd462aee2a80d6ffd"
+    },
+    {
+      "path": "table2_metrics.csv",
+      "bytes": 919,
+      "sha256": "4006ab8f4109784f40fb62f51bb391244504cb56b5cad90fffb59ced8c9aac5a"
+    },
+    {
+      "path": "table3_candidates.csv",
+      "bytes": 2138,
+      "sha256": "d8fd6e9bf3fa0bea29ceaa0ee7bebd25874de7574ae7e71729b65fbbfdf9f94d"
+    },
+    {
+      "path": "table4_metrics.csv",
+      "bytes": 4181,
+      "sha256": "5cf5204c3e76d5a71571b587b4e69b3d0465c15d1db25ebd124e5d203d8c6814"
+    }
+  ],
+  "explicit_exclusions": [
+    "Figure 6(a), which requires excluded individual trajectories",
+    "Figure 8 and every 1.5 km or 2.0 km input/result",
+    "Raw mobility records, device identifiers, and origin/destination coordinates"
+  ],
+  "notes": [
+    "Machine-readable source artifacts are generated even when Matplotlib is unavailable.",
+    "Figure 4 uses the verified Figure-4-only realization under figure_sources/figure4; it is not the Table 2 training trajectory.",
+    "Figure 5 and Table 2 use the canonical 12-row manuscript source, not table2_metrics_legacy.csv.",
+    "Figure 6 regenerates public panels (b-c) only from ordered aggregate grid data.",
+    "Figure 7 is regenerated from the packaged selection, heatmap, and frontier sources."
+  ]
+}

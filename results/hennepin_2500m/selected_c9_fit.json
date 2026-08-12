@@ -1,0 +1,159 @@
+{
+  "artifact": "selected 2.5 km Hennepin fit",
+  "candidate": {
+    "canonical_id": "betweenness_gravity",
+    "figure7_rank_after_complexity_filter": 1,
+    "formula": "kappa * p_i^alpha_i * p_j^beta_j * e_ij^delta * d_ij^(-gamma)",
+    "global_parameters": [
+      "kappa",
+      "delta",
+      "gamma"
+    ],
+    "interaction_mode": "mixed_local_global",
+    "legacy_label": "interaction_c9[heter]",
+    "legacy_solver_id": "interaction_c9",
+    "node_parameter_columns": [
+      "alpha",
+      "beta"
+    ],
+    "paper_name": "Betweenness-augmented gravity",
+    "paper_rank_by_nMSE_delta": 2,
+    "paper_table": 4
+  },
+  "safe_export": {
+    "arrays": {
+      "alpha": {
+        "dtype": "float32",
+        "sha256_uncompressed_c_order": "10085ed69632dd03cebb2845e277ea55f93d0b443381d5e7123b9ac9de270edd",
+        "shape": [
+          210
+        ]
+      },
+      "beta": {
+        "dtype": "float32",
+        "sha256_uncompressed_c_order": "4e66fdcc5fbcb2b44eede86aa1f78b846bcf62976be2e1bf9f93c9c99e533059",
+        "shape": [
+          210
+        ]
+      },
+      "delta": {
+        "dtype": "float32",
+        "sha256_uncompressed_c_order": "66e528aaca84b67148b3c0269853d7eb14c0d531ec17233f1f75e21a7fcb4c22",
+        "shape": [
+          1
+        ]
+      },
+      "forcing_cycles_per_step": {
+        "dtype": "float64",
+        "sha256_uncompressed_c_order": "f1e2075d3e1ba53eb1f2c7c9482f29092c45d4cbc0359e2da455cf9a11b96592",
+        "shape": [
+          1
+        ]
+      },
+      "forcing_period_hours": {
+        "dtype": "float64",
+        "sha256_uncompressed_c_order": "b371912866264e407ea4ad1a23cfef6b7075627b35b8fe5719e57354c1a6cdfa",
+        "shape": [
+          1
+        ]
+      },
+      "forcing_period_steps": {
+        "dtype": "float64",
+        "sha256_uncompressed_c_order": "6bce436648d4a67a6315f52ca1c04468986516aacfe2e9512aaa0a848aa55df0",
+        "shape": [
+          1
+        ]
+      },
+      "gamma": {
+        "dtype": "float32",
+        "sha256_uncompressed_c_order": "993a99c05aecd10a9f78da2bd90bbbc3dbc6183442953a619bf323b903cc44f9",
+        "shape": [
+          1
+        ]
+      },
+      "kappa": {
+        "dtype": "float32",
+        "sha256_uncompressed_c_order": "9ac9a128dea136868cffb9cab6496ebf27f639041522895cc7305a9f73492375",
+        "shape": [
+          1
+        ]
+      },
+      "node_ids": {
+        "dtype": "int64",
+        "sha256_uncompressed_c_order": "4698e7cf925510c88263784a9478f0d35d4f7cb64144ca887a8d66fdd260dbb7",
+        "shape": [
+          210
+        ]
+      },
+      "temporal_cos_derivative": {
+        "dtype": "float32",
+        "sha256_uncompressed_c_order": "7f986ed45d272fee496f10c9c29ccbc6230486cf88409e7dc3a2f4cd9832b273",
+        "shape": [
+          210
+        ]
+      },
+      "temporal_sin_derivative": {
+        "dtype": "float32",
+        "sha256_uncompressed_c_order": "e5ed71e33b6c3f3d03d4eaa52ce4d905ba5fb05b302236874a106fcb5d25274b",
+        "shape": [
+          210
+        ]
+      }
+    },
+    "format": "NumPy NPZ; allow_pickle=False",
+    "npz_sha256": "d2cbefb6d2e71344a7c4ad983ceaa7359125341cba0c31fb6b96d006c976c479",
+    "numeric_equivalence_max_abs_error": {
+      "alpha": 0.0,
+      "beta": 0.0,
+      "delta": 0.0,
+      "forcing_cycles_per_step": 0.0,
+      "forcing_period_hours": 0.0,
+      "forcing_period_steps": 0.0,
+      "gamma": 0.0,
+      "kappa": 0.0,
+      "node_ids": 0.0,
+      "temporal_cos_derivative": 0.0,
+      "temporal_sin_derivative": 0.0
+    }
+  },
+  "source": {
+    "archive_relative_path": "UrbanDE_Net_1119_county_proposed_int_denoised/results/Hennepin_2500_15min_direct_denoise_heter/all_comb_rep_each_harmonics_1_heter_homo/combo_params/interaction_c9-heter_temporal_sin_forcing_initial_fixed_period_v8_seed_42_seed_42_q_86_batch_8.pt",
+    "checkpoint_format": "PyTorch pickle (excluded from release)",
+    "checkpoint_sha256": "a956226947505131f0aa9ba0c12a3ce3adb8b3976cc732e4b5632b8ae228a9e9"
+  },
+  "temporal": {
+    "cycles_per_step": 0.010386247088439746,
+    "frequency_estimated_from": "training states 0-287 only",
+    "function": "temporal_sin_forcing_initial_fixed_period_v8",
+    "harmonics": 1,
+    "per_node_parameter_columns": [
+      "sin_derivative_coefficient",
+      "cos_derivative_coefficient"
+    ],
+    "period_hours": 24.07029198046508,
+    "period_steps": 96.28116792186032
+  },
+  "training": {
+    "batch_size": 8,
+    "checkpoint_updated_at": "2026-01-29T07:04:42.742704",
+    "combo_info": {
+      "interaction_mode": "mixed",
+      "names": [
+        "interaction_c9[heter]",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_42"
+      ],
+      "slug": [
+        "interaction_c9-heter",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_42"
+      ],
+      "temporal_mode": null
+    },
+    "q": 86,
+    "seed": 42,
+    "selected_epoch": 29,
+    "stage": "D",
+    "validation_loss": 32.612671852111816
+  }
+}

@@ -1,0 +1,108 @@
+You are a mechanistic equation discovery assistant.
+
+GOAL
+I am learning an urban dynamical system on spatial units with only a distance matrix between units.
+The governing equation is:
+
+dp_{i,t}/dt = SE_i(p_t, D; θ)  +  TD(t; φ)
+
+- TD(t; φ) is a k-order Fourier series that depends ONLY on time t (handled separately).
+- Your job is to propose ONLY the spatial evolution term SE_i.
+
+What “spatial evolution term” means here
+SE_i is the part of the change rate of node i caused by spatial structure (other nodes and distances).
+SE_i can use ONLY the state p_t and distance matrix D = {d_ij}. No explicit time, no external covariates.
+
+Baselines / examples (allowed, but do NOT repeat them)
+You may include EACH of the following at most ONCE (as a baseline candidate), and you must avoid proposing duplicates or trivial re-parameterizations of them:
+
+(Example A) Classic gravity flow + net flux form
+T_ij ∝ (p_{i,t}^α p_{j,t}^β) / d_ij^γ
+SE_i = Σ_j (T_ji − T_ij)
+
+(Example B) Single-constrained gravity (row-normalized destination choice) + net flux form
+T_ij = p_{i,t} * [ p_{j,t} f(d_ij) / Σ_k p_{k,t} f(d_ik) ]
+SE_i = Σ_j (T_ji − T_ij)
+where f(d_ij) is a distance-decay kernel (e.g., power-law or exponential) if supported.
+
+IMPORTANT: If you include Example A or B, include them once only, labeled clearly as baselines.
+All OTHER candidates must be structurally different (not just changing symbols/exponents).
+
+HARD CONSTRAINTS
+1) Allowed inputs in SE_i:
+   - state: p_{i,t}, p_{j,t}, or vector p_t
+   - distances: d_ij only
+   - quantities derived ONLY from d_ij (must be explicitly defined as a design choice), e.g.:
+     - neighbor sets N(i) via kNN or radius threshold on d_ij
+     - kernels K(d_ij) defined from d_ij
+     - normalized weights w_ij = K(d_ij)/Σ_k K(d_ik)
+2) Forbidden in SE_i:
+   - explicit time t, sin/cos/Fourier terms, time lags, history, integrals over time
+   - travel time, capacities, overlap Γ, edge attributes, OD matrices, centrality, etc. (not available)
+3) Grounding:
+   - Every candidate must be supported by the provided context below.
+   - For each candidate, list which evidence items [E#] support its main ingredients.
+   - If a functional form is not supported by the context, DO NOT use it.
+
+WHAT TO PRODUCE
+Propose N = {6 to 10} candidate forms for SE_i, ordered from simplest → more complex.
+
+Candidate diversity requirement (to avoid repeating gravity)
+- You may include up to:
+  - 1 candidate that matches Example A (classic gravity baseline)
+  - 1 candidate that matches Example B (single-constrained gravity baseline)
+- The remaining candidates must come from different structural families, e.g.:
+  - diffusion / Laplacian-like differences using distance-based weights: Σ_j w_ij (p_{j,t} − p_{i,t})
+  - kernel smoothing operators: Σ_j w_ij p_{j,t}  (with explicit normalization)
+  - nonlocal integral-like coupling using power-law kernels: Σ_j p_{j,t} / d_ij^η (if supported)
+  - saturation/limited-influence versions using ONLY p and d (only if supported by context)
+  - any other distance-based coupling operators supported by evidence
+Do NOT output two candidates that are algebraically equivalent under renaming or minor parameter tweaks.
+
+OUTPUT FORMAT (JSON ONLY)
+Return exactly one JSON object with this schema:
+
+{
+  "se_candidates": [
+    {
+      "id": "SE1",
+      "label": "short name",
+      "is_baseline": true/false,
+      "se_latex": "SE_i = ...",
+      "se_plain": "SE_i = ... (plain text)",
+      "definitions": {
+        "K(d_ij)": "definition if used",
+        "w_ij": "definition/normalization if used",
+        "N(i)": "definition if used",
+        "T_ij": "definition if used"
+      },
+      "parameters": [
+        {"name": "...", "meaning": "...", "constraints": "e.g., >0, in [0,1], etc."}
+      ],
+      "graph_inputs_required": ["d_ij"],
+      "properties": [
+        "distance-decay",
+        "symmetric/asymmetric",
+        "mass-conserving (only if net-flux form)",
+        "requires p_{i,t} >= 0",
+        "row-normalized weights",
+        "etc."
+      ],
+      "supported_by_evidence": ["E2", "E4", "..."],
+      "difference_from_gravity_baselines": "1 sentence explaining how this is NOT just gravity/single-constrained gravity (or 'baseline' if it is one).",
+      "assumptions_added_by_you": [
+        "Only include assumptions not explicitly stated in the context but required to define the operator (e.g., how to form N(i) from distances)."
+      ]
+    }
+  ]
+}
+
+USER CONTEXT (do not invent if unknown; write “unknown”)
+- p_{i,t} means: {e.g., activity / density / population / cases / demand / etc.}
+- Are all nodes connected (all-to-all via distance) or should we define neighbors from distance? {all-to-all / kNN / radius / unknown}
+- Any desired constraints: {mass conservation? positivity?} (unknown allowed)
+
+GRAPH RAG CONTEXT (the only allowed scientific prior; cite evidence IDs from here)
+{PASTE THE GraphRAG OUTPUT HERE, including the [E1]...[E16] raw excerpts}
+
+Now produce the JSON.

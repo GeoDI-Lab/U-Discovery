@@ -1,0 +1,544 @@
+{
+  "schema_version": 1,
+  "fixture": "equation_parity_v1.npz",
+  "fixture_sha256": "6997f9e3528b16f6887d26df6ace6bcf43cc7b325f6af9bb8c541be60dbd8018",
+  "description": "Archived pde_solver.py outputs for all 26 Table 4 equations under scalar and localized parameterization.",
+  "archive_solver": {
+    "relative_path": "UrbanDE_Net_1119_county_proposed_int_denoised/pde_solver.py",
+    "sha256": "3eaa24f10503ba5622307ff2d1ce8675603c0d32f88576c3b4072dce9577c2c7"
+  },
+  "candidate_registry": {
+    "relative_path": "artifacts/candidates.json",
+    "sha256": "59ab908d88eda324aeea36bd837b69ee13fd2e958f5a7504ef551c9f121fca04"
+  },
+  "array_serialization": "NumPy NPY members in deterministic ZIP; allow_pickle=False",
+  "floating_dtype": "float32",
+  "cases": [
+    {
+      "candidate_id": "explore_return_diffusion",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_c1",
+      "parameter_names": [
+        "lambda",
+        "C",
+        "k",
+        "eta_e"
+      ]
+    },
+    {
+      "candidate_id": "explore_return_diffusion",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_c1",
+      "parameter_names": [
+        "lambda",
+        "C",
+        "k",
+        "eta_e"
+      ]
+    },
+    {
+      "candidate_id": "betweenness_gravity",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_c9",
+      "parameter_names": [
+        "alpha",
+        "beta",
+        "kappa",
+        "delta",
+        "gamma"
+      ]
+    },
+    {
+      "candidate_id": "betweenness_gravity",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_c9",
+      "parameter_names": [
+        "alpha",
+        "beta",
+        "kappa",
+        "delta",
+        "gamma"
+      ]
+    },
+    {
+      "candidate_id": "single_constrained_gravity_power",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_powerlaw_gravity_v1",
+      "parameter_names": [
+        "beta",
+        "gamma"
+      ]
+    },
+    {
+      "candidate_id": "single_constrained_gravity_power",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_powerlaw_gravity_v1",
+      "parameter_names": [
+        "beta",
+        "gamma"
+      ]
+    },
+    {
+      "candidate_id": "single_constrained_gravity_exponential",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_exponential_gravity_v1",
+      "parameter_names": [
+        "beta",
+        "gamma"
+      ]
+    },
+    {
+      "candidate_id": "single_constrained_gravity_exponential",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_exponential_gravity_v1",
+      "parameter_names": [
+        "beta",
+        "gamma"
+      ]
+    },
+    {
+      "candidate_id": "classic_gravity_exponential",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_exponential_gravity_classic",
+      "parameter_names": [
+        "alpha",
+        "beta",
+        "gamma"
+      ]
+    },
+    {
+      "candidate_id": "classic_gravity_exponential",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_exponential_gravity_classic",
+      "parameter_names": [
+        "alpha",
+        "beta",
+        "gamma"
+      ]
+    },
+    {
+      "candidate_id": "edge_betweenness_diffusion",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_p6",
+      "parameter_names": [
+        "delta",
+        "kappa",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "edge_betweenness_diffusion",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_p6",
+      "parameter_names": [
+        "delta",
+        "kappa",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "knn_two_band_diffusion",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_c10",
+      "parameter_names": [
+        "a",
+        "b",
+        "kappa",
+        "k",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "knn_two_band_diffusion",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_c10",
+      "parameter_names": [
+        "a",
+        "b",
+        "kappa",
+        "k",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "two_scale_diffusion",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_c3",
+      "parameter_names": [
+        "a",
+        "kappa",
+        "r0",
+        "eta1",
+        "eta2"
+      ]
+    },
+    {
+      "candidate_id": "two_scale_diffusion",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_c3",
+      "parameter_names": [
+        "a",
+        "kappa",
+        "r0",
+        "eta1",
+        "eta2"
+      ]
+    },
+    {
+      "candidate_id": "corridor_diffusion",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_c5",
+      "parameter_names": [
+        "mu",
+        "kappa",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "corridor_diffusion",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_c5",
+      "parameter_names": [
+        "mu",
+        "kappa",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "dual_layer_diffusion",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_c2",
+      "parameter_names": [
+        "Gamma",
+        "kappa",
+        "eta_l",
+        "eta_c"
+      ]
+    },
+    {
+      "candidate_id": "dual_layer_diffusion",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_c2",
+      "parameter_names": [
+        "Gamma",
+        "kappa",
+        "eta_l",
+        "eta_c"
+      ]
+    },
+    {
+      "candidate_id": "state_adaptive_diffusion",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_c8",
+      "parameter_names": [
+        "beta_r",
+        "beta_t",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "state_adaptive_diffusion",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_c8",
+      "parameter_names": [
+        "beta_r",
+        "beta_t",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "span_cluster_diffusion",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_c4",
+      "parameter_names": [
+        "rho_in",
+        "rho_out",
+        "kappa",
+        "k",
+        "eta",
+        "K_clusters"
+      ]
+    },
+    {
+      "candidate_id": "span_cluster_diffusion",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_c4",
+      "parameter_names": [
+        "rho_in",
+        "rho_out",
+        "kappa",
+        "k",
+        "eta",
+        "K_clusters"
+      ]
+    },
+    {
+      "candidate_id": "distance_weighted_diffusion",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_se3",
+      "parameter_names": [
+        "lambda",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "distance_weighted_diffusion",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_se3",
+      "parameter_names": [
+        "lambda",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "span_diffusion",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_p8",
+      "parameter_names": [
+        "kappa",
+        "k",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "span_diffusion",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_p8",
+      "parameter_names": [
+        "kappa",
+        "k",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "rank_based_diffusion",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_se5",
+      "parameter_names": [
+        "lambda_z",
+        "q"
+      ]
+    },
+    {
+      "candidate_id": "rank_based_diffusion",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_se5",
+      "parameter_names": [
+        "lambda_z",
+        "q"
+      ]
+    },
+    {
+      "candidate_id": "classic_gravity_power",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_powerlaw_gravity_classic",
+      "parameter_names": [
+        "alpha",
+        "beta",
+        "gamma"
+      ]
+    },
+    {
+      "candidate_id": "classic_gravity_power",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_powerlaw_gravity_classic",
+      "parameter_names": [
+        "alpha",
+        "beta",
+        "gamma"
+      ]
+    },
+    {
+      "candidate_id": "saturation_limited_diffusion",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_se7",
+      "parameter_names": [
+        "lambda_s",
+        "kappa",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "saturation_limited_diffusion",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_se7",
+      "parameter_names": [
+        "lambda_s",
+        "kappa",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "cluster_diffusion",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_p7",
+      "parameter_names": [
+        "rho_in",
+        "rho_out",
+        "kappa",
+        "K_clusters",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "cluster_diffusion",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_p7",
+      "parameter_names": [
+        "rho_in",
+        "rho_out",
+        "kappa",
+        "K_clusters",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "local_global_diffusion",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_se9",
+      "parameter_names": [
+        "Gamma",
+        "lambda",
+        "chi",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "local_global_diffusion",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_se9",
+      "parameter_names": [
+        "Gamma",
+        "lambda",
+        "chi",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "betweenness_diffusion",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_p5",
+      "parameter_names": [
+        "kappa",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "betweenness_diffusion",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_p5",
+      "parameter_names": [
+        "kappa",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "knn_limited_diffusion",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_p10",
+      "parameter_names": [
+        "kappa",
+        "k",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "knn_limited_diffusion",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_p10",
+      "parameter_names": [
+        "kappa",
+        "k",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "knn_diffusion",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_se6",
+      "parameter_names": [
+        "lambda_k",
+        "K",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "knn_diffusion",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_se6",
+      "parameter_names": [
+        "lambda_k",
+        "K",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "rank_tail_diffusion",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_c7",
+      "parameter_names": [
+        "lambda",
+        "c",
+        "R",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "rank_tail_diffusion",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_c7",
+      "parameter_names": [
+        "lambda",
+        "c",
+        "R",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "rank_choice_gravity",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_p3",
+      "parameter_names": [
+        "lambda"
+      ]
+    },
+    {
+      "candidate_id": "rank_choice_gravity",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_p3",
+      "parameter_names": [
+        "lambda"
+      ]
+    },
+    {
+      "candidate_id": "accessibility_drift",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_se8",
+      "parameter_names": [
+        "rho",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "accessibility_drift",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_se8",
+      "parameter_names": [
+        "rho",
+        "eta"
+      ]
+    },
+    {
+      "candidate_id": "radiation",
+      "mode": "scalar",
+      "legacy_solver_method": "interaction_radiation_model",
+      "parameter_names": []
+    },
+    {
+      "candidate_id": "radiation",
+      "mode": "localized",
+      "legacy_solver_method": "interaction_radiation_model",
+      "parameter_names": []
+    }
+  ]
+}

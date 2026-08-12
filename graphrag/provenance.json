@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "release_mode": "output_level_reproducibility",
+  "query": {
+    "timestamp": "2026-01-14T01:42:10-06:00",
+    "method": "local",
+    "chat_model": "gpt-5",
+    "embedding_model": "text-embedding-3-small",
+    "run_prompt": {
+      "path": "prompts/query_run_20260114.txt",
+      "sha256": "917f276905e48b39f6e3ff8557ef54c4af03d77d1faf7185bc88326c6df8441f",
+      "bytes": 4172
+    },
+    "scientific_prior_output": {
+      "path": "outputs/scientific_prior_output_20260114.md",
+      "sha256": "1d25bdb4d8f2c0f5a12f6fa9af2220ada73f4deaa8720f2947596627b1cccac2",
+      "bytes": 14619
+    },
+    "current_prompt_after_run": {
+      "path": "prompts/query_current_20260115.txt",
+      "source_modified": "2026-01-15T07:59:01-06:00",
+      "sha256": "0ab266afb682507ac74dee7200618a5a0881b1588694a6f4a65bb5ac5cc0788e",
+      "bytes": 4179,
+      "identical_to_run_prompt": false
+    },
+    "archived_run_wrapper": {
+      "included": false,
+      "sha256": "f50c2e46a057599b8fedb8a197bb50e326eb74ab1162373efa237259ad659814",
+      "bytes": 23691,
+      "note": "The wrapper contained machine-specific absolute paths. Its Prompt and STDOUT blocks were extracted byte-for-byte into the two files above."
+    }
+  },
+  "proposal_generation": {
+    "model": "gpt-5",
+    "instructions": "You are a mechanistic equation discovery assistant.",
+    "max_output_tokens": null,
+    "temperature": null,
+    "store": false,
+    "no_invention": {
+      "prompt": {
+        "path": "prompts/propose_no_invention_20260114.txt",
+        "source_modified": "2026-01-14T19:32:47-06:00",
+        "sha256": "3e3071c28f187c7e89b65c1d4732064256e8edfaeba0b21efbbd985d48a56645",
+        "bytes": 5011
+      },
+      "output": {
+        "path": "outputs/no_invention_candidates_20260114.json",
+        "source_modified": "2026-01-14T20:56:42-06:00",
+        "sha256": "9f90df0b567e800ceb8d3f43cebd767e24ed9b0027cf94a26089ac3c5bc116d6",
+        "bytes": 13555,
+        "candidate_count": 9
+      }
+    },
+    "two_mode": {
+      "prompt": {
+        "path": "prompts/propose_two_mode_20260119.txt",
+        "source_modified": "2026-01-19T17:42:49-06:00",
+        "sha256": "69c040a5d3a0a5a9aaad976ca8372d919848ed44cf0c459ad3ef968c40879763",
+        "bytes": 8429
+      },
+      "output": {
+        "path": "outputs/two_mode_candidates_20260119.json",
+        "source_modified": "2026-01-19T18:28:12-06:00",
+        "sha256": "6992cd096f3fcaccbd5aec52f8660e95714914050f9fe5027e3368eb00514e84",
+        "bytes": 33095,
+        "prior_only_candidate_count": 10,
+        "context_plus_creativity_candidate_count": 10
+      }
+    },
+    "final_notebook_prompt_selection": "prompts/propose_two_mode_20260119.txt"
+  },
+  "indexing": {
+    "sanitized_settings": {
+      "path": "config/settings.sanitized.yaml",
+      "sha256": "cb7a921cf3aa7b759dac4e2f9ce374c17212d798eeab964daea91e8cf79a4e65"
+    },
+    "raw_stats": {
+      "path": "outputs/indexing_stats_raw.json",
+      "source_modified": "2026-01-05T11:08:55-06:00",
+      "sha256": "869a71176d6afaaa6681da706e1c5e3a0b37a1cede705c5eabc20c510111a1a7",
+      "bytes": 1017
+    }
+  },
+  "environment": {
+    "python": "3.11.14",
+    "platform": "Linux 4.18.0-553.148.1.el8_10 x86_64; glibc 2.28",
+    "packages": {
+      "graphrag": "2.7.0",
+      "openai": "2.8.1",
+      "lancedb": "0.25.3",
+      "tiktoken": "0.12.0",
+      "pyarrow": "22.0.0",
+      "pandas": "2.3.3"
+    }
+  },
+  "excluded": [
+    "source corpus and full papers",
+    "Parquet index tables",
+    "GraphML/GEXF graph exports",
+    "LanceDB vector store and embeddings",
+    "cache files and notebook checkpoints",
+    "API keys, .env files, and credential files"
+  ]
+}

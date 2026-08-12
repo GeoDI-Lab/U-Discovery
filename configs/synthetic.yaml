@@ -1,0 +1,32 @@
+{
+  "name": "synthetic",
+  "dataset": "../data/synthetic/dataset.npz",
+  "split": {
+    "train_end": 300,
+    "validation_end": 400,
+    "test_end": 501
+  },
+  "model": {
+    "temporal_harmonics": 1,
+    "history_length": 90
+  },
+  "training": {
+    "candidate_id": "single_constrained_gravity_power",
+    "parameter_mode": "global",
+    "initial_parameters": {"beta": 0.5, "gamma": 1.0},
+    "forcing_frequency": 0.011187321582417076,
+    "seed": 42,
+    "device": "auto",
+    "deterministic": true,
+    "epochs": 1000,
+    "batch_size": 8,
+    "learning_rate": 0.001,
+    "weight_decay": 0.00001,
+    "patience": 80,
+    "min_delta": 0.000001
+  },
+  "evaluation": {
+    "reconstruction": "../results/synthetic/top1_reconstruction.npz"
+  },
+  "output_dir": "../outputs"
+}

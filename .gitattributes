@@ -1,0 +1,8 @@
+# Preserve exact archived captures and generated numeric sources byte-for-byte.
+graphrag/prompts/** -text -diff
+graphrag/outputs/** -text -diff
+results/**/*.csv -text -diff
+reproduced/**/*.csv -text -diff
+reproduced/**/*.svg -text -diff
+*.npz -text -diff
+*.png -text -diff

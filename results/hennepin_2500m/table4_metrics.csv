@@ -1,0 +1,27 @@
+rank,candidate,source_csv_row,proposal_table,proposal_candidate_number,first_order_mse,second_order_mse,nMSE,nMSE_delta,complexity,source_csv_complexity
+1,Explore–return diffusion,Explore–return diffusion* (POW) + Osc,Table 3,7,95.4250335693359,15.2280597686768,6.92459036360528,0.626230300022135,47,47
+2,Betweenness-augmented gravity,Betweenness-augmented gravity* (POW) + Osc,Table 3,14,15.3584337234497,15.7541208267212,1.11449646055608,0.647863743757807,26,26
+3,Single-constrained gravity model (POW),"Gravity model* (SC, POW) + Osc",Table 1,1,14.6380548477173,16.1726131439209,1.06222161783971,0.665073590142571,17,21
+4,Single-constrained gravity model (EXP),"Gravity model* (SC, EXP) + Osc",Table 1,2,14.4391889572144,16.3351860046387,1.04779076277456,0.671759146470119,21,25
+5,Classic gravity model (EXP),"Gravity model* (Classic, EXP) + Osc",Table 1,4,15.3626708984375,16.8932609558105,1.11480393439174,0.694709111824607,24,22
+6,Edge-betweenness weighted mixed diffusion,Edge-betweenness weighted mixed diffusion* (POW) + Osc,Table 3,3,14.2381753921509,18.0321578979492,1.03320406006639,0.741544479205869,14,14
+7,KNN two-band diffusion,KNN two-band diffusion* (POW) + Osc,Table 3,15,13.9807300567627,18.0814952850342,1.01452234289111,0.743573402600304,18,18
+8,Two-scale piecewise diffusion,Two-scale piecewise diffusion* (POW) + Osc,Table 3,9,15.064772605896,18.1534385681152,1.09318671751784,0.746531958347576,26,26
+9,Corridor-enhanced diffusion,Corridor-enhanced diffusion* (POW) + Osc,Table 3,11,14.4261980056763,18.3622188568115,1.04684806446501,0.755117723363939,18,18
+10,Dual-layer overlap diffusion,Dual-layer overlap diffusion* (POW) + Osc,Table 3,8,15.1561470031738,18.4009952545166,1.0998173703686,0.756712342477437,20,20
+11,State-adaptive diffusion,State-adaptive diffusion* (POW) + Osc,Table 3,13,14.960789680481,18.4528884887695,1.08564111720338,0.758846371115949,29,29
+12,Span- and cluster-aware diffusion,Span- and cluster-aware diffusion* (POW) + Osc,Table 3,10,14.6286420822144,18.4786739349365,1.06153857332971,0.759906757529889,30,30
+13,Distance-weighted diffusion,Distance-weighted diffusion2* (POW) + Osc,Table 1,6,14.8682584762573,18.6462135314941,1.07892651977403,0.766796563152643,11,10
+14,Span-adaptive diffusion,Span-adaptive diffusion* (POW) + Osc,Table 3,5,14.5712013244629,18.696325302124,1.05737034092018,0.768857331867298,22,22
+15,Rank-based diffusion,Rank-based diffusion* (POW) + Osc,Table 1,7,14.8120708465576,18.6967620849609,1.07484922155763,0.76887529388289,16,16
+16,Classic gravity model (POW),"Gravity model* (Classic, POW) + Osc",Table 1,3,14.9095439910889,18.8017978668213,1.08192243465575,0.773194727230714,22,20
+17,Saturation-limited diffusion,Saturation-limited diffusion* (POW) + Osc,Table 1,9,14.3369703292847,18.8586692810059,1.04037319005316,0.775533475784928,27,27
+18,Cluster-constrained diffusion,Cluster-constrained diffusion* (POW) + Osc,Table 3,4,13.9254560470581,18.8912601470947,1.01051134220668,0.77687372452041,18,18
+19,Local–global mixed diffusion,Local–global mixed diffusion* (POW) + Osc,Table 1,11,14.4485216140747,19.4327831268311,1.0484679941398,0.799143015764375,25,25
+20,Betweenness-modulated diffusion,Betweenness-modulated diffusion* (POW) + Osc,Table 3,2,14.5406122207642,19.5475273132324,1.05515061927293,0.803861692166193,16,16
+21,KNN-limited diffusion,KNN-limited diffusion* (POW) + Osc,Table 3,6,14.6813325881958,19.9720783233643,1.06536210009543,0.821320692885144,16,16
+22,KNN diffusion,KNN diffusion* (POW) + Osc,Table 1,8,14.38596534729,20.9952182769775,1.0439285509145,0.863395733950704,15,15
+23,Rank-truncated + tail choice diffusion,Rank-truncated + tail choice diffusion* (POW) + Osc,Table 3,12,13.5737171173096,22.0991096496582,0.984987138417205,0.908791551671856,49,49
+24,Rank-choice gravity,Rank-choice gravity* (POW) + Osc,Table 3,1,29.8803443908691,22.8495006561279,2.16828998734257,0.939650216022651,29,29
+25,Accessibility-driven drift,Accessibility-driven drift* (POW) + Osc,Table 1,10,13.9031295776367,23.1105346679688,1.00889120491958,0.950384834223146,23,23
+26,Radiation model,Radiation + Osc,Table 1,5,14.587459564209,25.2556705474854,1.05855013249126,1.03860021463432,13,13

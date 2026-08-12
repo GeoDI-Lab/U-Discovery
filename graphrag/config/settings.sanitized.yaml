@@ -1,0 +1,44 @@
+models:
+  default_chat_model:
+    type: chat
+    model_provider: openai
+    auth_type: api_key
+    api_key: ${GRAPHRAG_API_KEY}
+    model: gpt-5
+    model_supports_json: true
+
+  default_embedding_model:
+    type: embedding
+    model_provider: openai
+    auth_type: api_key
+    api_key: ${GRAPHRAG_API_KEY}
+    model: text-embedding-3-small
+
+input:
+  type: file
+  base_dir: input
+  file_type: json
+  text_column: text
+  title_column: title
+  metadata: [openalex_id]
+
+chunks:
+  size: 1000
+  overlap: 120
+  prepend_metadata: true
+  chunk_size_includes_metadata: false
+
+output:
+  type: file
+  base_dir: output
+
+cache:
+  type: file
+  base_dir: cache
+
+vector_store:
+  default_vector_store:
+    type: lancedb
+    db_uri: output/lancedb
+    container_name: default
+    overwrite: true

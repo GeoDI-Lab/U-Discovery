@@ -1,0 +1,12 @@
+complexity,nMSE_delta_min,nMSE_delta_candidate,nMSE_min,nMSE_candidate
+10.0,0.992028587135789,Distance-weighted diffusion,1.0202833530106257,Distance-weighted diffusion
+13.0,1.0063628774458901,Radiation model,1.1021723730814639,Radiation model
+15.0,0.996182273532466,KNN diffusion,1.008264462809917,KNN diffusion
+16.0,0.9939119988597724,Rank-based diffusion,1.0137426210153482,Rank-based diffusion
+17.0,0.5329037118481869,Single-constrained gravity model (POW),0.7673435655253836,Single-constrained gravity model (POW)
+21.0,0.9784171197035408,Single-constrained gravity model (EXP),1.065289256198347,Single-constrained gravity model (EXP)
+22.0,0.9847494553376908,Classic gravity model (POW),1.0254545454545454,Classic gravity model (POW)
+23.0,1.0,Accessibility-driven drift,1.001582054309327,Accessibility-driven drift
+24.0,0.9901960784313726,Classic gravity model (EXP),1.0187012987012984,Classic gravity model (EXP)
+25.0,0.9946857247571926,Local–global mixed diffusion,1.0096103896103894,Local–global mixed diffusion
+27.0,0.9866226864577607,Saturation-limited diffusion,1.0148760330578512,Saturation-limited diffusion

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "raw_indexing_stats": "outputs/indexing_stats_raw.json",
+  "archived_parquet_snapshot": {
+    "snapshot_date": "2026-01-05",
+    "documents": 108,
+    "text_units": 1100,
+    "entities": 6994,
+    "relationships": 10136,
+    "communities": 1283,
+    "community_reports": 1283
+  },
+  "derived_graph_exports": {
+    "snapshot_date": "2026-02-26",
+    "graphml_nodes": 13334,
+    "graphml_edges": 10136,
+    "exports_checked": [
+      "graphrag_graph.graphml",
+      "graphrag_kg.graphml",
+      "graphrag_kg.gexf"
+    ],
+    "exports_included_in_release": false
+  },
+  "manuscript_statement": {
+    "documents": 108,
+    "nodes": 14769,
+    "edges": 32331
+  },
+  "audit": {
+    "documents_match": true,
+    "node_count_matches_graph_exports": false,
+    "edge_count_matches_relationships_or_graph_exports": false,
+    "manuscript_minus_export_nodes": 1435,
+    "manuscript_minus_export_edges": 22195,
+    "note": "No archived GraphRAG table or graph export examined has the manuscript's node/edge counts. The graph corpus, Parquet tables, vector index, and graph exports are intentionally omitted from this output-only release."
+  }
+}

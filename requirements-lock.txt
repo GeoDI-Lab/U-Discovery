@@ -1,0 +1,10 @@
+# Compatible Python 3.9 MSI environment used for archived conversion checks,
+# full equation parity, plotting, and CPU smoke tests. Install PyTorch through
+# its official platform-specific channel when CUDA support is required.
+numpy==1.26.0
+pandas==2.1.1
+torch==2.1.1
+scipy==1.11.3
+networkx==3.1
+scikit-learn==1.3.0
+matplotlib==3.9.4

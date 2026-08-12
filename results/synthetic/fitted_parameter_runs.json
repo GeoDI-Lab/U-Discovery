@@ -1,0 +1,212 @@
+{
+  "run_000": {
+    "combo_info": {
+      "interaction_mode": "global",
+      "names": [
+        "interaction_powerlaw_gravity_v1[homo]",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_42"
+      ],
+      "slug": [
+        "interaction_powerlaw_gravity_v1-homo",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_42"
+      ],
+      "temporal_mode": null
+    },
+    "epoch": 37,
+    "source_key": "interaction_powerlaw_gravity_v1-homo_temporal_sin_forcing_initial_fixed_period_v8_seed_42_seed_42_q_90_batch_8",
+    "stage": "D",
+    "updated_at": "2026-02-25T00:10:22.640731",
+    "val_loss": 8.814630270004272
+  },
+  "run_001": {
+    "combo_info": {
+      "interaction_mode": "global",
+      "names": [
+        "interaction_powerlaw_gravity_v1[homo]",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_43"
+      ],
+      "slug": [
+        "interaction_powerlaw_gravity_v1-homo",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_43"
+      ],
+      "temporal_mode": null
+    },
+    "epoch": 240,
+    "source_key": "interaction_powerlaw_gravity_v1-homo_temporal_sin_forcing_initial_fixed_period_v8_seed_43_seed_43_q_90_batch_8",
+    "stage": "D",
+    "updated_at": "2026-02-25T01:16:53.820997",
+    "val_loss": 8.782610177993774
+  },
+  "run_002": {
+    "combo_info": {
+      "interaction_mode": "global",
+      "names": [
+        "interaction_powerlaw_gravity_v1[homo]",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_44"
+      ],
+      "slug": [
+        "interaction_powerlaw_gravity_v1-homo",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_44"
+      ],
+      "temporal_mode": null
+    },
+    "epoch": 117,
+    "source_key": "interaction_powerlaw_gravity_v1-homo_temporal_sin_forcing_initial_fixed_period_v8_seed_44_seed_44_q_90_batch_8",
+    "stage": "D",
+    "updated_at": "2026-02-25T00:37:51.167730",
+    "val_loss": 8.802634239196777
+  },
+  "run_003": {
+    "combo_info": {
+      "interaction_mode": "global",
+      "names": [
+        "interaction_powerlaw_gravity_v1[homo]",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_45"
+      ],
+      "slug": [
+        "interaction_powerlaw_gravity_v1-homo",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_45"
+      ],
+      "temporal_mode": null
+    },
+    "epoch": 129,
+    "source_key": "interaction_powerlaw_gravity_v1-homo_temporal_sin_forcing_initial_fixed_period_v8_seed_45_seed_45_q_90_batch_8",
+    "stage": "D",
+    "updated_at": "2026-02-25T00:41:53.164948",
+    "val_loss": 8.79629373550415
+  },
+  "run_004": {
+    "combo_info": {
+      "interaction_mode": "global",
+      "names": [
+        "interaction_powerlaw_gravity_v1[homo]",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_46"
+      ],
+      "slug": [
+        "interaction_powerlaw_gravity_v1-homo",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_46"
+      ],
+      "temporal_mode": null
+    },
+    "epoch": 75,
+    "source_key": "interaction_powerlaw_gravity_v1-homo_temporal_sin_forcing_initial_fixed_period_v8_seed_46_seed_46_q_90_batch_8",
+    "stage": "D",
+    "updated_at": "2026-02-25T01:01:58.672286",
+    "val_loss": 8.798419713973999
+  },
+  "run_005": {
+    "combo_info": {
+      "interaction_mode": "global",
+      "names": [
+        "interaction_powerlaw_gravity_v1[homo]",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_47"
+      ],
+      "slug": [
+        "interaction_powerlaw_gravity_v1-homo",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_47"
+      ],
+      "temporal_mode": null
+    },
+    "epoch": 56,
+    "source_key": "interaction_powerlaw_gravity_v1-homo_temporal_sin_forcing_initial_fixed_period_v8_seed_47_seed_47_q_90_batch_8",
+    "stage": "D",
+    "updated_at": "2026-02-25T01:23:01.137488",
+    "val_loss": 8.802769660949707
+  },
+  "run_006": {
+    "combo_info": {
+      "interaction_mode": "global",
+      "names": [
+        "interaction_powerlaw_gravity_v1[homo]",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_48"
+      ],
+      "slug": [
+        "interaction_powerlaw_gravity_v1-homo",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_48"
+      ],
+      "temporal_mode": null
+    },
+    "epoch": 46,
+    "source_key": "interaction_powerlaw_gravity_v1-homo_temporal_sin_forcing_initial_fixed_period_v8_seed_48_seed_48_q_90_batch_8",
+    "stage": "D",
+    "updated_at": "2026-02-25T01:24:17.356889",
+    "val_loss": 8.775509595870972
+  },
+  "run_007": {
+    "combo_info": {
+      "interaction_mode": "global",
+      "names": [
+        "interaction_powerlaw_gravity_v1[homo]",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_49"
+      ],
+      "slug": [
+        "interaction_powerlaw_gravity_v1-homo",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_49"
+      ],
+      "temporal_mode": null
+    },
+    "epoch": 99,
+    "source_key": "interaction_powerlaw_gravity_v1-homo_temporal_sin_forcing_initial_fixed_period_v8_seed_49_seed_49_q_90_batch_8",
+    "stage": "D",
+    "updated_at": "2026-02-25T02:01:30.888769",
+    "val_loss": 8.790310859680176
+  },
+  "run_008": {
+    "combo_info": {
+      "interaction_mode": "global",
+      "names": [
+        "interaction_powerlaw_gravity_v1[homo]",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_50"
+      ],
+      "slug": [
+        "interaction_powerlaw_gravity_v1-homo",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_50"
+      ],
+      "temporal_mode": null
+    },
+    "epoch": 74,
+    "source_key": "interaction_powerlaw_gravity_v1-homo_temporal_sin_forcing_initial_fixed_period_v8_seed_50_seed_50_q_90_batch_8",
+    "stage": "D",
+    "updated_at": "2026-02-25T02:07:19.062917",
+    "val_loss": 8.77844762802124
+  },
+  "run_009": {
+    "combo_info": {
+      "interaction_mode": "global",
+      "names": [
+        "interaction_powerlaw_gravity_v1[homo]",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_51"
+      ],
+      "slug": [
+        "interaction_powerlaw_gravity_v1-homo",
+        "temporal_sin_forcing_initial_fixed_period_v8",
+        "seed_51"
+      ],
+      "temporal_mode": null
+    },
+    "epoch": 130,
+    "source_key": "interaction_powerlaw_gravity_v1-homo_temporal_sin_forcing_initial_fixed_period_v8_seed_51_seed_51_q_90_batch_8",
+    "stage": "D",
+    "updated_at": "2026-02-25T02:33:05.374041",
+    "val_loss": 8.79567813873291
+  }
+}

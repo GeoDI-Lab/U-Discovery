@@ -1,0 +1,32 @@
+{
+  "name": "hennepin_2500m",
+  "dataset": "../data/hennepin_2500m/hennepin_2500m.npz",
+  "split": {
+    "train_end": 288,
+    "validation_end": 384,
+    "test_end": 480
+  },
+  "model": {
+    "temporal_harmonics": 1,
+    "history_length": 86
+  },
+  "training": {
+    "candidate_id": "betweenness_gravity",
+    "parameter_mode": "localized",
+    "initial_parameters": {"alpha": 1.0, "beta": 1.0, "kappa": 1.0, "delta": 1.0, "gamma": 1.0},
+    "forcing_frequency": 0.010416666666666666,
+    "seed": 42,
+    "device": "auto",
+    "deterministic": true,
+    "epochs": 10000,
+    "batch_size": 8,
+    "learning_rate": 0.001,
+    "weight_decay": 0.00001,
+    "patience": 80,
+    "min_delta": 0.000001
+  },
+  "evaluation": {
+    "reconstruction": "../results/hennepin_2500m/top1_reconstruction.npz"
+  },
+  "output_dir": "../outputs"
+}

@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software or data, please cite U-Discovery."
+title: "U-Discovery"
+type: software
+version: 0.1.0
+date-released: 2026-08-12
+authors:
+  - family-names: "Ma"
+    given-names: "Zhongfu"
+abstract: "An interpretable equation-discovery framework for urban spatiotemporal systems, with scientific-prior-guided equation proposal and UrbanDE-Net parameter fitting."
+license: MIT

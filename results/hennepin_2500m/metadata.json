@@ -1,0 +1,74 @@
+{
+  "result_set": "hennepin_2500m",
+  "scope": "Localized-parameter 2.5 km Hennepin results used for Table 4 and Figure 7, plus the selected equation's safe fit and teacher-forced reconstruction.",
+  "metric_normalization": {
+    "baseline_source_row": "Osc",
+    "baseline_source_file": "local_proposed_eq_results_denoise.csv",
+    "state_mse_denominator": 13.780603408813477,
+    "change_mse_denominator": 24.317028045654297,
+    "nMSE_formula": "first_order_mse / state_mse_denominator",
+    "nMSE_delta_formula": "second_order_mse / change_mse_denominator"
+  },
+  "table4": {
+    "source": "table4_metrics.csv",
+    "rows": 26,
+    "ordering": "ascending nMSE_delta",
+    "raw_inputs": [
+      "local_classic_eq_results_denoise.csv",
+      "local_proposed_eq_results_denoise.csv"
+    ],
+    "source_hashes_sha256": {
+      "local_classic_eq_results_denoise.csv": "182f8845cf2bb5c7a64367c8815aeddd461f27bdaea6bcbe40180d05ee62c1db",
+      "local_proposed_eq_results_denoise.csv": "0cb659f91b9d89b44e9ff784c85d5fe8f006c07e172cd26d65729a8f017c3a96"
+    }
+  },
+  "figure7": {
+    "selection_rule": "Keep source_csv_complexity strictly below its 90th percentile (29.5), then display the 20 lowest-nMSE_delta equations.",
+    "candidate_count_before_filter": 26,
+    "candidate_count_after_filter": 23,
+    "heatmap_candidate_count": 20,
+    "files": [
+      "figure7_selection.csv",
+      "figure7_heatmap_top20.csv",
+      "figure7_frontier_nmse_delta.csv",
+      "figure7_frontier_nmse.csv"
+    ],
+    "complexity_caveat": "The archived Figure 7 notebook uses the Complexity column from the source CSVs. Five published Table 4 complexity values differ; table4_metrics.csv preserves both fields. The candidate selection and ordering are unchanged.",
+    "archive_notebook_sha256": "bf419a00edb471446c5377c1d9f27024b750dd544ff1c0f3560853c5918a1aa6",
+    "archive_figure_sha256": "58173b48081033257c963c23d1f996fc9b309be305c6baeea35e9df5f0fb0863"
+  },
+  "selected_fit": {
+    "candidate": "Betweenness-augmented gravity",
+    "legacy_solver_id": "interaction_c9",
+    "paper_table4_rank": 2,
+    "figure7_rank_after_complexity_filter": 1,
+    "parameters": "selected_c9_parameters.npz",
+    "metadata": "selected_c9_fit.json",
+    "source_checkpoint_sha256": "a956226947505131f0aa9ba0c12a3ce3adb8b3976cc732e4b5632b8ae228a9e9",
+    "source_checkpoint_included": false,
+    "conversion_equivalence_max_abs_error": 0.0
+  },
+  "reconstruction": {
+    "mode": "teacher-forced one-step, un-clipped",
+    "test_transitions": 95,
+    "nodes": 210,
+    "csv": "top1_reconstruction_vs_truth.csv",
+    "npz": "top1_reconstruction.npz",
+    "csv_sha256": "6cbb0d3711b6464f31285de4091688fcaf28622aaedb8cf22f7f60076b0ec65e",
+    "state_mse": 15.358434022369375,
+    "state_rmse": 3.9189837997074415,
+    "state_mae": 2.0887139091976183,
+    "mean_nodewise_time_correlation": 0.8230253458023071,
+    "flattened_time_node_correlation": 0.9805083751653673,
+    "negative_prediction_fraction": 0.06436090225563909
+  },
+  "excluded": [
+    "global-parameter experiment families",
+    "two-harmonic/k=2 sensitivity experiments",
+    "exclude-SE sensitivity experiments",
+    "training logs and duplicate/incomplete checkpoints",
+    "all non-selected PyTorch pickle checkpoints",
+    "large diagnostic O-D and flow tensors",
+    "1.5 km and 2.0 km inputs and results"
+  ]
+}
