@@ -31,29 +31,53 @@ class Dataset:
 
 
 def load_dataset(path: str | Path) -> Dataset:
-    dataset_path = Path(path).resolve()
-    with np.load(dataset_path, allow_pickle=False) as source:
+    """Read a numeric NPZ, supplying documented defaults for user datasets."""
+    dataset_path = Path(path).expanduser().resolve()
+    archive = np.load(dataset_path, allow_pickle=False)
+    if not isinstance(archive, np.lib.npyio.NpzFile):
+        raise ValueError("Dataset must be an NPZ archive created with np.savez_compressed")
+    with archive as source:
+        if not {"states", "obs_dyn_full"}.intersection(source.files):
+            raise ValueError("Dataset is missing 'states' with shape (time, node)")
         states_key = "states" if "states" in source else "obs_dyn_full"
         states = np.asarray(source[states_key], dtype=np.float32)
+        if states.ndim != 2 or states.shape[0] < 5 or states.shape[1] < 2:
+            raise ValueError("states must have shape (time >= 5, node >= 2)")
         initial_key = "initial_state" if "initial_state" in source else "init_state"
         if "distance" in source:
             distance_key = "distance"
         elif "distance_matrix" in source:
             distance_key = "distance_matrix"
-        else:
+        elif "d_mat" in source:
             distance_key = "d_mat"
+        else:
+            raise ValueError("Dataset is missing 'distance' with shape (node, node)")
         adjacency_key = "adjacency" if "adjacency" in source else "adjacency_mask"
-        initial = np.asarray(source[initial_key], dtype=np.float32)
+        initial = np.asarray(source[initial_key] if initial_key in source else states[0], dtype=np.float32)
         distance = np.asarray(source[distance_key], dtype=np.float32)
-        adjacency = np.asarray(source[adjacency_key], dtype=np.float32)
+        adjacency = np.asarray(
+            source[adjacency_key] if adjacency_key in source
+            else np.ones((states.shape[1], states.shape[1])) - np.eye(states.shape[1]),
+            dtype=np.float32,
+        )
         node_ids = (
             np.asarray(source["node_ids"])
             if "node_ids" in source
             else np.arange(states.shape[1], dtype=np.int32)
         )
-        train_end = int(source["train_end"])
-        val_end = int(source["val_end"])
+        if ("train_end" in source) != ("val_end" in source):
+            raise ValueError("Supply both train_end and val_end, or omit both for a 60/20/20 split")
+        def boundary(name, default):
+            value = np.asarray(source[name]) if name in source else np.asarray(default)
+            if value.shape != () or value.dtype.kind not in "iu":
+                raise ValueError(f"{name} must be an integer scalar")
+            return int(value)
+
+        train_end = boundary("train_end", int(0.6 * len(states)))
+        val_end = boundary("val_end", int(0.8 * len(states)))
         if "dt" in source:
+            if np.asarray(source["dt"]).shape != ():
+                raise ValueError("dt must be a positive finite scalar")
             dt = float(source["dt"])
         elif "interval_minutes" in source:
             dt = 1.0
@@ -92,6 +116,10 @@ def validate_dataset(
         errors.append(f"states must be 2D, got {states.shape}")
         return errors
     timesteps, nodes = states.shape
+    if timesteps < 5 or nodes < 2:
+        errors.append("states must contain at least five timesteps and two nodes")
+    if not np.isfinite(dataset.dt) or dataset.dt <= 0:
+        errors.append("dt must be positive and finite")
     if expected_timesteps is not None and timesteps != expected_timesteps:
         errors.append(f"expected {expected_timesteps} timesteps, got {timesteps}")
     if expected_nodes is not None and nodes != expected_nodes:
@@ -116,6 +144,8 @@ def validate_dataset(
             f"invalid split boundaries train_end={dataset.train_end}, val_end={dataset.val_end}"
         )
     if dataset.distance.shape == (nodes, nodes):
+        if np.any(dataset.distance < 0):
+            errors.append("distance contains negative values")
         if not np.allclose(np.diag(dataset.distance), 0.0, atol=1e-7):
             errors.append("distance diagonal is not zero")
         if require_symmetric_distance and not np.allclose(

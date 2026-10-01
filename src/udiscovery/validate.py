@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 from pathlib import Path
 from typing import Any
@@ -65,6 +66,47 @@ def sha256(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def release_files(root: str | Path) -> tuple[Path, ...]:
+    """Return the deterministic inventory of portable release files.
+
+    Local Git metadata, virtual environments, Python/test caches, packaging
+    output, ``*.egg-info`` directories, and the root ``outputs/`` directory
+    are outside the release. So are macOS ``.DS_Store``/``._*`` metadata,
+    bytecode, and ``*.log`` files. Directory exclusions are pruned before
+    traversal, so an installed environment is never recursively inspected.
+
+    This is deliberately independent of .gitignore: unexpected source/data
+    files, unsafe checkpoints, and real ``.env`` files remain in scope. Only
+    ``.env.example`` is permitted as an environment template by the hygiene
+    validator. The same inventory defines MANIFEST.sha256 and every release
+    content scan; local installation and pipeline runs do not alter it.
+    """
+    release_root = Path(root).resolve()
+    ignored_directories = {
+        ".git", ".venv", "venv", "__pycache__", ".pytest_cache", "build", "dist",
+    }
+    files: list[Path] = []
+    for directory, subdirectories, filenames in os.walk(release_root, followlinks=False):
+        parent = Path(directory)
+        subdirectories[:] = sorted(
+            name for name in subdirectories
+            if name not in ignored_directories
+            and not name.endswith(".egg-info")
+            and name != ".DS_Store"
+            and not name.startswith("._")
+            and not (parent == release_root and name == "outputs")
+        )
+        for name in filenames:
+            path = parent / name
+            if name == ".DS_Store" or name.startswith("._"):
+                continue
+            if path.suffix.lower() in {".pyc", ".pyo", ".log"}:
+                continue
+            if path.is_file():
+                files.append(path)
+    return tuple(sorted(files, key=lambda path: path.relative_to(release_root).as_posix()))
 
 
 def _validate_table2(root: Path) -> list[str]:
@@ -289,9 +331,11 @@ def _validate_graphrag(root: Path) -> list[str]:
     return errors
 
 
-def _validate_checksum_files(root: Path) -> list[str]:
+def _validate_checksum_files(root: Path, files: tuple[Path, ...] | None = None) -> list[str]:
+    root = root.resolve()
+    files = release_files(root) if files is None else files
     errors: list[str] = []
-    manifests = list(root.rglob("CHECKSUMS.sha256"))
+    manifests = [path for path in files if path.name == "CHECKSUMS.sha256"]
     root_manifest = root / "MANIFEST.sha256"
     if not root_manifest.is_file():
         return ["required repository checksum manifest is missing: MANIFEST.sha256"]
@@ -320,14 +364,8 @@ def _validate_checksum_files(root: Path) -> list[str]:
                 covered.add(path)
     expected_files = {
         path.resolve()
-        for path in root.rglob("*")
-        if path.is_file()
-        and path != root_manifest
-        and ".git" not in path.parts
-        and "__pycache__" not in path.parts
-        and "build" not in path.parts
-        and not any(part.endswith(".egg-info") for part in path.parts)
-        and path.suffix.lower() not in {".pyc", ".pyo"}
+        for path in files
+        if path != root_manifest
     }
     missing = sorted(path.relative_to(root) for path in expected_files - covered)
     extra = sorted(path.relative_to(root) for path in covered - expected_files)
@@ -338,7 +376,9 @@ def _validate_checksum_files(root: Path) -> list[str]:
     return errors
 
 
-def _validate_repository_hygiene(root: Path) -> list[str]:
+def _validate_repository_hygiene(root: Path, files: tuple[Path, ...] | None = None) -> list[str]:
+    root = root.resolve()
+    files = release_files(root) if files is None else files
     errors: list[str] = []
     secret_patterns = (
         re.compile(rb"sk-[A-Za-z0-9_-]{20,}"),
@@ -350,36 +390,55 @@ def _validate_repository_hygiene(root: Path) -> list[str]:
         b"\\" + b"Users\\",
     )
     text_suffixes = {".py", ".json", ".yaml", ".yml", ".md", ".txt", ".csv", ".cff", ".toml"}
-    for path in root.rglob("*"):
-        if not path.is_file() or ".git" in path.parts or path.name == ".env.example":
+    for path in files:
+        if path.name == ".env.example":
             continue
-        if path.suffix.lower() in text_suffixes or path.name in {"MANIFEST.sha256", "CHECKSUMS.sha256"}:
+        is_environment = path.name == ".env" or path.name.startswith(".env.")
+        if is_environment:
+            errors.append(f"local environment/credential file found: {path.relative_to(root)}")
+        if is_environment or path.suffix.lower() in text_suffixes or path.name in {"MANIFEST.sha256", "CHECKSUMS.sha256"}:
             content = path.read_bytes()
             if any(pattern.search(content) for pattern in secret_patterns):
                 errors.append(f"possible plaintext credential in {path.relative_to(root)}")
             if any(pattern in content for pattern in absolute_patterns):
                 errors.append(f"machine-specific absolute path in {path.relative_to(root)}")
     sensitive_headers = {"device_key", "device_id", "start_lat", "start_lon", "end_lat", "end_lon"}
-    for path in root.rglob("*.csv"):
-        header = path.open(encoding="utf-8-sig", errors="replace").readline().strip().lower()
+    for path in files:
+        if path.suffix.lower() != ".csv":
+            continue
+        with path.open(encoding="utf-8-sig", errors="replace") as source:
+            header = source.readline().strip().lower()
         fields = {item.strip() for item in header.split(",")}
         leaked = sensitive_headers.intersection(fields)
         if leaked:
             errors.append(f"raw mobility fields {sorted(leaked)} found in {path.relative_to(root)}")
-    apple_metadata = [
+    return errors
+
+
+def _validate_artifact_scope(root: Path, files: tuple[Path, ...] | None = None) -> list[str]:
+    """Inspect release artifacts without treating runtime output as shipped data."""
+    root = root.resolve()
+    files = release_files(root) if files is None else files
+    errors: list[str] = []
+    forbidden_suffixes = {".pt", ".pth", ".ckpt", ".pkl", ".pickle", ".ipynb"}
+    unsafe = [str(path.relative_to(root)) for path in files if path.suffix.lower() in forbidden_suffixes]
+    if unsafe:
+        errors.append(f"unsafe pickle-capable artifacts found: {unsafe}")
+    excluded_tokens = ("1500", "2000", "figure8", "figure_8")
+    leaked = [
         str(path.relative_to(root))
-        for path in root.rglob("*")
-        if path.name == ".DS_Store" or path.name.startswith("._")
+        for path in files
+        if any(token in part.lower() for part in path.relative_to(root).parts for token in excluded_tokens)
     ]
-    if apple_metadata:
-        errors.append(f"platform metadata files found: {apple_metadata}")
-    generated_trees = [
-        str(path.relative_to(root))
-        for path in root.rglob("*")
-        if path.is_dir() and (path.name == "build" or path.name.endswith(".egg-info"))
+    if leaked:
+        errors.append(f"out-of-scope scale artifacts found: {leaked}")
+    large = [
+        (str(path.relative_to(root)), path.stat().st_size)
+        for path in files
+        if path.stat().st_size > 50 * 1024 * 1024
     ]
-    if generated_trees:
-        errors.append(f"generated packaging directories found: {generated_trees}")
+    if large:
+        errors.append(f"files over 50 MiB found: {large}")
     return errors
 
 
@@ -438,27 +497,10 @@ def validate_release(root: str | Path | None = None) -> dict[str, Any]:
     errors.extend(_validate_registry(release_root))
     errors.extend(_validate_archived_equation_parity(release_root))
     errors.extend(_validate_graphrag(release_root))
-    errors.extend(_validate_checksum_files(release_root))
-    errors.extend(_validate_repository_hygiene(release_root))
-    forbidden_suffixes = {".pt", ".pth", ".ckpt", ".pkl", ".pickle", ".ipynb"}
-    unsafe = [str(path.relative_to(release_root)) for path in release_root.rglob("*") if path.suffix.lower() in forbidden_suffixes]
-    if unsafe:
-        errors.append(f"unsafe pickle-capable artifacts found: {unsafe}")
-    excluded_tokens = ("1500", "2000", "figure8", "figure_8")
-    leaked = [
-        str(path.relative_to(release_root))
-        for path in release_root.rglob("*")
-        if any(token in path.name.lower() for token in excluded_tokens)
-    ]
-    if leaked:
-        errors.append(f"out-of-scope scale artifacts found: {leaked}")
-    large = [
-        (str(path.relative_to(release_root)), path.stat().st_size)
-        for path in release_root.rglob("*")
-        if path.is_file() and path.stat().st_size > 50 * 1024 * 1024
-    ]
-    if large:
-        errors.append(f"files over 50 MiB found: {large}")
+    files = release_files(release_root)
+    errors.extend(_validate_checksum_files(release_root, files))
+    errors.extend(_validate_repository_hygiene(release_root, files))
+    errors.extend(_validate_artifact_scope(release_root, files))
     return {
         "ok": not errors,
         "errors": errors,

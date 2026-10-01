@@ -2,6 +2,14 @@
 
 ## Reproduction levels
 
+For new user datasets, version 0.2.0 provides a complete fit-and-rank workflow:
+
+```bash
+python run_discovery.py --data examples/demo.npz --equations examples/equations.py --output-dir outputs/demo
+```
+
+See [docs/quickstart.md](docs/quickstart.md) for the input contract and ranking definition. New discovery runs use a compact UrbanDE-Net with optional periodic forcing, rank by validation transition MSE, and report test metrics separately. They are separate from the archived paper results below.
+
 1. **Artifact reproduction:** `python -m udiscovery reproduce --target paper` regenerates Tables 1–4 and public numerical Figure 4–7 source products from frozen, non-executable files.
 2. **Evaluation reproduction:** `python -m udiscovery evaluate` recomputes state and transition metrics for a safe reconstruction NPZ.
 3. **Fitting reproduction:** `python -m udiscovery train` fits a configured equation with a portable differentiable implementation on CPU or CUDA.
@@ -25,6 +33,14 @@
 
 The paper values come from the frozen result tables and safe exported parameter/reconstruction arrays. A newly trained model can differ because of hardware, PyTorch kernels, initialization, and early stopping. New runs use the GraphWaveNet UrbanDE-Net encoder, localized/global parameter heads, and node-wise Fourier forcing, and are stored in timestamped directories with versions, seed, metrics, and safe numeric NPZ weights/parameters.
 
+Version 0.2.0 training also saves `reconstruction.npz` and split metrics. These new files contain observed-history one-step predictions and their directly predicted changes, with explicit target indices. The `evaluate` command recognizes them and defaults to the test split; use `--split train`, `--split validation`, or `--split all` as needed. For example:
+
+```bash
+python -m udiscovery evaluate --config configs/synthetic.yaml --reconstruction outputs/YOUR_RUN/reconstruction.npz --split test
+```
+
+The archived reconstruction files retain their historical state-sequence metric convention. Do not compare their differenced-state metrics or paper-normalized errors directly with the new direct-transition or persistence-normalized metrics. Custom-data discovery disables periodic forcing by default; the original study configurations retain it.
+
 ## Environment
 
 Core validation and table reproduction require NumPy and pandas. Training requires PyTorch and uses NetworkX/scikit-learn for candidates needing graph context; figures require Matplotlib. Dependency ranges are in `pyproject.toml`. `requirements-lock.txt` records the compatible Python 3.9 MSI environment used for full parity, plotting, and smoke tests; `requirements-core-py312-lock.txt` records the smaller Python 3.12 validation environment. GraphRAG package versions are recorded separately in `graphrag/provenance.json`.
@@ -39,3 +55,5 @@ python -m unittest discover -s tests -v
 ```
 
 Validation checks shapes, orientation, finite values, splits, geometry order, candidate counts, GraphRAG JSON structure, Table 2/Table 4 values to `1e-4`, unsafe formats, excluded resolutions, and size limits.
+
+Validation inventories release files, excluding installed environments, caches, packaging output, platform metadata, and the root `outputs/` directory. This permits validation after installation or a local discovery run. Unexpected source/artifact files and unsafe checkpoints outside those generated directories are still checked. Maintainers updating the release must refresh `MANIFEST.sha256` with `python scripts/update_manifest.py` after all intended changes; frozen per-dataset `CHECKSUMS.sha256` files must not change unless those datasets intentionally change.

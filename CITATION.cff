@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use this software or data, please cite U-Discovery."
 title: "U-Discovery"
 type: software
-version: 0.1.0
-date-released: 2026-08-12
+version: 0.2.0
+date-released: 2026-10-01
 authors:
   - family-names: "Ma"
     given-names: "Zhongfu"

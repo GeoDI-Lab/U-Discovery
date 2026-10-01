@@ -1,11 +1,21 @@
 {
   "schema_version": 1,
+  "software_version": "0.2.0",
   "release_scope": [
+    "custom-data UrbanDE-Net fitting and validation-ranked equation comparison",
     "GraphRAG output-level equation reproduction",
     "frozen synthetic Table 2 and Figures 4-5",
     "localized-parameter Hennepin 2.5 km Table 4 and Figures 6-7"
   ],
   "source_groups": {
+    "custom_equation_workflow": {
+      "entrypoint": "run_discovery.py",
+      "guide": "docs/quickstart.md",
+      "equations": "examples/equations.py",
+      "dataset": "examples/demo.npz",
+      "generator": "examples/make_demo_data.py",
+      "selection_rule": "new deterministic workflow demo; separate from frozen paper artifacts"
+    },
     "graphrag": {
       "manifest": "graphrag/provenance.json",
       "mapping": "graphrag/candidate_mapping.json",

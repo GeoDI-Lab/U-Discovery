@@ -13,7 +13,7 @@ from typing import Any, Mapping, Sequence
 import numpy as np
 
 from .config import load_config, resolved_dataset_path
-from .data import load_dataset
+from .data import load_dataset, validate_dataset
 from .paths import resolve_path
 
 
@@ -126,7 +126,9 @@ def load_model_weights_npz(model, path: str | Path, *, strict: bool = True) -> t
     return missing, unexpected
 
 
-def _parameter_layout(spec, mode: str) -> tuple[tuple[str, ...], tuple[str, ...], dict[str, str]]:
+def _parameter_layout(
+    spec, mode: str, *, fixed_names=DISCRETE_PARAMETER_NAMES
+) -> tuple[tuple[str, ...], tuple[str, ...], dict[str, str]]:
     normalized = mode.lower()
     if normalized in {"localized", "local", "heter", "heterogeneous", "node"}:
         effective = dict(zip(spec.parameter_names, spec.parameter_scopes))
@@ -137,7 +139,7 @@ def _parameter_layout(spec, mode: str) -> tuple[tuple[str, ...], tuple[str, ...]
     else:
         raise ValueError("training.parameter_mode must be 'localized' or 'global'")
     train_names = tuple(
-        name for name in spec.parameter_names if name not in DISCRETE_PARAMETER_NAMES
+        name for name in spec.parameter_names if name not in fixed_names
     )
     train_scopes = tuple(effective[name] for name in train_names)
     effective["__mode__"] = label
@@ -195,7 +197,9 @@ def _model_from_config(
         layers=int(model_config.get("layers", 2)),
         adaptive_adjacency=bool(model_config.get("adaptive_adjacency", True)),
         initial_parameters=initial_parameters,
-        bounded_parameter_names=_bounded_parameters(spec.id, parameter_names),
+        bounded_parameter_names=getattr(
+            spec, "bounded_parameters", _bounded_parameters(spec.id, parameter_names)
+        ),
         init_seed=seed,
     )
     return model.to(device)
@@ -246,6 +250,7 @@ def _predict_delta(
     structural_context: Mapping[str, Any],
     frequency: float,
     dt: float,
+    equation=None,
 ):
     torch = _require_torch()
     from .equations import evaluate
@@ -253,19 +258,39 @@ def _predict_delta(
     output = model(histories)
     spatial_rows = []
     for batch_index in range(histories.shape[0]):
-        spatial_rows.append(
-            evaluate(
+        state = histories[batch_index, -1]
+        parameters = _select_parameters(output, batch_index, fixed_parameters)
+        if equation is None:
+            spatial = evaluate(
                 candidate_id,
-                histories[batch_index, -1],
+                state,
                 distance,
-                _select_parameters(output, batch_index, fixed_parameters),
+                parameters,
                 adjacency=adjacency,
                 **structural_context,
             )
-        )
+        else:
+            spatial = equation.function(state, distance, parameters, adjacency=adjacency)
+        if not isinstance(spatial, torch.Tensor):
+            raise ValueError(f"Equation {candidate_id!r} must return a PyTorch tensor")
+        if spatial.shape != state.shape:
+            raise ValueError(
+                f"Equation {candidate_id!r} returned shape {tuple(spatial.shape)}; "
+                f"expected {tuple(state.shape)}"
+            )
+        if spatial.device != state.device or not spatial.dtype.is_floating_point:
+            raise ValueError(
+                f"Equation {candidate_id!r} must return a floating tensor on {state.device}"
+            )
+        if not torch.isfinite(spatial).all():
+            raise FloatingPointError(f"Equation {candidate_id!r} returned non-finite values")
+        spatial_rows.append(spatial)
     spatial = torch.stack(spatial_rows, dim=0)
     temporal = _temporal_forcing(output, current_indices, frequency)
-    return float(dt) * (spatial + temporal), output
+    prediction = float(dt) * (spatial + temporal)
+    if not torch.isfinite(prediction).all():
+        raise FloatingPointError(f"Non-finite predicted delta for {candidate_id!r}")
+    return prediction, output
 
 
 def _copy_state_to_cpu(model) -> dict[str, np.ndarray]:
@@ -344,20 +369,99 @@ def _summary(payload: Mapping[str, np.ndarray], parameter_names: Sequence[str], 
     return result
 
 
+def _prediction_outputs(
+    model, states, current_indices, *, batch_size: int, train_end: int, val_end: int,
+    **prediction_options,
+) -> dict[str, np.ndarray]:
+    """Evaluate observed-history next steps, preserving their exact time indices."""
+    torch = _require_torch()
+    model.eval()
+    deltas = []
+    with torch.no_grad():
+        for start in range(0, current_indices.numel(), batch_size):
+            indices = current_indices[start : start + batch_size]
+            histories = build_history_windows(states, indices, model.history_length)
+            prediction, _ = _predict_delta(model, histories, indices, **prediction_options)
+            deltas.append(prediction.detach().cpu().numpy())
+    current = current_indices.detach().cpu().numpy().astype(np.int64)
+    target = current + 1
+    observed = states.detach().cpu().numpy()
+    predicted_delta = np.concatenate(deltas, axis=0)
+    return {
+        "current_indices": current,
+        "target_indices": target,
+        "ground_truth_state": observed[target],
+        "prediction": observed[current] + predicted_delta,
+        "ground_truth_delta": observed[target] - observed[current],
+        "predicted_delta": predicted_delta,
+        "split_code": np.where(
+            target < train_end, 0, np.where(target < val_end, 1, 2)
+        ).astype(np.int8),
+    }
+
+
+def _prediction_metrics(payload: Mapping[str, np.ndarray]) -> dict[str, Any]:
+    """Compute delta errors directly; differencing teacher-forced states is wrong."""
+    from .metrics import correlation, mse, r2
+
+    result: dict[str, Any] = {
+        "schema_version": 1,
+        "evaluation_mode": "teacher_forced_one_step",
+        "split_by": "target_index",
+    }
+    for code, split in enumerate(("train", "validation", "test")):
+        selected = payload["split_code"] == code
+        if not np.any(selected):
+            raise ValueError(f"No predictions are available for the {split} split")
+        truth = payload["ground_truth_state"][selected]
+        prediction = payload["prediction"][selected]
+        truth_delta = payload["ground_truth_delta"][selected]
+        predicted_delta = payload["predicted_delta"][selected]
+        metrics = {
+            "mse": mse(truth, prediction),
+            "r2": r2(truth, prediction),
+            "correlation": correlation(truth, prediction),
+            "mse_delta": mse(truth_delta, predicted_delta),
+            "r2_delta": r2(truth_delta, predicted_delta),
+            "correlation_delta": correlation(truth_delta, predicted_delta),
+        }
+        result[split] = {
+            name: value if np.isfinite(value) else None for name, value in metrics.items()
+        }
+    return result
+
+
 def fit_candidate(
     config_path: str | Path,
     *,
     device_override: str | None = None,
     epochs_override: int | None = None,
     output_dir: str | Path | None = None,
+    equation=None,
 ) -> Path:
-    """Fit one configured equation with UrbanDE-Net history-window inference."""
+    """Fit and evaluate one built-in or custom equation on aligned next steps."""
 
     torch = _require_torch()
     from .equations import get_candidate, precompute_context
 
     config, config_file = load_config(config_path)
     dataset = load_dataset(resolved_dataset_path(config, config_file))
+    errors = validate_dataset(dataset, require_symmetric_distance=False)
+    if errors:
+        raise ValueError("Invalid dataset: " + "; ".join(errors))
+    configured_split = config.get("split", {})
+    if not isinstance(configured_split, Mapping):
+        raise ValueError("split must be an object")
+    for key, actual in (
+        ("train_end", dataset.train_end),
+        ("validation_end", dataset.val_end),
+        ("val_end", dataset.val_end),
+        ("test_end", dataset.num_timesteps),
+    ):
+        if key in configured_split and configured_split[key] != actual:
+            raise ValueError(
+                f"split.{key}={configured_split[key]} disagrees with dataset value {actual}"
+            )
     training: dict[str, Any] = config["training"]
     model_config: dict[str, Any] = config.get("model", {})
     seed = int(training.get("seed", 42))
@@ -365,18 +469,39 @@ def fit_candidate(
     set_seed(seed, deterministic)
     device = select_device(device_override or str(training.get("device", "auto")))
 
-    candidate_id = str(training.get("candidate_id", "single_constrained_gravity_power"))
-    spec = get_candidate(candidate_id)
+    candidate_id = str(
+        equation.id if equation is not None
+        else training.get("candidate_id", "single_constrained_gravity_power")
+    )
+    spec = equation if equation is not None else get_candidate(candidate_id)
+    fixed_names = DISCRETE_PARAMETER_NAMES if equation is None else frozenset()
     parameter_mode = str(training.get("parameter_mode", "localized"))
-    train_names, train_scopes, effective_scopes = _parameter_layout(spec, parameter_mode)
+    train_names, train_scopes, effective_scopes = _parameter_layout(
+        spec, parameter_mode, fixed_names=fixed_names
+    )
     resolved_mode = effective_scopes.pop("__mode__")
     initial_parameters = training.get("initial_parameters", {})
     if not isinstance(initial_parameters, Mapping):
         raise ValueError("training.initial_parameters must be an object")
+    initial_parameters = {
+        **(dict(equation.parameters) if equation is not None else {}),
+        **initial_parameters,
+    }
+    unknown_initial = set(initial_parameters).difference(spec.parameter_names)
+    if unknown_initial:
+        raise ValueError(f"Unknown initial parameters for {candidate_id}: {sorted(unknown_initial)}")
+    bounded = getattr(spec, "bounded_parameters", _bounded_parameters(candidate_id, train_names))
+    for name in train_names:
+        initial_parameters.setdefault(name, 0.5 if name in bounded else 1.0)
+        value = np.asarray(initial_parameters[name], dtype=float)
+        if not np.isfinite(value).all() or np.any(value <= 0):
+            raise ValueError(f"Initial parameter {name!r} must be positive and finite")
+        if name in bounded and np.any(value >= 1):
+            raise ValueError(f"Initial bounded parameter {name!r} must lie strictly between 0 and 1")
 
     fixed_values: dict[str, float] = {}
     for name in spec.parameter_names:
-        if name in DISCRETE_PARAMETER_NAMES:
+        if name in fixed_names:
             if name not in initial_parameters:
                 raise ValueError(
                     f"Candidate {candidate_id} requires fixed structural parameter {name!r} "
@@ -391,8 +516,8 @@ def fit_candidate(
             f"train_end={dataset.train_end}"
         )
     harmonics = int(model_config.get("temporal_harmonics", 1))
-    if harmonics < 1:
-        raise ValueError("model.temporal_harmonics must be at least 1")
+    if harmonics < 0:
+        raise ValueError("model.temporal_harmonics must be non-negative")
 
     states = torch.as_tensor(dataset.states, dtype=torch.float32, device=device)
     distance = torch.as_tensor(dataset.distance, dtype=torch.float32, device=device)
@@ -408,7 +533,7 @@ def fit_candidate(
         dataset.distance,
         context_parameters,
         adjacency=dataset.adjacency,
-    )
+    ) if equation is None else {}
     structural_context = _torch_context(
         structural_numpy, device=device, dtype=states.dtype
     )
@@ -431,12 +556,19 @@ def fit_candidate(
     epochs = int(epochs_override if epochs_override is not None else training.get("epochs", 1000))
     if epochs < 1:
         raise ValueError("epochs must be at least 1")
+    has_trainable_dynamics = bool(train_names) or harmonics > 0
+    if not has_trainable_dynamics:
+        epochs = 1
     batch_size = int(training.get("batch_size", 8))
     if batch_size < 1:
         raise ValueError("batch_size must be at least 1")
     patience = int(training.get("patience", 80))
     min_delta = float(training.get("min_delta", 1.0e-6))
     clip_norm = float(training.get("clip_norm", 1.0))
+    if patience < 1 or not np.isfinite(min_delta) or min_delta < 0:
+        raise ValueError("training.patience must be positive and min_delta non-negative and finite")
+    if not np.isfinite(clip_norm) or clip_norm <= 0:
+        raise ValueError("training.clip_norm must be positive and finite")
     frequency = float(training.get("forcing_frequency", 1.0 / 96.0))
     if not np.isfinite(frequency) or frequency <= 0:
         raise ValueError("training.forcing_frequency must be positive and finite")
@@ -482,15 +614,23 @@ def fit_candidate(
                     structural_context=structural_context,
                     frequency=frequency,
                     dt=dataset.dt,
+                    equation=equation,
                 )
                 loss = torch.mean((prediction - targets) ** 2)
                 if not torch.isfinite(loss):
                     raise FloatingPointError(
                         f"non-finite loss for {candidate_id} at epoch {epoch + 1}"
                     )
-                if train:
+                if train and has_trainable_dynamics:
+                    if not loss.requires_grad:
+                        raise ValueError(
+                            f"Equation {candidate_id!r} detached its trainable parameters; "
+                            "use PyTorch operations without detach(), numpy(), or item()"
+                        )
                     loss.backward()
-                    torch.nn.utils.clip_grad_norm_(model.parameters(), clip_norm)
+                    torch.nn.utils.clip_grad_norm_(
+                        model.parameters(), clip_norm, error_if_nonfinite=True
+                    )
                     optimizer.step()
                 size = int(batch_indices.numel())
                 total += float(loss.detach()) * size
@@ -558,6 +698,27 @@ def fit_candidate(
         val_end=dataset.val_end,
     )
     np.savez_compressed(run_dir / "fitted_parameters.npz", **parameter_payload)
+    reconstruction = _prediction_outputs(
+        model,
+        states,
+        all_indices,
+        batch_size=batch_size,
+        train_end=dataset.train_end,
+        val_end=dataset.val_end,
+        candidate_id=candidate_id,
+        distance=distance,
+        adjacency=adjacency,
+        fixed_parameters=fixed_parameters,
+        structural_context=structural_context,
+        frequency=frequency,
+        dt=dataset.dt,
+        equation=equation,
+    )
+    np.savez_compressed(run_dir / "reconstruction.npz", **reconstruction)
+    metrics = _prediction_metrics(reconstruction)
+    (run_dir / "metrics.json").write_text(
+        json.dumps(metrics, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+    )
     if structural_numpy:
         np.savez_compressed(run_dir / "structural_context.npz", **structural_numpy)
     np.savetxt(
@@ -569,11 +730,13 @@ def fit_candidate(
     )
 
     manifest = {
-        "schema_version": 2,
+        "schema_version": 3,
         "created_at": datetime.now(timezone.utc).isoformat(),
         "configuration": str(config_file),
         "dataset": str(dataset.path),
         "candidate_id": candidate_id,
+        "candidate_source": "custom_python" if equation is not None else "built_in",
+        "display_name": spec.display_name,
         "parameter_mode": resolved_mode,
         "parameter_names": list(spec.parameter_names),
         "parameter_scopes": output_scopes,
@@ -583,7 +746,15 @@ def fit_candidate(
         ),
         "structural_context": sorted(structural_numpy),
         "architecture": model.architecture_metadata(),
+        "model_configuration": model_config,
         "history_window_semantics": "window ends at current state; target is the next-state delta",
+        "evaluation_mode": "teacher_forced_one_step",
+        "evaluation_semantics": (
+            "prediction[t+1] = observed[t] + predicted_delta[t]; all histories contain "
+            "observed states; this is not an autonomous rollout; splits use target indices"
+        ),
+        "split_code": {"0": "train", "1": "validation", "2": "test"},
+        "trainable_dynamics": has_trainable_dynamics,
         "forcing_frequency_cycles_per_step": frequency,
         "best_epoch": best_epoch,
         "validation_mse_delta": best_validation,
@@ -599,6 +770,8 @@ def fit_candidate(
             "model_weights": "model_weights.npz",
             "fitted_parameters": "fitted_parameters.npz",
             "training_history": "training_history.csv",
+            "reconstruction": "reconstruction.npz",
+            "metrics": "metrics.json",
             "structural_context": "structural_context.npz" if structural_numpy else None,
         },
         "serialization": "numeric NPZ only; no pickle or torch.save",

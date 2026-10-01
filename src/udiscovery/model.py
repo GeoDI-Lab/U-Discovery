@@ -553,8 +553,8 @@ class UrbanDENet(nn.Module):
             raise ValueError("num_nodes must be at least 2")
         if history_length < 2:
             raise ValueError("history_length must be at least 2")
-        if temporal_harmonics < 1:
-            raise ValueError("temporal_harmonics must be at least 1")
+        if temporal_harmonics < 0:
+            raise ValueError("temporal_harmonics must be non-negative")
         if len(parameter_names) != len(parameter_scopes):
             raise ValueError("parameter_names and parameter_scopes must have equal length")
         if len(set(parameter_names)) != len(parameter_names):
@@ -639,7 +639,7 @@ class UrbanDENet(nn.Module):
             dropout=float(head_dropout),
             init_seed=None if init_seed is None else seed_base + 3,
             n_nodes=self.num_nodes,
-        )
+        ) if self.temporal_harmonics else None
         self._initialize_output_heads(initial_parameters or {})
 
     @staticmethod
@@ -711,11 +711,12 @@ class UrbanDENet(nn.Module):
                         raise ValueError(f"initial global parameter {name!r} must be scalar")
                     layer.bias[index] = raw.reshape(())
 
-            temporal_layer = self.temporal_head.final_linear
-            temporal_layer.weight.zero_()
-            temporal_layer.bias.zero_()
-            if self.temporal_head.per_node_bias is not None:
-                self.temporal_head.per_node_bias.zero_()
+            if self.temporal_head is not None:
+                temporal_layer = self.temporal_head.final_linear
+                temporal_layer.weight.zero_()
+                temporal_layer.bias.zero_()
+                if self.temporal_head.per_node_bias is not None:
+                    self.temporal_head.per_node_bias.zero_()
 
     def _transform(self, names: Sequence[str], raw: torch.Tensor) -> Dict[str, torch.Tensor]:
         transformed: Dict[str, torch.Tensor] = {}
@@ -765,9 +766,13 @@ class UrbanDENet(nn.Module):
                 )
             )
 
-        temporal = self.temporal_head(fused)
-        temporal_sin = temporal[..., 0::2]
-        temporal_cos = temporal[..., 1::2]
+        if self.temporal_head is None:
+            temporal_sin = histories.new_zeros((histories.shape[0], self.num_nodes, 0))
+            temporal_cos = histories.new_zeros((histories.shape[0], self.num_nodes, 0))
+        else:
+            temporal = self.temporal_head(fused)
+            temporal_sin = temporal[..., 0::2]
+            temporal_cos = temporal[..., 1::2]
         return UrbanDENetOutput(interaction, temporal_sin, temporal_cos)
 
     def architecture_metadata(self) -> Dict[str, object]:
