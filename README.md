@@ -4,7 +4,10 @@
 
 U-Discovery (Urban Discovery) combines scientific-prior-guided equation proposal, differentiable parameter fitting with the Urban Differential Equation Network (UrbanDE-Net), and comparison by reconstruction accuracy and mathematical complexity. Version 0.2.0 connects fitting and evaluation into a single workflow for your own data and Python equations. The repository also retains the equation registry, GraphRAG artifacts, synthetic study, and aggregated 2.5 km Hennepin County case study.
 
-**[Try the interactive demo](https://zhongfuma-gis.com/u-discovery-geodi/)**
+**[Try the interactive demo](https://geodi-lab.github.io/U-Discovery/)**
+
+The demo runs entirely in your browser and is hosted on GitHub Pages. See
+[demo/README.md](demo/README.md) for static files, provenance, and deployment instructions.
 
 ## Install
 

@@ -1,0 +1,46 @@
+{
+  "cells": 1117,
+  "frames": 480,
+  "sample_count": 536160,
+  "geometry_count": 1117,
+  "unique_cell_ids": 1117,
+  "geometry_identity_join": true,
+  "full_five_days": true,
+  "start": "2021-11-01T00:00:00-05:00",
+  "end": "2021-11-05T23:45:00-05:00",
+  "interval_minutes": 15,
+  "nonnegative_integer_counts": true,
+  "range": [
+    0,
+    244
+  ],
+  "november_1_exact_csv_and_geojson_agreement": {
+    "csv_matches_archive_exactly": true,
+    "geojson_matches_csv_exactly": true,
+    "unique_cell_time_pairs": 107232
+  },
+  "float32_round_trip_max_error": 0.0,
+  "excluded_unobserved_source_grid_ids": [
+    33,
+    825
+  ],
+  "array_bytes": 2144640,
+  "daily_sha256": [
+    "3a98c07b6036c8691fff14d1e08bdcf25d6eedcf9e034e8e38812e58061a0fb7",
+    "0adec1dd664f0c8dae7dd3463618829a9f8e4c7dce357ae3c66a363cd966a2b2",
+    "46dc138c1c7cc804d745742df772184edf4831b20b56382fb3574cfbbe1ef5f4",
+    "7e99d2cc96400d36a3e71111824f62f42c277d6589db7eb7e6e2c7a508cdcfe2",
+    "30d5d57cfb677ec49c7f0eca9c8f74952733dd587f89ca77cdb6251e6aa2625a"
+  ],
+  "source_bundle_sha256": {
+    "observations.npz": "55156fe7275c7acb855381c6c6ac02fc5703ff428b8136008778b87d235ef561",
+    "cells.geojson": "623247cbf055d40ad4b2211084ebd3bf02e0b8736ec492f925ee60b6e5ecfb6e",
+    "boundary.geojson": "8e58fa5a2317874cb9a680d38a2a179e1cc72508be12c946a4149a35310d3e83",
+    "provenance.json": "48c0732eb3549475cec0269ff67c9615a8b5b0807ed708985046ef26e85b8721"
+  },
+  "output_sha256": {
+    "metro_states.f32": "027c2fd4b5f829c388acad1a9184171f34b7d40d4d4e1ead0333606a96f91d39",
+    "metro_cells.geojson": "623247cbf055d40ad4b2211084ebd3bf02e0b8736ec492f925ee60b6e5ecfb6e",
+    "metro_boundary.geojson": "8e58fa5a2317874cb9a680d38a2a179e1cc72508be12c946a4149a35310d3e83"
+  }
+}

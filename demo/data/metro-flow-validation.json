@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "definition": "Observed direct-trip record counts. Each raw trajectory with both endpoints inside the displayed metropolitan grid contributes one directed origin-to-destination trip to the 15-minute bin containing its departure time. Same-cell trips are excluded. Counts are trajectory records, not distinct devices, model predictions, or inferred transitions between state snapshots.",
+  "stateComparisonNote": "The flow map shows trips departing during the displayed 15-minute bin. Trip duration, entry and exit from the study area, and differences between trip records and snapshot counts mean these arrows are not asserted to sum exactly to the change in the observed population series.",
+  "frames": 480,
+  "cells": 1117,
+  "startTime": "2021-11-01T00:00:00-05:00",
+  "lastBinStartTime": "2021-11-05T23:45:00-05:00",
+  "lastBinEndTime": "2021-11-06T00:00:00-05:00",
+  "missingFrameIndices": [],
+  "emptyFrameIndices": [],
+  "geometryJoin": "Exact node_index -> original cell_index; source geometry hash matches",
+  "timeJoin": "All 480 departure-bin starts exactly match metro.json state timestamps",
+  "originalCellIdsOmittedFromStateGrid": [
+    33,
+    825
+  ],
+  "maximumTripCount": 76,
+  "fullSparseEdgeCount": 2065784,
+  "fullTripRecordCount": 3468430,
+  "browserLinksPerFrameLimit": 40,
+  "browserSparseEdgeCount": 19200,
+  "browserTripRecordCount": 178388,
+  "regionalMinimumDistanceKm": 10.0,
+  "regionalLinkLimit": 24,
+  "regionalEligibleEdgeCount": 635020,
+  "regionalBrowserEdgeCount": 11520,
+  "regionalBrowserTripRecordCount": 33533,
+  "regionalEmptyFrameIndices": [],
+  "regionalFramesBelowLinkLimit": [],
+  "regionalMinimumSelectedDistanceKm": 10.009044791077871,
+  "regionalCountsUnchanged": true,
+  "regionalSelection": "Descending source count, then origin and destination node indices; great-circle centroid distance >= 10 km",
+  "aggregateRegionalLinkCount": 24,
+  "aggregateRegionalTripRecordCount": 10670,
+  "aggregateRegionalMinimumCount": 339,
+  "aggregateRegionalMaximumCount": 858,
+  "aggregateRegionalEligibleLinkCount": 120393,
+  "aggregateRegionalEligibleTripRecordCount": 719771,
+  "aggregateRegionalMinimumSelectedDistanceKm": 10.009590731771146,
+  "aggregateRegionalCountsMatchFullSourceBundle": true,
+  "aggregateRegionalFullTripTotalUnchanged": true,
+  "aggregateRegionalSelection": "Up to 24 strongest observed directed cell pairs after summing all trip records across November 1\u20135, 2021, selected from the full source bundle. Origin and destination centroids must be at least 10 km apart. Order is descending aggregate count, then origin and destination node indices. This stable network is independent of the dynamics playback time. Counts are observed trip records; animated particles illustrate movement along schematic connections, not tracked individual people or observed travel paths.",
+  "allAggregateLinkCount": 153744,
+  "allAggregateTripRecordCount": 3468430,
+  "allAggregateMinimumCount": 1,
+  "allAggregateMaximumCount": 3971,
+  "allAggregateCountsMatchIndependentSourceGrouping": true,
+  "allAggregateContainsEveryPositiveSourcePair": true,
+  "allAggregateDistanceFilter": null,
+  "allAggregateLinkLimit": null,
+  "allAggregatePeriod": {
+    "startTime": "2021-11-01T00:00:00-05:00",
+    "endTimeExclusive": "2021-11-06T00:00:00-05:00",
+    "label": "November 1\u20135, 2021",
+    "timeZone": "America/Chicago"
+  },
+  "allAggregateSelection": "Every positive directed cell pair after summing all recorded trips across November 1\u20135, 2021, from the complete source bundle. No distance threshold or link-count limit is applied. Order is descending trip count, then origin and destination node indices. Same-cell records and records with an endpoint outside the 1,117 observed cells remain excluded, as in the source bundle. Arcs connect cell centroids and do not represent continuous observed travel paths.",
+  "dailyReplay": {
+    "manifest": "metro-flow-days.json",
+    "manifestSHA256": "4d1aab6003d87d45f54098dd1bc890bbf2c65fa6a4b3d753da428ae79773a5a4",
+    "binaryFormat": "little-endian uint16, 4 columns / 8 bytes per row",
+    "rowOrder": "Ascending departure bin within day, origin node, destination node",
+    "fullSparseRecordCount": 2065784,
+    "fullTripRecordCount": 3468430,
+    "allSourceRecordsExportedExactlyOnce": true,
+    "allSourceTripCountsPreserved": true,
+    "distanceFilter": null,
+    "departureTimestampPrecisionSeconds": 1,
+    "allSourceDepartureOffsetsPreserved": true,
+    "linkCountLimit": null,
+    "exportedIndividualIdentifiers": false,
+    "days": [
+      {
+        "date": "2021-11-01",
+        "asset": "metro-flows-20211101.u16",
+        "bytes": 3150880,
+        "sha256": "fc8f6d9c288a2d2326256c4abd2269480a0f21ef21c63803f3185a4babcd786e",
+        "sparseRecordCount": 393860,
+        "tripRecordCount": 649016,
+        "uniqueDirectedPairCount": 77294,
+        "maximumBinPairCount": 71,
+        "maximumCumulativePairCount": 770,
+        "allValuesFitUint16": true,
+        "binaryRowsExactlyMatchSource": true,
+        "all96BinTripTotalsMatchSource": true,
+        "departureAsset": "metro-departures-20211101.u16",
+        "departureBytes": 1298032,
+        "departureSHA256": "ec34491c426b37058185a108f5b200a52f73151f534a4d3743bbe3d111436e94",
+        "allDepartureOffsetsExactlyMatchSource": true,
+        "departureOffsetUnit": "seconds since the start of the recorded 15-minute bin",
+        "departureOffsetRange": [
+          0,
+          899
+        ]
+      },
+      {
+        "date": "2021-11-02",
+        "asset": "metro-flows-20211102.u16",
+        "bytes": 3206128,
+        "sha256": "9c59ff797b4e784c2556507385e18bd75576abc3fab99e204c160b88cfb8ca93",
+        "sparseRecordCount": 400766,
+        "tripRecordCount": 662798,
+        "uniqueDirectedPairCount": 78794,
+        "maximumBinPairCount": 70,
+        "maximumCumulativePairCount": 784,
+        "allValuesFitUint16": true,
+        "binaryRowsExactlyMatchSource": true,
+        "all96BinTripTotalsMatchSource": true,
+        "departureAsset": "metro-departures-20211102.u16",
+        "departureBytes": 1325596,
+        "departureSHA256": "543660aed8337edf9b2816e97bea430635144866c5137f4a4edcf4ec1e8113c3",
+        "allDepartureOffsetsExactlyMatchSource": true,
+        "departureOffsetUnit": "seconds since the start of the recorded 15-minute bin",
+        "departureOffsetRange": [
+          0,
+          899
+        ]
+      },
+      {
+        "date": "2021-11-03",
+        "asset": "metro-flows-20211103.u16",
+        "bytes": 3284656,
+        "sha256": "f25ddbf606c0f6cd23e7d6ccc980c0aaf383476b68efce37b91114fc09794e52",
+        "sparseRecordCount": 410582,
+        "tripRecordCount": 689479,
+        "uniqueDirectedPairCount": 79587,
+        "maximumBinPairCount": 67,
+        "maximumCumulativePairCount": 808,
+        "allValuesFitUint16": true,
+        "binaryRowsExactlyMatchSource": true,
+        "all96BinTripTotalsMatchSource": true,
+        "departureAsset": "metro-departures-20211103.u16",
+        "departureBytes": 1378958,
+        "departureSHA256": "da7c4af6d77cd3140715b449d26d91f8a1384527cc3e513cc5d0de08124174a2",
+        "allDepartureOffsetsExactlyMatchSource": true,
+        "departureOffsetUnit": "seconds since the start of the recorded 15-minute bin",
+        "departureOffsetRange": [
+          0,
+          899
+        ]
+      },
+      {
+        "date": "2021-11-04",
+        "asset": "metro-flows-20211104.u16",
+        "bytes": 3341600,
+        "sha256": "fcd383cf50d68bad629e97a3608c40c69e6a06d7f86e682654610d93aa9a9606",
+        "sparseRecordCount": 417700,
+        "tripRecordCount": 705742,
+        "uniqueDirectedPairCount": 80612,
+        "maximumBinPairCount": 73,
+        "maximumCumulativePairCount": 842,
+        "allValuesFitUint16": true,
+        "binaryRowsExactlyMatchSource": true,
+        "all96BinTripTotalsMatchSource": true,
+        "departureAsset": "metro-departures-20211104.u16",
+        "departureBytes": 1411484,
+        "departureSHA256": "751ff72d0b54b6f8c941da6c0f195380976709456318def9e826479fbeb43d64",
+        "allDepartureOffsetsExactlyMatchSource": true,
+        "departureOffsetUnit": "seconds since the start of the recorded 15-minute bin",
+        "departureOffsetRange": [
+          0,
+          899
+        ]
+      },
+      {
+        "date": "2021-11-05",
+        "asset": "metro-flows-20211105.u16",
+        "bytes": 3543008,
+        "sha256": "315b404c00c8004592c5215e2894ddd9fd1066bd423f9f0e1a37673f57b1be06",
+        "sparseRecordCount": 442876,
+        "tripRecordCount": 761395,
+        "uniqueDirectedPairCount": 82680,
+        "maximumBinPairCount": 76,
+        "maximumCumulativePairCount": 778,
+        "allValuesFitUint16": true,
+        "binaryRowsExactlyMatchSource": true,
+        "all96BinTripTotalsMatchSource": true,
+        "departureAsset": "metro-departures-20211105.u16",
+        "departureBytes": 1522790,
+        "departureSHA256": "93aa8d7d1ced925be94fd3ecab4a9ad51f92c3b49c79b8983a0b169e6601ef5b",
+        "allDepartureOffsetsExactlyMatchSource": true,
+        "departureOffsetUnit": "seconds since the start of the recorded 15-minute bin",
+        "departureOffsetRange": [
+          0,
+          899
+        ]
+      }
+    ]
+  },
+  "browserAssetSHA256": "be6b2e9025216ce7f8de193dc24d61b331479c7d1f77af0430b42f082c66a6a1",
+  "bundleSHA256": "8304e8236b0cfc5cdc2e6b0b43a1026f6acf383e9de8c6da3d95a3d60aabbb5f",
+  "sourceAudit": {
+    "schemaVersion": 2,
+    "definition": "Observed direct-trip record counts. Each raw trajectory with both endpoints inside the displayed metropolitan grid contributes one directed origin-to-destination trip to the 15-minute bin containing its departure time. Same-cell trips are excluded. Counts are trajectory records, not distinct devices, model predictions, or inferred transitions between state snapshots.",
+    "stateComparisonNote": "The flow map shows trips departing during the displayed 15-minute bin. Trip duration, entry and exit from the study area, and differences between trip records and snapshot counts mean these arrows are not asserted to sum exactly to the change in the observed population series.",
+    "originalRawDirectory": "/Users/zhongfuma/Library/Mobile Documents/com~apple~CloudDocs/Research/U_discovery/PlaceIQ_TCMA/data_traj/2021/unattributed_nov21_jan22_agg_TCMA_time",
+    "rawSources": [
+      {
+        "file": "dt=20211101.csv",
+        "bytes": 60176772,
+        "sha256": "70122892fa026c3f6174f8d6040146e3ff2238b0591ff89fea5d0f52a93816cf",
+        "records": 892322,
+        "outsideDepartureWindow": 0,
+        "eitherEndpointOutsideGrid": 18076,
+        "sameCell": 225230,
+        "exportedTripRecords": 649016
+      },
+      {
+        "file": "dt=20211102.csv",
+        "bytes": 61421159,
+        "sha256": "7256287631ab306aef37bb539f174c3d72a53d6a61b94400fd3b6b101a4b3cd0",
+        "records": 910785,
+        "outsideDepartureWindow": 0,
+        "eitherEndpointOutsideGrid": 18271,
+        "sameCell": 229716,
+        "exportedTripRecords": 662798
+      },
+      {
+        "file": "dt=20211103.csv",
+        "bytes": 63839388,
+        "sha256": "4922b0f53cc8ff16c15b8790c240fddad11ec7377228cbd8394b7bb13fb95d17",
+        "records": 946616,
+        "outsideDepartureWindow": 0,
+        "eitherEndpointOutsideGrid": 18721,
+        "sameCell": 238416,
+        "exportedTripRecords": 689479
+      },
+      {
+        "file": "dt=20211104.csv",
+        "bytes": 65300713,
+        "sha256": "236a7df8cf45f9bd05c70b1915332b6ff62f1b2014c1968f49a23c4f3b6a58db",
+        "records": 968253,
+        "outsideDepartureWindow": 0,
+        "eitherEndpointOutsideGrid": 19270,
+        "sameCell": 243241,
+        "exportedTripRecords": 705742
+      },
+      {
+        "file": "dt=20211105.csv",
+        "bytes": 70511075,
+        "sha256": "bf1d9165709850cf018bde9c6c1e78ef8fe48971f2f98c513902d771b4fa7490",
+        "records": 1045460,
+        "outsideDepartureWindow": 0,
+        "eitherEndpointOutsideGrid": 21198,
+        "sameCell": 262867,
+        "exportedTripRecords": 761395
+      }
+    ],
+    "geometrySource": "public/data/metro_cells.geojson",
+    "geometrySHA256": "623247cbf055d40ad4b2211084ebd3bf02e0b8736ec492f925ee60b6e5ecfb6e",
+    "projection": "EPSG:26915",
+    "geometryAssignment": "Raw WGS84 endpoints projected to NAD83 / UTM zone 15N; strict within-polygon spatial join; ambiguous assignments rejected.",
+    "countingUnit": "One raw trajectory record (observation_count is not a multiplier)",
+    "duplicatePolicy": "Every source trajectory row is counted once; no device-level deduplication or inference.",
+    "timeConvention": "America/Chicago departure bins [time, time + 15 minutes), November 1\u20135, 2021",
+    "departureOffsets": "Actual integer-second unix_time offsets within each 15-minute bin; one offset per retained source trajectory row, sorted by frame/origin/destination/departure time and aligned to edge counts. No times are distributed or interpolated.",
+    "departureTimestampPrecisionSeconds": 1,
+    "timestampGroupingExactlyMatchesSourceCounts": true,
+    "previousCountArchivePreserved": true,
+    "sourceBundle": "aggregate_trip_counts.npz",
+    "sourceBundleSHA256": "8304e8236b0cfc5cdc2e6b0b43a1026f6acf383e9de8c6da3d95a3d60aabbb5f",
+    "arrays": {
+      "edges": {
+        "shape": [
+          2065784,
+          4
+        ],
+        "dtype": "int32",
+        "sha256": "c953bb633c368a9cf846bf06b0bd1d49e0c7b63d629104078ebd4fe8ecc5a49d"
+      },
+      "node_ids": {
+        "shape": [
+          1117
+        ],
+        "dtype": "int32",
+        "sha256": "76e3d6a2664c27458f568332b171179490c9d3d56e510481296811e1fab296a8"
+      },
+      "centroids": {
+        "shape": [
+          1117,
+          2
+        ],
+        "dtype": "float64",
+        "sha256": "106452a19035c09f00373ba3379e997f0719445edf45bc81ba801eb698bc278d"
+      },
+      "departure_offsets": {
+        "shape": [
+          3468430
+        ],
+        "dtype": "uint16",
+        "sha256": "63244a141f01b95e912fb6efe3b88951c4f9b0efc9697b8c47cc83c2785b56b2"
+      }
+    },
+    "edgeColumns": [
+      "frameIndex",
+      "originNodeIndex",
+      "destinationNodeIndex",
+      "tripRecordCount"
+    ],
+    "rawRecords": 4763436,
+    "tripRecords": 3468430,
+    "sparseEdgeCount": 2065784,
+    "exportedIndividualIdentifiers": false
+  },
+  "regenerate": ".venv/bin/python scripts/prepare_metro_flows.py"
+}

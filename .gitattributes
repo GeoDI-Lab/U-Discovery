@@ -6,3 +6,6 @@ reproduced/**/*.csv -text -diff
 reproduced/**/*.svg -text -diff
 *.npz -text -diff
 *.png -text -diff
+demo/assets/** -text -diff -whitespace
+demo/data/** -text -diff -whitespace
+demo/licenses/** -text -diff -whitespace

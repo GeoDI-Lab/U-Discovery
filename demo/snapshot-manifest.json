@@ -1,0 +1,812 @@
+{
+  "source": "https://zhongfuma-gis.com/u-discovery-geodi/",
+  "captured_at": "2026-11-07T00:03:41.418408+00:00",
+  "deployment_base": "/U-Discovery/",
+  "transform": "Only HTML, JavaScript and CSS deployment prefixes changed; data and images are unchanged.",
+  "files": {
+    "assets/KaTeX_AMS-Regular-BQhdFMY1.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_AMS-Regular-BQhdFMY1.woff2",
+      "source_sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308",
+      "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308",
+      "bytes": 28076
+    },
+    "assets/KaTeX_AMS-Regular-DMm9YOAa.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_AMS-Regular-DMm9YOAa.woff",
+      "source_sha256": "30da91e84c893f875e252689faebdc590b2871145e8adc7f9a9d4dbd8ce0b251",
+      "sha256": "30da91e84c893f875e252689faebdc590b2871145e8adc7f9a9d4dbd8ce0b251",
+      "bytes": 33516
+    },
+    "assets/KaTeX_AMS-Regular-DRggAlZN.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_AMS-Regular-DRggAlZN.ttf",
+      "source_sha256": "68534840bcfdd2bffb6f0e8deb48684dd01e7f04ea2813267577afb906de1d13",
+      "sha256": "68534840bcfdd2bffb6f0e8deb48684dd01e7f04ea2813267577afb906de1d13",
+      "bytes": 63632
+    },
+    "assets/KaTeX_Caligraphic-Bold-ATXxdsX0.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Caligraphic-Bold-ATXxdsX0.ttf",
+      "source_sha256": "07d8e303ce4fc12b4bb54f1004170dd190a1f3db45d400fe68060df3e0897268",
+      "sha256": "07d8e303ce4fc12b4bb54f1004170dd190a1f3db45d400fe68060df3e0897268",
+      "bytes": 12368
+    },
+    "assets/KaTeX_Caligraphic-Bold-BEiXGLvX.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Caligraphic-Bold-BEiXGLvX.woff",
+      "source_sha256": "1ae6bd7475590e97e7f145a89e09ccde322f7a6bc0b91607b1c8b8ee28290fed",
+      "sha256": "1ae6bd7475590e97e7f145a89e09ccde322f7a6bc0b91607b1c8b8ee28290fed",
+      "bytes": 7716
+    },
+    "assets/KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2",
+      "source_sha256": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c",
+      "sha256": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c",
+      "bytes": 6912
+    },
+    "assets/KaTeX_Caligraphic-Regular-CTRA-rTL.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Caligraphic-Regular-CTRA-rTL.woff",
+      "source_sha256": "3398dd02302557a793f2863f88e02d96ce10df2abffa07c8e9fa90775116e65c",
+      "sha256": "3398dd02302557a793f2863f88e02d96ce10df2abffa07c8e9fa90775116e65c",
+      "bytes": 7656
+    },
+    "assets/KaTeX_Caligraphic-Regular-Di6jR-x-.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Caligraphic-Regular-Di6jR-x-.woff2",
+      "source_sha256": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b",
+      "sha256": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b",
+      "bytes": 6908
+    },
+    "assets/KaTeX_Caligraphic-Regular-wX97UBjC.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Caligraphic-Regular-wX97UBjC.ttf",
+      "source_sha256": "ed0b74372feefcbb9c0666b2e210da37b7e49fa7fbbf3eeb11db5f693dacfbb7",
+      "sha256": "ed0b74372feefcbb9c0666b2e210da37b7e49fa7fbbf3eeb11db5f693dacfbb7",
+      "bytes": 12344
+    },
+    "assets/KaTeX_Fraktur-Bold-BdnERNNW.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Fraktur-Bold-BdnERNNW.ttf",
+      "source_sha256": "9163df9c7122432e6495b4229fa9071cf9ae86a758ae5efc4924ec2e1a6dbce1",
+      "sha256": "9163df9c7122432e6495b4229fa9071cf9ae86a758ae5efc4924ec2e1a6dbce1",
+      "bytes": 19584
+    },
+    "assets/KaTeX_Fraktur-Bold-BsDP51OF.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Fraktur-Bold-BsDP51OF.woff",
+      "source_sha256": "9be7ceb88004ab8ad124082246fbfcca4091e36385d4ec6ed1df67375dad50fb",
+      "sha256": "9be7ceb88004ab8ad124082246fbfcca4091e36385d4ec6ed1df67375dad50fb",
+      "bytes": 13296
+    },
+    "assets/KaTeX_Fraktur-Bold-CL6g_b3V.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Fraktur-Bold-CL6g_b3V.woff2",
+      "source_sha256": "74444efd593c005e3f4573b44524704c0af0a937fe911cca9e94068d0d140d3f",
+      "sha256": "74444efd593c005e3f4573b44524704c0af0a937fe911cca9e94068d0d140d3f",
+      "bytes": 11348
+    },
+    "assets/KaTeX_Fraktur-Regular-CB_wures.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Fraktur-Regular-CB_wures.ttf",
+      "source_sha256": "1e6f9579e90e2cac37f8f60a597c436e075c114385652b7cbeb0dec0421291b3",
+      "sha256": "1e6f9579e90e2cac37f8f60a597c436e075c114385652b7cbeb0dec0421291b3",
+      "bytes": 19572
+    },
+    "assets/KaTeX_Fraktur-Regular-CTYiF6lA.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Fraktur-Regular-CTYiF6lA.woff2",
+      "source_sha256": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc",
+      "sha256": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc",
+      "bytes": 11316
+    },
+    "assets/KaTeX_Fraktur-Regular-Dxdc4cR9.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Fraktur-Regular-Dxdc4cR9.woff",
+      "source_sha256": "5e28753be717dac97f559f49bc10be9cf3c124ddcabda6659d11cb68febc6463",
+      "sha256": "5e28753be717dac97f559f49bc10be9cf3c124ddcabda6659d11cb68febc6463",
+      "bytes": 13208
+    },
+    "assets/KaTeX_Main-Bold-Cx986IdX.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Main-Bold-Cx986IdX.woff2",
+      "source_sha256": "0f60d1b897938ec918c8ce073092411baf9438f6739465693ff18b0f9d20b021",
+      "sha256": "0f60d1b897938ec918c8ce073092411baf9438f6739465693ff18b0f9d20b021",
+      "bytes": 25324
+    },
+    "assets/KaTeX_Main-Bold-Jm3AIy58.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Main-Bold-Jm3AIy58.woff",
+      "source_sha256": "c76c5d696297d51b9cb1639c7da4334f0e7dec81b42b11213b5e25ef671bb822",
+      "sha256": "c76c5d696297d51b9cb1639c7da4334f0e7dec81b42b11213b5e25ef671bb822",
+      "bytes": 29912
+    },
+    "assets/KaTeX_Main-Bold-waoOVXN0.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Main-Bold-waoOVXN0.ttf",
+      "source_sha256": "138ac28d1663b3037e9c5f52371fa5c63d8324f4a38d22cd573e6ea3a3fd0cf8",
+      "sha256": "138ac28d1663b3037e9c5f52371fa5c63d8324f4a38d22cd573e6ea3a3fd0cf8",
+      "bytes": 51336
+    },
+    "assets/KaTeX_Main-BoldItalic-DxDJ3AOS.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Main-BoldItalic-DxDJ3AOS.woff2",
+      "source_sha256": "99cd42a3c072d918f2f44984a807cf7aa16e13545fd0875fc07c6c65f99e715b",
+      "sha256": "99cd42a3c072d918f2f44984a807cf7aa16e13545fd0875fc07c6c65f99e715b",
+      "bytes": 16780
+    },
+    "assets/KaTeX_Main-BoldItalic-DzxPMmG6.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Main-BoldItalic-DzxPMmG6.ttf",
+      "source_sha256": "70ee1f64a20f2048c21940ef46d0144fd215baa953ca69afd1e31e98544f708f",
+      "sha256": "70ee1f64a20f2048c21940ef46d0144fd215baa953ca69afd1e31e98544f708f",
+      "bytes": 32968
+    },
+    "assets/KaTeX_Main-BoldItalic-SpSLRI95.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Main-BoldItalic-SpSLRI95.woff",
+      "source_sha256": "a6f7ec0d846ac7ad975adb8959c37ed49b94acbc4ae436db9ce9e20287e4a64c",
+      "sha256": "a6f7ec0d846ac7ad975adb8959c37ed49b94acbc4ae436db9ce9e20287e4a64c",
+      "bytes": 19412
+    },
+    "assets/KaTeX_Main-Italic-3WenGoN9.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Main-Italic-3WenGoN9.ttf",
+      "source_sha256": "0d85ae7cc30f23790a7f1a58c4a112fdca8aae769b6ba11429af1d98b1b6cb3a",
+      "sha256": "0d85ae7cc30f23790a7f1a58c4a112fdca8aae769b6ba11429af1d98b1b6cb3a",
+      "bytes": 33580
+    },
+    "assets/KaTeX_Main-Italic-BMLOBm91.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Main-Italic-BMLOBm91.woff",
+      "source_sha256": "f1d6ef86f3b11a528bd5185199bd2443ecb2b0dead96d88674b5a2c12be24bdf",
+      "sha256": "f1d6ef86f3b11a528bd5185199bd2443ecb2b0dead96d88674b5a2c12be24bdf",
+      "bytes": 19676
+    },
+    "assets/KaTeX_Main-Italic-NWA7e6Wa.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Main-Italic-NWA7e6Wa.woff2",
+      "source_sha256": "97479ca6cce906abc961ecac96faa5f9ca2e61b8e7670d475826bcdee9a7c267",
+      "sha256": "97479ca6cce906abc961ecac96faa5f9ca2e61b8e7670d475826bcdee9a7c267",
+      "bytes": 16988
+    },
+    "assets/KaTeX_Main-Regular-B22Nviop.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Main-Regular-B22Nviop.woff2",
+      "source_sha256": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866",
+      "sha256": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866",
+      "bytes": 26272
+    },
+    "assets/KaTeX_Main-Regular-Dr94JaBh.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Main-Regular-Dr94JaBh.woff",
+      "source_sha256": "c6368d87e8a1a3a5d337623d83d8dc4b868f242a9ad476237d6f8d1e0f168cdc",
+      "sha256": "c6368d87e8a1a3a5d337623d83d8dc4b868f242a9ad476237d6f8d1e0f168cdc",
+      "bytes": 30772
+    },
+    "assets/KaTeX_Main-Regular-ypZvNtVU.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Main-Regular-ypZvNtVU.ttf",
+      "source_sha256": "d0332f52868370fd83ae7fa46470f90c8f2eab2fcf12bc4f88080b340c95a830",
+      "sha256": "d0332f52868370fd83ae7fa46470f90c8f2eab2fcf12bc4f88080b340c95a830",
+      "bytes": 53580
+    },
+    "assets/KaTeX_Math-BoldItalic-B3XSjfu4.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Math-BoldItalic-B3XSjfu4.ttf",
+      "source_sha256": "f9377ab0271cda59af24bcffbd46a4d0c8a3572ffafdbb38de2ad5ea7b0d5ee5",
+      "sha256": "f9377ab0271cda59af24bcffbd46a4d0c8a3572ffafdbb38de2ad5ea7b0d5ee5",
+      "bytes": 31196
+    },
+    "assets/KaTeX_Math-BoldItalic-CZnvNsCZ.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Math-BoldItalic-CZnvNsCZ.woff2",
+      "source_sha256": "dc47344dbb6cb5b655c8460d561f4df5f501b90c804ad3c6cec65fe322351ab1",
+      "sha256": "dc47344dbb6cb5b655c8460d561f4df5f501b90c804ad3c6cec65fe322351ab1",
+      "bytes": 16400
+    },
+    "assets/KaTeX_Math-BoldItalic-iY-2wyZ7.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Math-BoldItalic-iY-2wyZ7.woff",
+      "source_sha256": "850c0af5c2238497febaf5e461d880bf458c341f42f4f330f1b1ab5698b1998e",
+      "sha256": "850c0af5c2238497febaf5e461d880bf458c341f42f4f330f1b1ab5698b1998e",
+      "bytes": 18668
+    },
+    "assets/KaTeX_Math-Italic-DA0__PXp.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Math-Italic-DA0__PXp.woff",
+      "source_sha256": "8a8d244581371912b8f3f5a23e2437cb2a59cd9bcaebb0346e722c05737a2571",
+      "sha256": "8a8d244581371912b8f3f5a23e2437cb2a59cd9bcaebb0346e722c05737a2571",
+      "bytes": 18748
+    },
+    "assets/KaTeX_Math-Italic-flOr_0UB.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Math-Italic-flOr_0UB.ttf",
+      "source_sha256": "08ce98e51b04d58945a301e639e02b6998af29fdfd61a7b8afdd07bbfc479d4a",
+      "sha256": "08ce98e51b04d58945a301e639e02b6998af29fdfd61a7b8afdd07bbfc479d4a",
+      "bytes": 31308
+    },
+    "assets/KaTeX_Math-Italic-t53AETM-.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Math-Italic-t53AETM-.woff2",
+      "source_sha256": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264",
+      "sha256": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264",
+      "bytes": 16440
+    },
+    "assets/KaTeX_SansSerif-Bold-CFMepnvq.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_SansSerif-Bold-CFMepnvq.ttf",
+      "source_sha256": "1ece03f79f95277d57dc7f6b435a74e1379b0d46104a8530286b60ff49369ea0",
+      "sha256": "1ece03f79f95277d57dc7f6b435a74e1379b0d46104a8530286b60ff49369ea0",
+      "bytes": 24504
+    },
+    "assets/KaTeX_SansSerif-Bold-D1sUS0GD.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_SansSerif-Bold-D1sUS0GD.woff2",
+      "source_sha256": "e99ae51144bf1232efcc1bfe5add36262c6866b0faab24fa75740e1b98577a62",
+      "sha256": "e99ae51144bf1232efcc1bfe5add36262c6866b0faab24fa75740e1b98577a62",
+      "bytes": 12216
+    },
+    "assets/KaTeX_SansSerif-Bold-DbIhKOiC.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_SansSerif-Bold-DbIhKOiC.woff",
+      "source_sha256": "ece03cfd83e22c212cdef66feb8442d25a083beb988db3f1883f3f9738d750ba",
+      "sha256": "ece03cfd83e22c212cdef66feb8442d25a083beb988db3f1883f3f9738d750ba",
+      "bytes": 14408
+    },
+    "assets/KaTeX_SansSerif-Italic-C3H0VqGB.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_SansSerif-Italic-C3H0VqGB.woff2",
+      "source_sha256": "00b26ac825e2095056396e0553b8ac26d3f8ad158c3826e28b4c45b385c4714a",
+      "sha256": "00b26ac825e2095056396e0553b8ac26d3f8ad158c3826e28b4c45b385c4714a",
+      "bytes": 12028
+    },
+    "assets/KaTeX_SansSerif-Italic-DN2j7dab.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_SansSerif-Italic-DN2j7dab.woff",
+      "source_sha256": "91ee67500cc0129aa0ace3ac5c61ff1692102f0f31d02b69347fba35dcb75bf2",
+      "sha256": "91ee67500cc0129aa0ace3ac5c61ff1692102f0f31d02b69347fba35dcb75bf2",
+      "bytes": 14112
+    },
+    "assets/KaTeX_SansSerif-Italic-YYjJ1zSn.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_SansSerif-Italic-YYjJ1zSn.ttf",
+      "source_sha256": "3931dd81faed86ba021bb2bbdc36f5bed9a38d6b4f4077aca59b265aa1b02083",
+      "sha256": "3931dd81faed86ba021bb2bbdc36f5bed9a38d6b4f4077aca59b265aa1b02083",
+      "bytes": 22364
+    },
+    "assets/KaTeX_SansSerif-Regular-BNo7hRIc.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_SansSerif-Regular-BNo7hRIc.ttf",
+      "source_sha256": "f36ea897e19f4a2e571d1e900e4e3710e438deb05a842486045ba0a3e616a4ad",
+      "sha256": "f36ea897e19f4a2e571d1e900e4e3710e438deb05a842486045ba0a3e616a4ad",
+      "bytes": 19436
+    },
+    "assets/KaTeX_SansSerif-Regular-CS6fqUqJ.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_SansSerif-Regular-CS6fqUqJ.woff",
+      "source_sha256": "11e4dc8a6471ff6d6ee561d53d10fde8f7489e798257ff449c5d37c197435605",
+      "sha256": "11e4dc8a6471ff6d6ee561d53d10fde8f7489e798257ff449c5d37c197435605",
+      "bytes": 12316
+    },
+    "assets/KaTeX_SansSerif-Regular-DDBCnlJ7.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_SansSerif-Regular-DDBCnlJ7.woff2",
+      "source_sha256": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342",
+      "sha256": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342",
+      "bytes": 10344
+    },
+    "assets/KaTeX_Script-Regular-C5JkGWo-.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Script-Regular-C5JkGWo-.ttf",
+      "source_sha256": "1c67f068fea8bb09bf099c088b1cf64bd27516a6e07f4684344873564bb66a67",
+      "sha256": "1c67f068fea8bb09bf099c088b1cf64bd27516a6e07f4684344873564bb66a67",
+      "bytes": 16648
+    },
+    "assets/KaTeX_Script-Regular-D3wIWfF6.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Script-Regular-D3wIWfF6.woff2",
+      "source_sha256": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b",
+      "sha256": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b",
+      "bytes": 9644
+    },
+    "assets/KaTeX_Script-Regular-D5yQViql.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Script-Regular-D5yQViql.woff",
+      "source_sha256": "d96cdf2b3bdd4d64a8fd5f74a4c467f123a8a73931cd435889f08ffaf9bf947a",
+      "sha256": "d96cdf2b3bdd4d64a8fd5f74a4c467f123a8a73931cd435889f08ffaf9bf947a",
+      "bytes": 10588
+    },
+    "assets/KaTeX_Size1-Regular-C195tn64.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Size1-Regular-C195tn64.woff",
+      "source_sha256": "c943cc986384f59e86bea5fd7dc50a9c4dfe567a7c05eb40d6790720dead97c9",
+      "sha256": "c943cc986384f59e86bea5fd7dc50a9c4dfe567a7c05eb40d6790720dead97c9",
+      "bytes": 6496
+    },
+    "assets/KaTeX_Size1-Regular-Dbsnue_I.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Size1-Regular-Dbsnue_I.ttf",
+      "source_sha256": "95b6d2f1a50173bfedb8c63e1d1c99b10427d0a4df4201cb44513b226951a22b",
+      "sha256": "95b6d2f1a50173bfedb8c63e1d1c99b10427d0a4df4201cb44513b226951a22b",
+      "bytes": 12228
+    },
+    "assets/KaTeX_Size1-Regular-mCD8mA8B.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Size1-Regular-mCD8mA8B.woff2",
+      "source_sha256": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe",
+      "sha256": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe",
+      "bytes": 5468
+    },
+    "assets/KaTeX_Size2-Regular-B7gKUWhC.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Size2-Regular-B7gKUWhC.ttf",
+      "source_sha256": "a6b2099fb555c60e3a0db3a08842ebf1d732c6eb4e4bf44913613bed4fc4e39b",
+      "sha256": "a6b2099fb555c60e3a0db3a08842ebf1d732c6eb4e4bf44913613bed4fc4e39b",
+      "bytes": 11508
+    },
+    "assets/KaTeX_Size2-Regular-Dy4dx90m.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Size2-Regular-Dy4dx90m.woff2",
+      "source_sha256": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd",
+      "sha256": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd",
+      "bytes": 5208
+    },
+    "assets/KaTeX_Size2-Regular-oD1tc_U0.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Size2-Regular-oD1tc_U0.woff",
+      "source_sha256": "2014c523c3210bcc166648c4d4cc57f05b747df07a24277bf71c51e67dc79e3d",
+      "sha256": "2014c523c3210bcc166648c4d4cc57f05b747df07a24277bf71c51e67dc79e3d",
+      "bytes": 6188
+    },
+    "assets/KaTeX_Size3-Regular-CTq5MqoE.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Size3-Regular-CTq5MqoE.woff",
+      "source_sha256": "6ab6b62e9b62dae2c00dd90f791bd10950be0ecc3490d7d6045f51c2e8fe0949",
+      "sha256": "6ab6b62e9b62dae2c00dd90f791bd10950be0ecc3490d7d6045f51c2e8fe0949",
+      "bytes": 4420
+    },
+    "assets/KaTeX_Size3-Regular-DgpXs0kz.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Size3-Regular-DgpXs0kz.ttf",
+      "source_sha256": "500e04d54f0d51666332c9d2089aa803be22aa878eca539e59fa53c6e522b082",
+      "sha256": "500e04d54f0d51666332c9d2089aa803be22aa878eca539e59fa53c6e522b082",
+      "bytes": 7588
+    },
+    "assets/KaTeX_Size4-Regular-BF-4gkZK.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Size4-Regular-BF-4gkZK.woff",
+      "source_sha256": "99f9c6750b489c9462bf04900bd3f939df9b829339daaaaa99ef5495cdddea58",
+      "sha256": "99f9c6750b489c9462bf04900bd3f939df9b829339daaaaa99ef5495cdddea58",
+      "bytes": 5980
+    },
+    "assets/KaTeX_Size4-Regular-DWFBv043.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Size4-Regular-DWFBv043.ttf",
+      "source_sha256": "c647367d1dd4e162468717d020e1fc0f1dc5c26ebfdffbe55261713bf88c5877",
+      "sha256": "c647367d1dd4e162468717d020e1fc0f1dc5c26ebfdffbe55261713bf88c5877",
+      "bytes": 10364
+    },
+    "assets/KaTeX_Size4-Regular-Dl5lxZxV.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Size4-Regular-Dl5lxZxV.woff2",
+      "source_sha256": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0",
+      "sha256": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0",
+      "bytes": 4928
+    },
+    "assets/KaTeX_Typewriter-Regular-C0xS9mPB.woff": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Typewriter-Regular-C0xS9mPB.woff",
+      "source_sha256": "e14fed02b1aba7ce9f5afd5844b5d0321b22351febc720e0de8b8723527609f7",
+      "sha256": "e14fed02b1aba7ce9f5afd5844b5d0321b22351febc720e0de8b8723527609f7",
+      "bytes": 16028
+    },
+    "assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2",
+      "source_sha256": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b",
+      "sha256": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b",
+      "bytes": 13568
+    },
+    "assets/KaTeX_Typewriter-Regular-D3Ib7_Hf.ttf": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KaTeX_Typewriter-Regular-D3Ib7_Hf.ttf",
+      "source_sha256": "f01f3e87d9c6a61c0c081ceb577abd864eb00a612f7ac1620dd6915fad2ef5aa",
+      "sha256": "f01f3e87d9c6a61c0c081ceb577abd864eb00a612f7ac1620dd6915fad2ef5aa",
+      "bytes": 27556
+    },
+    "assets/KnowledgeGraph-C9hTihof.js": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/KnowledgeGraph-C9hTihof.js",
+      "source_sha256": "fde8b72348e46315215286b95f74491fa687466ff6b4c0aa2a64bc1130b9e9f1",
+      "sha256": "fde8b72348e46315215286b95f74491fa687466ff6b4c0aa2a64bc1130b9e9f1",
+      "bytes": 192288
+    },
+    "assets/OverviewCityMap-CxU2OLO6.js": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/OverviewCityMap-CxU2OLO6.js",
+      "source_sha256": "98f794f33d2c2cad89c0db03373de085a9788055a3529fe284d490c1bd00647e",
+      "sha256": "98f794f33d2c2cad89c0db03373de085a9788055a3529fe284d490c1bd00647e",
+      "bytes": 2788
+    },
+    "assets/OverviewFlowMap-BLUyCm1a.js": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/OverviewFlowMap-BLUyCm1a.js",
+      "source_sha256": "1e30f0baa4c8d2783667c3c6e6bb1f9ad55cb2336e2893b3e09b4cf0899fdb97",
+      "sha256": "1e30f0baa4c8d2783667c3c6e6bb1f9ad55cb2336e2893b3e09b4cf0899fdb97",
+      "bytes": 30080
+    },
+    "assets/Results-C4VtQ6E8.js": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/Results-C4VtQ6E8.js",
+      "source_sha256": "f75cf6a51efb6c5eef3bbbdfc24e23aae5094a03b0d8200ea65aa13062ce17a1",
+      "sha256": "f75cf6a51efb6c5eef3bbbdfc24e23aae5094a03b0d8200ea65aa13062ce17a1",
+      "bytes": 377284
+    },
+    "assets/array-utils-flat-BL8Cekj1.js": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/array-utils-flat-BL8Cekj1.js",
+      "source_sha256": "46eae12be0ebc64610f10ec258efded3e694367396ac357484b4f21b655130ec",
+      "sha256": "46eae12be0ebc64610f10ec258efded3e694367396ac357484b4f21b655130ec",
+      "bytes": 29536
+    },
+    "assets/dm-sans-latin-ext-wght-normal-BOFOeGcA.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/dm-sans-latin-ext-wght-normal-BOFOeGcA.woff2",
+      "source_sha256": "a5d38fe99f930275684999b462c7123faa063d9e44e73b4b241723d884aa0f49",
+      "sha256": "a5d38fe99f930275684999b462c7123faa063d9e44e73b4b241723d884aa0f49",
+      "bytes": 18228
+    },
+    "assets/dm-sans-latin-wght-normal-Xz1IZZA0.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/dm-sans-latin-wght-normal-Xz1IZZA0.woff2",
+      "source_sha256": "9fea608a947e67020c33cad9a6fe3d60c54119dfb8cff87768a8117a15ed7543",
+      "sha256": "9fea608a947e67020c33cad9a6fe3d60c54119dfb8cff87768a8117a15ed7543",
+      "bytes": 36932
+    },
+    "assets/get-attribute-from-layouts-Dd2gixpo.js": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/get-attribute-from-layouts-Dd2gixpo.js",
+      "source_sha256": "c3df70940a098908ff056d6e9e4ae5a8a31535e3fddfa819b440968de4b09366",
+      "sha256": "c3df70940a098908ff056d6e9e4ae5a8a31535e3fddfa819b440968de4b09366",
+      "bytes": 19203
+    },
+    "assets/gpu-data-evaluator-C4c0ona9.js": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/gpu-data-evaluator-C4c0ona9.js",
+      "source_sha256": "dc996e36a3ed31dc8ef163d79a6e2f5600c1519549b8c1635a7dc7cd29e164f9",
+      "sha256": "dc996e36a3ed31dc8ef163d79a6e2f5600c1519549b8c1635a7dc7cd29e164f9",
+      "bytes": 96599
+    },
+    "assets/index-CYOgXBXs.css": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/index-CYOgXBXs.css",
+      "source_sha256": "aa11dee943603d11423ce75de27c7fd91f35ab5c6f2da1f5e04fbe8fc3a88970",
+      "sha256": "ac1baed80f5c0d0bc9448e705cac7b1c2b5f787eb5f388a01454d727bf7b74ac",
+      "bytes": 141279
+    },
+    "assets/index-D9N1IK3d.js": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/index-D9N1IK3d.js",
+      "source_sha256": "09e08d0f1cd902c009339f01d3a14cfd9713f6e147d914ea83aa3fc6b240279f",
+      "sha256": "166f3880c11ef2a45f9ee6ddebbf640ae37dcbfb406a8ba37c9feb9f04d6dded",
+      "bytes": 992953
+    },
+    "assets/jsx-runtime-D3jfb0Ew.js": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/jsx-runtime-D3jfb0Ew.js",
+      "source_sha256": "a2c68294426b0ded53fa2d6c97bb39c4a51f99e5e4b23e7953a2c69298e361f8",
+      "sha256": "a2c68294426b0ded53fa2d6c97bb39c4a51f99e5e4b23e7953a2c69298e361f8",
+      "bytes": 8901
+    },
+    "assets/manrope-cyrillic-wght-normal-Dvxsihut.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/manrope-cyrillic-wght-normal-Dvxsihut.woff2",
+      "source_sha256": "c268b459a9329e59fecf39a17618efd44c71735532048d60b12aab76a8c14914",
+      "sha256": "c268b459a9329e59fecf39a17618efd44c71735532048d60b12aab76a8c14914",
+      "bytes": 14500
+    },
+    "assets/manrope-greek-wght-normal-DL7QRZyv.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/manrope-greek-wght-normal-DL7QRZyv.woff2",
+      "source_sha256": "2fb2e8cbfd52ae46179a8b6024eb162f1f9c6de3d22d6e3a30d8f395de7220be",
+      "sha256": "2fb2e8cbfd52ae46179a8b6024eb162f1f9c6de3d22d6e3a30d8f395de7220be",
+      "bytes": 9444
+    },
+    "assets/manrope-latin-ext-wght-normal-Ch3YOpNY.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/manrope-latin-ext-wght-normal-Ch3YOpNY.woff2",
+      "source_sha256": "3911b66d9f2e005a4b989223405d0e5032619c668597ba467cc76a23c8fffcfb",
+      "sha256": "3911b66d9f2e005a4b989223405d0e5032619c668597ba467cc76a23c8fffcfb",
+      "bytes": 15120
+    },
+    "assets/manrope-latin-wght-normal-DHIcAJRg.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/manrope-latin-wght-normal-DHIcAJRg.woff2",
+      "source_sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972",
+      "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972",
+      "bytes": 24836
+    },
+    "assets/manrope-vietnamese-wght-normal-usUDDRr7.woff2": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/manrope-vietnamese-wght-normal-usUDDRr7.woff2",
+      "source_sha256": "6bbb044ab420e07edb0a3042d2eb314b85e83a0182e945a15ab3b9092668dfd5",
+      "sha256": "6bbb044ab420e07edb0a3042d2eb314b85e83a0182e945a15ab3b9092668dfd5",
+      "bytes": 8520
+    },
+    "assets/ordinal-BV0kxQNW.js": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/ordinal-BV0kxQNW.js",
+      "source_sha256": "603235f022805c279c354ca1aadf670577d36e5b78e7ccc8af2cb5c5ee720b93",
+      "sha256": "603235f022805c279c354ca1aadf670577d36e5b78e7ccc8af2cb5c5ee720b93",
+      "bytes": 10145
+    },
+    "assets/overview-map-scene-DTcz8JhO.js": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/overview-map-scene-DTcz8JhO.js",
+      "source_sha256": "8d6ac0cfa4f63abcf6f40eb9e169af7fa089164344379e4651e4243af9e851d6",
+      "sha256": "8d6ac0cfa4f63abcf6f40eb9e169af7fa089164344379e4651e4243af9e851d6",
+      "bytes": 1274
+    },
+    "assets/tile-layer-DufYXfbE.js": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/tile-layer-DufYXfbE.js",
+      "source_sha256": "0d7bdee04ff2dad308a28ecf77685b398f5d2e49cd0d844c424356b903b492cb",
+      "sha256": "0d7bdee04ff2dad308a28ecf77685b398f5d2e49cd0d844c424356b903b492cb",
+      "bytes": 813040
+    },
+    "assets/webgl-BJkNREBY.js": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/assets/webgl-BJkNREBY.js",
+      "source_sha256": "52642f0c3edc5be626953aafdbc8ec61ac9338d0888f7ce3527aaed3c633b28c",
+      "sha256": "52642f0c3edc5be626953aafdbc8ec61ac9338d0888f7ce3527aaed3c633b28c",
+      "bytes": 18863
+    },
+    "data/demo.json": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/demo.json",
+      "source_sha256": "159de83717f7d97d657329ab9d33edd7f8cb5cf8dc9ba1299aaa515b75277991",
+      "sha256": "159de83717f7d97d657329ab9d33edd7f8cb5cf8dc9ba1299aaa515b75277991",
+      "bytes": 88366
+    },
+    "data/flow-validation.json": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/flow-validation.json",
+      "source_sha256": "034fac22fdaa30725150e6cb3d0f88e24840561dad87bb07c17d187c11211050",
+      "sha256": "034fac22fdaa30725150e6cb3d0f88e24840561dad87bb07c17d187c11211050",
+      "bytes": 3998
+    },
+    "data/graph.json": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/graph.json",
+      "source_sha256": "a76569c05f70a03efe8dd360962aca05308981f7cc7e362229cbd32f0a9d08dc",
+      "sha256": "a76569c05f70a03efe8dd360962aca05308981f7cc7e362229cbd32f0a9d08dc",
+      "bytes": 8648959
+    },
+    "data/grid_cells.geojson": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/grid_cells.geojson",
+      "source_sha256": "77f079f6d128e105baa4274f46dde5de94348a5b3ff8aba3713485900db6d780",
+      "sha256": "77f079f6d128e105baa4274f46dde5de94348a5b3ff8aba3713485900db6d780",
+      "bytes": 48857
+    },
+    "data/ground_truth.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/ground_truth.f32",
+      "source_sha256": "aa64fa54b591bff1105b528e5fd79dcc68dd2dbc593a31b12f23be9857ab427f",
+      "sha256": "aa64fa54b591bff1105b528e5fd79dcc68dd2dbc593a31b12f23be9857ab427f",
+      "bytes": 79800
+    },
+    "data/metro-departures-20211101.u16": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/metro-departures-20211101.u16",
+      "source_sha256": "ec34491c426b37058185a108f5b200a52f73151f534a4d3743bbe3d111436e94",
+      "sha256": "ec34491c426b37058185a108f5b200a52f73151f534a4d3743bbe3d111436e94",
+      "bytes": 1298032
+    },
+    "data/metro-departures-20211102.u16": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/metro-departures-20211102.u16",
+      "source_sha256": "543660aed8337edf9b2816e97bea430635144866c5137f4a4edcf4ec1e8113c3",
+      "sha256": "543660aed8337edf9b2816e97bea430635144866c5137f4a4edcf4ec1e8113c3",
+      "bytes": 1325596
+    },
+    "data/metro-departures-20211103.u16": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/metro-departures-20211103.u16",
+      "source_sha256": "da7c4af6d77cd3140715b449d26d91f8a1384527cc3e513cc5d0de08124174a2",
+      "sha256": "da7c4af6d77cd3140715b449d26d91f8a1384527cc3e513cc5d0de08124174a2",
+      "bytes": 1378958
+    },
+    "data/metro-departures-20211104.u16": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/metro-departures-20211104.u16",
+      "source_sha256": "751ff72d0b54b6f8c941da6c0f195380976709456318def9e826479fbeb43d64",
+      "sha256": "751ff72d0b54b6f8c941da6c0f195380976709456318def9e826479fbeb43d64",
+      "bytes": 1411484
+    },
+    "data/metro-departures-20211105.u16": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/metro-departures-20211105.u16",
+      "source_sha256": "93aa8d7d1ced925be94fd3ecab4a9ad51f92c3b49c79b8983a0b169e6601ef5b",
+      "sha256": "93aa8d7d1ced925be94fd3ecab4a9ad51f92c3b49c79b8983a0b169e6601ef5b",
+      "bytes": 1522790
+    },
+    "data/metro-flow-days.json": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/metro-flow-days.json",
+      "source_sha256": "4d1aab6003d87d45f54098dd1bc890bbf2c65fa6a4b3d753da428ae79773a5a4",
+      "sha256": "4d1aab6003d87d45f54098dd1bc890bbf2c65fa6a4b3d753da428ae79773a5a4",
+      "bytes": 9127
+    },
+    "data/metro-flow-validation.json": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/metro-flow-validation.json",
+      "source_sha256": "ad10fc79c851301f229d438a0c5ad3339e430f9d4a53e4873c8a4c3dff9a4974",
+      "sha256": "ad10fc79c851301f229d438a0c5ad3339e430f9d4a53e4873c8a4c3dff9a4974",
+      "bytes": 14397
+    },
+    "data/metro-flows-20211101.u16": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/metro-flows-20211101.u16",
+      "source_sha256": "fc8f6d9c288a2d2326256c4abd2269480a0f21ef21c63803f3185a4babcd786e",
+      "sha256": "fc8f6d9c288a2d2326256c4abd2269480a0f21ef21c63803f3185a4babcd786e",
+      "bytes": 3150880
+    },
+    "data/metro-flows-20211102.u16": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/metro-flows-20211102.u16",
+      "source_sha256": "9c59ff797b4e784c2556507385e18bd75576abc3fab99e204c160b88cfb8ca93",
+      "sha256": "9c59ff797b4e784c2556507385e18bd75576abc3fab99e204c160b88cfb8ca93",
+      "bytes": 3206128
+    },
+    "data/metro-flows-20211103.u16": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/metro-flows-20211103.u16",
+      "source_sha256": "f25ddbf606c0f6cd23e7d6ccc980c0aaf383476b68efce37b91114fc09794e52",
+      "sha256": "f25ddbf606c0f6cd23e7d6ccc980c0aaf383476b68efce37b91114fc09794e52",
+      "bytes": 3284656
+    },
+    "data/metro-flows-20211104.u16": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/metro-flows-20211104.u16",
+      "source_sha256": "fcd383cf50d68bad629e97a3608c40c69e6a06d7f86e682654610d93aa9a9606",
+      "sha256": "fcd383cf50d68bad629e97a3608c40c69e6a06d7f86e682654610d93aa9a9606",
+      "bytes": 3341600
+    },
+    "data/metro-flows-20211105.u16": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/metro-flows-20211105.u16",
+      "source_sha256": "315b404c00c8004592c5215e2894ddd9fd1066bd423f9f0e1a37673f57b1be06",
+      "sha256": "315b404c00c8004592c5215e2894ddd9fd1066bd423f9f0e1a37673f57b1be06",
+      "bytes": 3543008
+    },
+    "data/metro.json": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/metro.json",
+      "source_sha256": "9243fda6a761d7904a740e655f26b2456ada5e59cf52ec41a229d414eddca197",
+      "sha256": "9243fda6a761d7904a740e655f26b2456ada5e59cf52ec41a229d414eddca197",
+      "bytes": 18857
+    },
+    "data/metro_boundary.geojson": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/metro_boundary.geojson",
+      "source_sha256": "8e58fa5a2317874cb9a680d38a2a179e1cc72508be12c946a4149a35310d3e83",
+      "sha256": "8e58fa5a2317874cb9a680d38a2a179e1cc72508be12c946a4149a35310d3e83",
+      "bytes": 7011
+    },
+    "data/metro_cells.geojson": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/metro_cells.geojson",
+      "source_sha256": "623247cbf055d40ad4b2211084ebd3bf02e0b8736ec492f925ee60b6e5ecfb6e",
+      "sha256": "623247cbf055d40ad4b2211084ebd3bf02e0b8736ec492f925ee60b6e5ecfb6e",
+      "bytes": 347912
+    },
+    "data/metro_flows.json": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/metro_flows.json",
+      "source_sha256": "be6b2e9025216ce7f8de193dc24d61b331479c7d1f77af0430b42f082c66a6a1",
+      "sha256": "be6b2e9025216ce7f8de193dc24d61b331479c7d1f77af0430b42f082c66a6a1",
+      "bytes": 2375035
+    },
+    "data/metro_states.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/metro_states.f32",
+      "source_sha256": "027c2fd4b5f829c388acad1a9184171f34b7d40d4d4e1ead0333606a96f91d39",
+      "sha256": "027c2fd4b5f829c388acad1a9184171f34b7d40d4d4e1ead0333606a96f91d39",
+      "bytes": 2144640
+    },
+    "data/metro_validation.json": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/metro_validation.json",
+      "source_sha256": "ea486a55ef817cbb3f2476a3c59abd687c67583d7bae81d376879d35bff38bd8",
+      "sha256": "ea486a55ef817cbb3f2476a3c59abd687c67583d7bae81d376879d35bff38bd8",
+      "bytes": 1744
+    },
+    "data/observed_flows.json": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/observed_flows.json",
+      "source_sha256": "842f0f4918c86e51acc3bf0437ea0c174fbb29331d8358979f2963c812060906",
+      "sha256": "842f0f4918c86e51acc3bf0437ea0c174fbb29331d8358979f2963c812060906",
+      "bytes": 819608
+    },
+    "data/observed_full.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/observed_full.f32",
+      "source_sha256": "a2b0ef14f7765e2f603328fe5cd766ca3e967cf6d755f985d5a9c6383ee7de06",
+      "sha256": "a2b0ef14f7765e2f603328fe5cd766ca3e967cf6d755f985d5a9c6383ee7de06",
+      "bytes": 403200
+    },
+    "data/reconstructions/accessibility_drift.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/accessibility_drift.f32",
+      "source_sha256": "888e536fb98c2741d81b3450df3c557a2018ecec0c8d1179230bf2d6d536d181",
+      "sha256": "888e536fb98c2741d81b3450df3c557a2018ecec0c8d1179230bf2d6d536d181",
+      "bytes": 79800
+    },
+    "data/reconstructions/betweenness_diffusion.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/betweenness_diffusion.f32",
+      "source_sha256": "3d88242e583264775979823fa147c0ed4b9b94da0bc3cc2f7bbb633b2eca67fc",
+      "sha256": "3d88242e583264775979823fa147c0ed4b9b94da0bc3cc2f7bbb633b2eca67fc",
+      "bytes": 79800
+    },
+    "data/reconstructions/betweenness_gravity.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/betweenness_gravity.f32",
+      "source_sha256": "2d07b913a60fffa37fc064d2bbd79a87b37f5d8be0a16e5345b0d787f7ac0fde",
+      "sha256": "2d07b913a60fffa37fc064d2bbd79a87b37f5d8be0a16e5345b0d787f7ac0fde",
+      "bytes": 79800
+    },
+    "data/reconstructions/classic_gravity_exponential.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/classic_gravity_exponential.f32",
+      "source_sha256": "cbe1c7dc5ee566a980eb46f32057fea6167af1724190b11f89c1fb0fe176c644",
+      "sha256": "cbe1c7dc5ee566a980eb46f32057fea6167af1724190b11f89c1fb0fe176c644",
+      "bytes": 79800
+    },
+    "data/reconstructions/classic_gravity_power.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/classic_gravity_power.f32",
+      "source_sha256": "3697514d13b5f62169cd5b2f4bf5d6691d84ccae8bd64360321b4253a27b4642",
+      "sha256": "3697514d13b5f62169cd5b2f4bf5d6691d84ccae8bd64360321b4253a27b4642",
+      "bytes": 79800
+    },
+    "data/reconstructions/cluster_diffusion.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/cluster_diffusion.f32",
+      "source_sha256": "ade5dad865de3a1d19cecefd96cee353a5ebda061a534ef8998dc1675d73a4e7",
+      "sha256": "ade5dad865de3a1d19cecefd96cee353a5ebda061a534ef8998dc1675d73a4e7",
+      "bytes": 79800
+    },
+    "data/reconstructions/corridor_diffusion.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/corridor_diffusion.f32",
+      "source_sha256": "0c35e338aea9c056ef2902c0db5098ac6e1350f0683b459a6784d1c08aa95d8a",
+      "sha256": "0c35e338aea9c056ef2902c0db5098ac6e1350f0683b459a6784d1c08aa95d8a",
+      "bytes": 79800
+    },
+    "data/reconstructions/distance_weighted_diffusion.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/distance_weighted_diffusion.f32",
+      "source_sha256": "617b0e8b5f762a51ee7333827d19a5d4b575ba5e14ef96f106992129de62173c",
+      "sha256": "617b0e8b5f762a51ee7333827d19a5d4b575ba5e14ef96f106992129de62173c",
+      "bytes": 79800
+    },
+    "data/reconstructions/dual_layer_diffusion.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/dual_layer_diffusion.f32",
+      "source_sha256": "b302935cfb74bb78da4234b3d126accf3d5db20dc5b4daba49d7dd49275b7f0a",
+      "sha256": "b302935cfb74bb78da4234b3d126accf3d5db20dc5b4daba49d7dd49275b7f0a",
+      "bytes": 79800
+    },
+    "data/reconstructions/edge_betweenness_diffusion.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/edge_betweenness_diffusion.f32",
+      "source_sha256": "e914ecd7d548bcc272b0c2af11421cefa620a29b788a5de2603aef9135331ce3",
+      "sha256": "e914ecd7d548bcc272b0c2af11421cefa620a29b788a5de2603aef9135331ce3",
+      "bytes": 79800
+    },
+    "data/reconstructions/explore_return_diffusion.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/explore_return_diffusion.f32",
+      "source_sha256": "b14cdaf1ca0e917646c231dbefdfca45795c927e228d5044e0237edc4a33c045",
+      "sha256": "b14cdaf1ca0e917646c231dbefdfca45795c927e228d5044e0237edc4a33c045",
+      "bytes": 79800
+    },
+    "data/reconstructions/knn_diffusion.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/knn_diffusion.f32",
+      "source_sha256": "a37d2d09b01504825754172a28c2fd30e15785f2bd01bca90df0c9494bb5e0c3",
+      "sha256": "a37d2d09b01504825754172a28c2fd30e15785f2bd01bca90df0c9494bb5e0c3",
+      "bytes": 79800
+    },
+    "data/reconstructions/knn_limited_diffusion.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/knn_limited_diffusion.f32",
+      "source_sha256": "ddd0d84588ff14ac75b61b74e5abaaeff4d23ecba832238f489faaa7aa262800",
+      "sha256": "ddd0d84588ff14ac75b61b74e5abaaeff4d23ecba832238f489faaa7aa262800",
+      "bytes": 79800
+    },
+    "data/reconstructions/knn_two_band_diffusion.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/knn_two_band_diffusion.f32",
+      "source_sha256": "8519f218fffc9f7863c7f3f8ccbf3e3dc6c0897fe5bca6b94c4cf82a00a82a2c",
+      "sha256": "8519f218fffc9f7863c7f3f8ccbf3e3dc6c0897fe5bca6b94c4cf82a00a82a2c",
+      "bytes": 79800
+    },
+    "data/reconstructions/local_global_diffusion.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/local_global_diffusion.f32",
+      "source_sha256": "3dec1ec1fb7d7f41fc1b609fe9cd438ea0d2f173fada7910448d72faf169fabc",
+      "sha256": "3dec1ec1fb7d7f41fc1b609fe9cd438ea0d2f173fada7910448d72faf169fabc",
+      "bytes": 79800
+    },
+    "data/reconstructions/radiation.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/radiation.f32",
+      "source_sha256": "c42e2ca3c1359c4c7880ab0abacab8efb04355280faacc7453896b364e0ec79f",
+      "sha256": "c42e2ca3c1359c4c7880ab0abacab8efb04355280faacc7453896b364e0ec79f",
+      "bytes": 79800
+    },
+    "data/reconstructions/rank_based_diffusion.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/rank_based_diffusion.f32",
+      "source_sha256": "897b36093fc1a792e64a3ca5401625644ca04e668913e290dda4464778e3fb00",
+      "sha256": "897b36093fc1a792e64a3ca5401625644ca04e668913e290dda4464778e3fb00",
+      "bytes": 79800
+    },
+    "data/reconstructions/rank_choice_gravity.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/rank_choice_gravity.f32",
+      "source_sha256": "21736b56c952ac358bbd41f0ad3a07cb6cbef30eb872c52419388f1d3f755ad3",
+      "sha256": "21736b56c952ac358bbd41f0ad3a07cb6cbef30eb872c52419388f1d3f755ad3",
+      "bytes": 79800
+    },
+    "data/reconstructions/rank_tail_diffusion.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/rank_tail_diffusion.f32",
+      "source_sha256": "e55a9023a1df81d64f8d869107f17e8c96c0afb3744ea3a0ad1e2e0691789fd6",
+      "sha256": "e55a9023a1df81d64f8d869107f17e8c96c0afb3744ea3a0ad1e2e0691789fd6",
+      "bytes": 79800
+    },
+    "data/reconstructions/saturation_limited_diffusion.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/saturation_limited_diffusion.f32",
+      "source_sha256": "95b6e01360176e9b25da4f916583907754133ed31e2f870d2335cfa6ea89f248",
+      "sha256": "95b6e01360176e9b25da4f916583907754133ed31e2f870d2335cfa6ea89f248",
+      "bytes": 79800
+    },
+    "data/reconstructions/single_constrained_gravity_exponential.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/single_constrained_gravity_exponential.f32",
+      "source_sha256": "70d3ffa122625d43142eb8fc1b7a3436fc81bb81dfad974810b5bce781c6cf70",
+      "sha256": "70d3ffa122625d43142eb8fc1b7a3436fc81bb81dfad974810b5bce781c6cf70",
+      "bytes": 79800
+    },
+    "data/reconstructions/single_constrained_gravity_power.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/single_constrained_gravity_power.f32",
+      "source_sha256": "f0c6b7f7d6c662eee65125da0b2e2f91b4050de2e767ecf2151d18da9392d81a",
+      "sha256": "f0c6b7f7d6c662eee65125da0b2e2f91b4050de2e767ecf2151d18da9392d81a",
+      "bytes": 79800
+    },
+    "data/reconstructions/span_cluster_diffusion.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/span_cluster_diffusion.f32",
+      "source_sha256": "74f5611fa0ec8cfd0b17cb03bc0c667d2eecab369375eec74557884b435f3c1c",
+      "sha256": "74f5611fa0ec8cfd0b17cb03bc0c667d2eecab369375eec74557884b435f3c1c",
+      "bytes": 79800
+    },
+    "data/reconstructions/span_diffusion.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/span_diffusion.f32",
+      "source_sha256": "4f2456d4cae654db4365cbd484bbbfafc194e7c82d722c82c6eed40113c7c759",
+      "sha256": "4f2456d4cae654db4365cbd484bbbfafc194e7c82d722c82c6eed40113c7c759",
+      "bytes": 79800
+    },
+    "data/reconstructions/state_adaptive_diffusion.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/state_adaptive_diffusion.f32",
+      "source_sha256": "882262c52864e2edc1c2c990cbc25a04fc2474f19debc95a6f1b704b67437fc0",
+      "sha256": "882262c52864e2edc1c2c990cbc25a04fc2474f19debc95a6f1b704b67437fc0",
+      "bytes": 79800
+    },
+    "data/reconstructions/two_scale_diffusion.f32": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/reconstructions/two_scale_diffusion.f32",
+      "source_sha256": "8872bb19956ad9b97e0d4e894d614c3cce2a0382b1aecb3d72dee6c3a8dc074f",
+      "sha256": "8872bb19956ad9b97e0d4e894d614c3cce2a0382b1aecb3d72dee6c3a8dc074f",
+      "bytes": 79800
+    },
+    "data/validation-report.json": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/data/validation-report.json",
+      "source_sha256": "629cb6847661cf7e03ed156837b328a26de36df5aea2150e4ecc2a6ddcbfb329",
+      "sha256": "629cb6847661cf7e03ed156837b328a26de36df5aea2150e4ecc2a6ddcbfb329",
+      "bytes": 14531
+    },
+    "images/geodi-lab-logo.png": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/images/geodi-lab-logo.png",
+      "source_sha256": "04eb5173d8b9f24de9b24b09aea9f8c8c2695ee1485b1efd30b03a874688ee21",
+      "sha256": "04eb5173d8b9f24de9b24b09aea9f8c8c2695ee1485b1efd30b03a874688ee21",
+      "bytes": 34837
+    },
+    "index.html": {
+      "source_url": "https://zhongfuma-gis.com/u-discovery-geodi/",
+      "source_sha256": "9837886eafc027f90aec3bc148bf462426a9fd8ec79ebfa5ba595c0df76a2725",
+      "sha256": "119e30483ec4ade110bb3b6f88823848613e90e35ba81f631296123e1e6b9ffe",
+      "bytes": 680
+    }
+  }
+}
